@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.Models", "Teac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.Domain", "TeachAndTest.Domain\TeachAndTest.Domain.csproj", "{74B2FB67-1830-4B8E-82B5-2355435F9565}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.BusinessLogic", "TeachAndTest.BusinessLogic\TeachAndTest.BusinessLogic.csproj", "{A4B23A3D-1280-45A0-98B3-A9AEDEEEB6F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.Api.Common", "TeachAndTest.Api.Common\TeachAndTest.Api.Common.csproj", "{8BD8D2CB-67FC-4D8C-AB4C-C64E46B817F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{74B2FB67-1830-4B8E-82B5-2355435F9565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B2FB67-1830-4B8E-82B5-2355435F9565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74B2FB67-1830-4B8E-82B5-2355435F9565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B23A3D-1280-45A0-98B3-A9AEDEEEB6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B23A3D-1280-45A0-98B3-A9AEDEEEB6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B23A3D-1280-45A0-98B3-A9AEDEEEB6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B23A3D-1280-45A0-98B3-A9AEDEEEB6F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD8D2CB-67FC-4D8C-AB4C-C64E46B817F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD8D2CB-67FC-4D8C-AB4C-C64E46B817F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD8D2CB-67FC-4D8C-AB4C-C64E46B817F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD8D2CB-67FC-4D8C-AB4C-C64E46B817F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
