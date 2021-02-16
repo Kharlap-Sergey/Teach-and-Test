@@ -37,12 +37,16 @@ namespace TeachAndTest.Api
                    .AddDefaultTokenProviders();
 
 
+<<<<<<< HEAD
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
             JwtAuthOptions.AUDIENCE = section["AUDIENCE"];
             JwtAuthOptions.ISSUER = section["ISSUER"];
             JwtAuthOptions.KEY = section["KEY"];
             JwtAuthOptions.LIFETIME = int.Parse(section["LIFETIME"]);
+=======
+            //Todo add configuration for JwtAuthOptions
+>>>>>>> 24bd61a7f7b2ea8433ec6315f75ad0ea4ef945d4
             services.AddAuthentication(options =>
                    {
                        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
