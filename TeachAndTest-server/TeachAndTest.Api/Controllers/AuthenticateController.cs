@@ -11,7 +11,13 @@ namespace TeachAndTest.Api.Controllers
         { 
         }
 
-        [HttpPost()]
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+
+            return Unauthorized();
+        }
+        [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequestVM loginRequest)
         {
 
