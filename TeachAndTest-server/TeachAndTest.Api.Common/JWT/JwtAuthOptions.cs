@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+
 namespace TeachAndTest.Api.Common.JWT
 {
     public class JwtAuthOptions

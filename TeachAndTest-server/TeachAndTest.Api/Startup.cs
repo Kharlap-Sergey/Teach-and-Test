@@ -36,7 +36,6 @@ namespace TeachAndTest.Api
                    .AddEntityFrameworkStores<CustomDbContext>()
                    .AddDefaultTokenProviders();
 
-
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
             JwtAuthOptions.AUDIENCE = section["AUDIENCE"];
