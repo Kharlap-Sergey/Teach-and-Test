@@ -36,6 +36,8 @@ namespace TeachAndTest.Api
                    .AddEntityFrameworkStores<CustomDbContext>()
                    .AddDefaultTokenProviders();
 
+            //todo Dependency injections match here
+
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
             JwtAuthOptions.AUDIENCE = section["AUDIENCE"];
@@ -80,6 +82,8 @@ namespace TeachAndTest.Api
                 app.UseHsts();
             }
 
+            //todo cors policy resolution 
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
