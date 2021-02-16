@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using TeachAndTest.Domain;
+using TeachAndTest.Models.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http;
+using TeachAndTest.Api.Common.JWT;
 
 namespace TeachAndTest.Api
 {
@@ -24,6 +27,39 @@ namespace TeachAndTest.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<CustomDbContext>(options =>
+              options.UseSqlServer(connection));
+
+            services.AddIdentity<User, Role>()
+                   .AddEntityFrameworkStores<CustomDbContext>()
+                   .AddDefaultTokenProviders();
+
+
+            //Todo add configuration for JwtAuthOptions
+            services.AddAuthentication(options =>
+                   {
+                       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                       options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                   })
+                   .AddJwtBearer(options =>
+                   {
+                       options.SaveToken = true;
+                       options.RequireHttpsMetadata = false;
+
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+                           ValidateIssuer = true,
+                           ValidIssuer = JwtAuthOptions.ISSUER,
+                           ValidateAudience = true,
+                           ValidAudience = JwtAuthOptions.AUDIENCE,
+                           ValidateLifetime = true,
+                           IssuerSigningKey = JwtAuthOptions.GetSymmetricSecurityKey(),
+                           ValidateIssuerSigningKey = true,
+                       };
+                   });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
