@@ -1,22 +1,21 @@
-<div class="form-label-group">
-  <input class="form-control"
+<div class="generic-input">
+  <input class="generic-input__input"
   [type]="type"
   #input
   (input)="onChange($event.target.value)"
   (blur)="onTouched()"
   [disabled]="disabled"
-  [value]="'initial'"
   [placeholder]="placeholder">
-
-  <div class="d-flex">
-    <span class="v" *ngIf="isRequired && input.valid && input.touched">
-      <img src="./assets/images/v.svg">
+  <div class="generic-input__info">
+    <span class="v" *ngIf="(isRequired && controlDir && controlDir.control.valid &&
+    controlDir.control.touched)">
     </span>
 
-    <label class="mr-auto">{{label}}
-      <span class="required" *ngIf="isRequired">*</span>
+    <label class="generic-input__lable">{{label}}
+      <span class="generic-input__required" *ngIf="isRequired">*</span>
     </label>
 
-    <span class="error" *ngIf="input && !input.valid && input.touched">{{errorMsg}}</span>
+    <span class="generic-input__error" *ngIf="controlDir && !controlDir.control.valid
+     && controlDir.control.touched">{{errorMsg}}</span>
   </div>
 </div>

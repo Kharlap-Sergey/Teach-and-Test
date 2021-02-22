@@ -7,17 +7,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-    profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  });
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    console.log(this.profileForm.value)
+  onSubmit(value: any): void {
+    console.log(value)
   }
 }
