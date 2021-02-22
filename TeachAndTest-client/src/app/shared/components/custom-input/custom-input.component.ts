@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,8 +9,8 @@ import { FormControl } from '@angular/forms';
 export class CustomInputComponent {
   //@Input()
   //controlName = new FormControl('');
-  name = new FormControl('');
-  //@Input() name: FormControl;
+  //name = new FormControl('');
+  @Input() name!: FormControl;
 
   constructor() { }
 }
