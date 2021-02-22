@@ -1,5 +1,11 @@
-<div class="page-box">
-  <div class="page__content">
-    Hello world
-  </div>
+<div class="app">
+  <nav class="app__nav">
+    <button routerLink="account/login" class="app__nav-link">login</button>
+    <br>
+    <button routerLink="account/registration" class="app__nav-link">registration</button>
+  </nav>
+
+  <main class="app__page">
+    <router-outlet></router-outlet>
+  </main>
 </div>
