@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,12 +8,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  constructor() { }
+  constructor(private remoteService: AccountService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(value: any): void {
-    console.log(value)
+    this.remoteService.registrateNewUser(value);
   }
 }
