@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss']
 })
-export class CustomInputComponent implements OnInit {
+export class CustomInputComponent {
+  //@Input()
+  //controlName = new FormControl('');
+  name = new FormControl('');
+  //@Input() name: FormControl;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
