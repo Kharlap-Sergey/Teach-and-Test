@@ -1,0 +1,22 @@
+<div class="form-label-group">
+  <input class="form-control"
+  [type]="type"
+  #input
+  (input)="onChange($event.target.value)"
+  (blur)="onTouched()"
+  [disabled]="disabled"
+  [value]="'initial'"
+  [placeholder]="placeholder">
+
+  <div class="d-flex">
+    <span class="v" *ngIf="isRequired && input.valid && input.touched">
+      <img src="./assets/images/v.svg">
+    </span>
+
+    <label class="mr-auto">{{label}}
+      <span class="required" *ngIf="isRequired">*</span>
+    </label>
+
+    <span class="error" *ngIf="input && !input.valid && input.touched">{{errorMsg}}</span>
+  </div>
+</div>
