@@ -1,3 +1,6 @@
-<p>registration works!</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>
+  </label>
 
-<app-custom-form-input ></app-custom-form-input>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

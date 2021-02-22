@@ -17,4 +17,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(): void {
+    console.log(this.profileForm.value)
+  }
 }
