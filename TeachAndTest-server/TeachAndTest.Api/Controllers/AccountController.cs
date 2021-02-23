@@ -20,12 +20,16 @@ namespace TeachAndTest.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Registrate(
+        public async Task<ActionResult<User>> Register(
             [FromBody] RegistrateUserRequestVM userVM
             )
         {
             //todo authomapper here
-            var user = new User();
+            var user = new User()
+            {
+                UserName = userVM.Email,
+                Email = userVM.Email
+            };
 
             User RegistratedUser = await accountService.CreateAsync(user, userVM.Password);
 

@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using TeachAndTest.Api.Common.JWT;
 using TeachAndTest.BusinessLogic.Account;
+using System;
 
 namespace TeachAndTest.Api
 {
@@ -32,6 +33,29 @@ namespace TeachAndTest.Api
             services.AddDbContext<CustomDbContext>(options =>
               options.UseSqlServer(connection));
 
+
+
+            //Configuration for Identity
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 1;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
             services.AddIdentity<User, Role>()
                    .AddEntityFrameworkStores<CustomDbContext>()
                    .AddDefaultTokenProviders();
@@ -86,7 +110,13 @@ namespace TeachAndTest.Api
             }
 
             //todo cors policy resolution 
-            
+            //include CORS
+            string host = Configuration["Cors:AvailabelHosts"];
+            app.UseCors(builder => builder.WithOrigins(host).AllowCredentials()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

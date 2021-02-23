@@ -1,18 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
-import { Injectable } from '@angular/core';
+import { Injectable, Self } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { ApiRoutes } from 'src/app/shared/utils/api-routes';
 import { UserRegistrationModel } from './../models/user-registration-model';
 
-@Injectable()
+@Injectable({
+  // declares that this service should be created
+  // by the root application injector.
+  providedIn: 'root',
+})
 export class AccountService {
-  constructor(private http: HttpClient) {}
+  constructor(@Self() private http: HttpClient) {}
 
   registrateNewUser(userModel: UserRegistrationModel) {
-    const url: string = '';
+    const url: string = ApiRoutes.Account.RegisterNewAccount;
     const options = {};
     const body = userModel;
-    return this.http.patch(url, body, options);
+    return this.http.post(url, body, options);
+  }
+
+  test() {
+    const url: string = ApiRoutes.AccountController + "/test"
+    console.log('send to test')
+    return this.http.get(url);
   }
 }
