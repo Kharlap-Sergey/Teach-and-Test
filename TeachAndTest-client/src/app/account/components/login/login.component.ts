@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
+import { AuthControllService } from './../../../shared/services/auth-controll.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,11 @@ import { AccountService } from '../../services/account.service';
 export class LoginComponent implements OnInit {
   info: any;
   token: string;
-  constructor(private remoteService: AccountService) {}
+  constructor(private remoteService: AccountService, private authControll: AuthControllService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authControll.token.subscribe((token) => {this.token = token})
+  }
 
   onClick() {
     this.remoteService.testAuth(this.token).subscribe((data: any) => {
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
     //this.remoteService.test().subscribe((data: any) => this.info = data );
     this.remoteService.loginUser(value).subscribe((data: any) => {
       this.info = JSON.stringify(data);
-      this.token = data.token;
+      this.authControll.SetToken(data.token);
     });
   }
 }
