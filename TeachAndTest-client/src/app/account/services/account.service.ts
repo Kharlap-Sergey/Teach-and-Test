@@ -32,4 +32,16 @@ export class AccountService {
     console.log('send to test')
     return this.http.get(url);
   }
+
+  testAuth(token: string) {
+    const url: string = ApiRoutes.AccountController + "/testAuth"
+    const options = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    console.log('send to test')
+    return this.http.get(url, options);
+  }
 }
