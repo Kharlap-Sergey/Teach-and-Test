@@ -4,7 +4,7 @@ import { Injectable, Self } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
-import { UserRegistrationModel } from './../models/user-registration-model';
+import { UserLoginModel, UserRegistrationModel } from './../models/user-registration-model';
 
 @Injectable({
   // declares that this service should be created
@@ -16,6 +16,12 @@ export class AccountService {
 
   registrateNewUser(userModel: UserRegistrationModel) {
     const url: string = ApiRoutes.Account.RegisterNewAccount;
+    const options = {};
+    const body = userModel;
+    return this.http.post(url, body, options);
+  }
+  loginUser(userModel: UserLoginModel) {
+    const url: string = ApiRoutes.Authenticate.LoginUser;
     const options = {};
     const body = userModel;
     return this.http.post(url, body, options);

@@ -1,22 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Controllers;
+using TeachAndTest.Api.Common.JWT;
 using TeachAndTest.Api.Common.ViewModel;
+using TeachAndTest.BusinessLogic.Auth;
 
 namespace TeachAndTest.Api.Controllers
 {
     public class AuthenticateController : ApiControllerBase
     {
-        public AuthenticateController()
+        private readonly IAuthenticateService authenticateService;
+
+        public AuthenticateController(IAuthenticateService authenticateService)
         {
+            this.authenticateService = authenticateService;
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginRequestVM loginRequest)
+        public async Task<ActionResult<object>> Login([FromBody] LoginRequestVM loginRequest)
         {
+            var user = await authenticateService.LoginAsync(loginRequest.Login, loginRequest.Password);
+            var authJwtToken = CustomJwtCreator.CreateJwt(user.Id);
 
-            return Unauthorized();
+            return new
+            {
+                user,
+                token = authJwtToken
+            };
         }
     }
 }

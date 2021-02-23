@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  info: any;
+  constructor(private remoteService: AccountService) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  onSubmit(value: any): void {
+    //this.remoteService.test().subscribe((data: any) => this.info = data );
+    this.remoteService
+      .loginUser(value)
+      .subscribe((data: any) => {this.info = JSON.stringify(data)});
   }
-
 }

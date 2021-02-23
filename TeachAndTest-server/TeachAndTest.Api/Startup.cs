@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using TeachAndTest.Api.Common.JWT;
 using TeachAndTest.BusinessLogic.Account;
 using System;
+using TeachAndTest.BusinessLogic.Auth;
 
 namespace TeachAndTest.Api
 {
@@ -58,10 +59,11 @@ namespace TeachAndTest.Api
             });
             services.AddIdentity<User, Role>()
                    .AddEntityFrameworkStores<CustomDbContext>()
-                   .AddDefaultTokenProviders();
+                   .AddDefaultTokenProviders(); 
 
             //todo Dependency injections match here
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);

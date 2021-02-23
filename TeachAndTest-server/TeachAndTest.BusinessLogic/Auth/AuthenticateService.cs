@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 using TeachAndTest.Models.Entities;
 
@@ -37,7 +38,7 @@ namespace TeachAndTest.BusinessLogic.Auth
             if( !result.Succeeded )
             {
                 //todo Implement this feature 
-                //throw new InvalidCredentialException("The user name or password is not correct");
+                throw new Exception("The user name or password is not correct");
             }
 
             User user = await userManager.FindByNameAsync(userName);
