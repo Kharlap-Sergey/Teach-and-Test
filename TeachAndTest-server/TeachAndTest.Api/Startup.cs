@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using TeachAndTest.Api.Common.JWT;
+using TeachAndTest.BusinessLogic.Account;
 
 namespace TeachAndTest.Api
 {
@@ -36,6 +37,7 @@ namespace TeachAndTest.Api
                    .AddDefaultTokenProviders();
 
             //todo Dependency injections match here
+            services.AddScoped<IAccountService, AccountService>();
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
