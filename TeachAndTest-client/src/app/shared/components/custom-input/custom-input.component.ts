@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-input',
@@ -7,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomInputComponent implements OnInit {
-  @Input() inputControl:any;
+  @Input() inputControl: FormControl;
   @Input() label: string;
 
   constructor() { }

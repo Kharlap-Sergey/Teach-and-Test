@@ -1,4 +1,7 @@
-<label>
-  {{label}}
-  <input type="text" [formControl]="inputControl">
-</label>
+<div>
+  <label>
+    {{ label }}
+  </label>
+  <input type="text" [formControl]="inputControl"/>
+  {{inputControl.valid}}
+</div>
