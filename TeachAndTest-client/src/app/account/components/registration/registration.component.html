@@ -1,35 +1,29 @@
-<form class="form-signin" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-  <div class="text-center mb-4">
-    <h1 class="h3 mb-3 font-weight-normal">First Try</h1>
+<form
+  class="form-registration"
+  #f="ngForm"
+  (ngSubmit)="onSubmit(f.value)"
+  [formGroup]="registrationForm"
+>
+  <div class="form-registration__body">
+    <app-custom-input
+      [inputControl]="email"
+      label="email"
+    ></app-custom-input>
+    <app-custom-input
+      [inputControl]="firstname"
+      label="first name"
+    ></app-custom-input>
+    <app-custom-input
+      [inputControl]="lastname"
+      label="last name"
+    ></app-custom-input>
+
+    <button
+      class="btn btn-lg btn-primary btn-block"
+      [disabled]="f.invalid"
+      type="submit"
+    >
+      Sign in
+    </button>
   </div>
-
-  <app-generic-Input
-    [placeholder]="'Email'"
-    [isRequired]="true"
-    [errorMsg]="'Please enter your name'"
-    [label]="'User Email'"
-    [pattern]="'[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'"
-    ngModel
-    name="email"
-  ></app-generic-Input>
-
-  <app-generic-Input
-    [placeholder]="'password'"
-    [isRequired]="true"
-    [errorMsg]="'Please enter password'"
-    [label]="'password'"
-    [pattern]="'.*'"
-    ngModel
-    name="password"
-  ></app-generic-Input>
-
-  <button
-    class="btn btn-lg btn-primary btn-block"
-
-    type="submit"
-  >
-    Sign in
-  </button>
-
-  {{info}}
 </form>
