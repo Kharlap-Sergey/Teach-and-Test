@@ -36,12 +36,11 @@ export class RegistrationComponent
   constructor(
     private remoteService: AccountService
   ) {}
-
   ngOnInit(): void {}
 
   onSubmit(value: any): void {
     this.remoteService
-      .registrateNewUser(value)
+      .registerNewUser(value)
       .subscribe((data: any) => {
         this.info = JSON.stringify(
           data

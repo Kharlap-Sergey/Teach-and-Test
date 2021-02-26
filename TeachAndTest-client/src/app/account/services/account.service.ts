@@ -14,7 +14,7 @@ import { UserLoginModel, UserRegistrationModel } from './../models/user-registra
 export class AccountService {
   constructor(@Self() private http: HttpClient) {}
 
-  registrateNewUser(userModel: UserRegistrationModel) {
+  registerNewUser(userModel: UserRegistrationModel) {
     const url: string = ApiRoutes.Account.RegisterNewAccount;
     const options = {};
     const body = userModel;
