@@ -10,10 +10,13 @@ import { FormControl } from '@angular/forms';
 export class CustomInputComponent implements OnInit {
   @Input() inputControl: FormControl;
   @Input() label: string;
-
+  @Input() name:string
   constructor() { }
 
   ngOnInit(): void {
+    if(!this.name){
+      this.name = this.label
+    }
   }
 
 }

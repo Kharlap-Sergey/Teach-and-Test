@@ -1,0 +1,34 @@
+.custom-input {
+	&__body {
+    position: relative;
+    padding: 4px;
+    font-size: 3rem;
+  }
+	&__label {
+    display: block;
+    position: relative;
+    letter-spacing: 1px;
+    z-index: -1;
+    bottom: -3.5rem;
+    transition: linear .15s;
+    &--upper{
+      bottom: 0;
+    }
+  }
+
+	&__input {
+    font-size: inherit;
+    opacity: 0.7;
+    border: 0;
+    border-bottom: 3px solid;
+    border-radius: 2px;
+    outline: none;
+    &--invalid{
+      border-bottom-color: lightsalmon;
+      background-color: lightcoral;
+    }
+    &--valid{
+      border-bottom-color: limegreen;
+    }
+   }
+}
