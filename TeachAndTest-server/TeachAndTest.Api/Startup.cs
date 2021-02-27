@@ -111,10 +111,10 @@ namespace TeachAndTest.Api
                 app.UseHsts();
             }
 
-            //todo cors policy resolution 
+            //todo cors policy resolution É
             //include CORS
             string host = Configuration["Cors:AvailabelHosts"];
-            app.UseCors(builder => builder.WithOrigins(host).AllowCredentials()
+            app.UseCors(builder => builder.AllowAnyOrigin()
                             .AllowAnyMethod()
                             .AllowAnyHeader());
 

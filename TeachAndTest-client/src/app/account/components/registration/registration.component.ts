@@ -8,7 +8,9 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
+import { Routes } from './../../../shared/utils/router';
 
 @Component({
   selector: 'app-registration',
@@ -37,25 +39,28 @@ export class RegistrationComponent
 
   info: any;
   constructor(
-    private remoteService: AccountService
+    private remoteService: AccountService,
+    private rout: Router
   ) {}
 
-  ngOnInit(
-  ): void { }
+  ngOnInit(): void {}
 
   onSubmit(value: any): void {
     this.remoteService
       .registerNewUser(value)
-      .subscribe((data: any) => {
-        this.info = JSON.stringify(
-          data
-        );
-      });
+      .subscribe(
+        (data: any) => {
+          this.rout.navigate([
+            Routes.Account.LoginPage,
+          ]);
+        },
+        (error: any) => {console.log("error")}
+      );
   }
 
   bindControlsToMatch() {
     const obj1 = this.password;
-    const obj2 = this.passwordRepeated
+    const obj2 = this.passwordRepeated;
     return function (
       control: AbstractControl
     ): {
