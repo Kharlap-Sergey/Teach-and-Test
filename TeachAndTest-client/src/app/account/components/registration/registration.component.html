@@ -15,10 +15,14 @@
     ></app-custom-input>
     <app-custom-input
       [inputControl]="firstname"
+      required="true"
+      type="text"
       label="first name"
     ></app-custom-input>
     <app-custom-input
       [inputControl]="lastname"
+      required="true"
+      type="text"
       label="last name"
     ></app-custom-input>
     <app-custom-input
@@ -31,8 +35,9 @@
     ></app-custom-input>
 
     <button
-      class="btn btn-lg btn-primary btn-block"
-      [disabled]="f.invalid"
+      [disabled]="
+        !registrationForm.valid
+      "
       type="submit"
     >
       Sign in
