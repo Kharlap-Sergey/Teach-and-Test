@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
-import { Routes } from './../../../shared/utils/router';
+import { Routes } from 'src/app/shared/utils/router';
 
 @Component({
   selector: 'app-registration',

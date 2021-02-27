@@ -4,7 +4,7 @@ import { Injectable, Self } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
-import { UserLoginModel, UserRegistrationModel } from './../models/user-registration-model';
+import { UserLoginModel, UserRegistrationModel } from '../models/user-registration.model';
 
 @Injectable({
   // declares that this service should be created
