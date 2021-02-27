@@ -7,7 +7,11 @@
   <div class="form-registration__body">
     <app-custom-input
       [inputControl]="email"
+      errorMessage="please enter your email"
       label="email"
+      type="email"
+      required="true"
+      pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
     ></app-custom-input>
     <app-custom-input
       [inputControl]="firstname"
@@ -16,6 +20,14 @@
     <app-custom-input
       [inputControl]="lastname"
       label="last name"
+    ></app-custom-input>
+    <app-custom-input
+      [inputControl]="password"
+      label="password"
+    ></app-custom-input>
+    <app-custom-input
+      [inputControl]="passwordRepeated"
+      label="repeat password"
     ></app-custom-input>
 
     <button

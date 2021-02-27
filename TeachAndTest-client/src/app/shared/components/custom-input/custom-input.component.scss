@@ -1,7 +1,9 @@
 .custom-input {
 	&__body {
-    position: relative;
     padding: 4px;
+  }
+  &__content{
+    position: relative;
     font-size: 3rem;
   }
 	&__label {
@@ -30,5 +32,10 @@
     &--valid{
       border-bottom-color: limegreen;
     }
+   }
+
+   &__error-msg{
+      font-size: 2rem;
+      color: red;
    }
 }

@@ -1,34 +1,45 @@
 <div class="custom-input">
   <div class="custom-input__body">
-    <label
-      [for]="name"
-      class="custom-input__label"
-      [ngClass]="{
-        'custom-input__label--upper':
-          inputControl.value
-      }"
+    <div class="custom-input__content">
+      <label
+        [for]="name"
+        class="custom-input__label"
+        [ngClass]="{
+          'custom-input__label--upper':
+            inputControl.value
+        }"
+      >
+        {{ label }}
+      </label>
+
+      <input
+        [name]="name"
+        class="custom-input__input"
+        [ngClass]="{
+          'custom-input__input--invalid':
+            inputControl.invalid &&
+            inputControl.value &&
+            inputControl.touched,
+          'custom-input__input--valid':
+            inputControl.valid &&
+            inputControl.value &&
+            inputControl.touched
+        }"
+        [type]="type"
+        [required]="required"
+        [pattern]="pattern"
+        [formControl]="inputControl"
+      />
+    </div>
+    <div
+      *ngIf="
+        inputControl.invalid &&
+        inputControl.value &&
+        inputControl.touched
+      "
+      class="custom-input__error-msg"
     >
-      {{ label }}
-    </label>
-
-
-    <input
-      [name]="name"
-      class="custom-input__input"
-      [ngClass]="{
-        'custom-input__input--invalid':
-          inputControl.invalid &&
-          inputControl.value &&
-          inputControl.touched,
-        'custom-input__input--valid':
-          inputControl.valid &&
-          inputControl.value &&
-          inputControl.touched
-      }"
-      type="text"
-      [formControl]="inputControl"
-    />
-
-    <!-- !!todo -->
+      {{ errorMessage }}
+    </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import {
   Self,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
 } from '@angular/forms';
@@ -23,20 +24,24 @@ export class RegistrationComponent
   firstname = new FormControl();
   lastname = new FormControl();
   password = new FormControl();
-  passwordRepined = new FormControl();
+  passwordRepeated = new FormControl();
 
   registrationForm = new FormGroup({
     email: this.email,
     firstname: this.firstname,
     lastname: this.lastname,
     password: this.password,
+    passwordRepeated: this
+      .passwordRepeated,
   });
 
   info: any;
   constructor(
     private remoteService: AccountService
   ) {}
-  ngOnInit(): void {}
+
+  ngOnInit(
+  ): void { }
 
   onSubmit(value: any): void {
     this.remoteService
@@ -46,5 +51,22 @@ export class RegistrationComponent
           data
         );
       });
+  }
+
+  bindControlsToMatch() {
+    const obj1 = this.password;
+    const obj2 = this.passwordRepeated
+    return function (
+      control: AbstractControl
+    ): {
+      [key: string]: boolean;
+    } | null {
+      if (obj1.value != obj2.value) {
+        return {
+          'passwords match': false,
+        };
+      }
+      return null;
+    };
   }
 }
