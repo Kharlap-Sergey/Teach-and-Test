@@ -25,17 +25,31 @@ export class RegistrationComponent
   email = new FormControl();
   firstname = new FormControl();
   lastname = new FormControl();
-  password = new FormControl();
-  passwordRepeated = new FormControl();
+  password = new FormControl('', [
+    this.checkPasswordToMatch.bind(
+      this
+    ),
+  ]);
+  passwordRepeated = new FormControl(
+    '',
+    this.checkPasswordToMatch.bind(this)
+  );
 
-  registrationForm = new FormGroup({
-    email: this.email,
-    firstname: this.firstname,
-    lastname: this.lastname,
-    password: this.password,
-    passwordRepeated: this
-      .passwordRepeated,
-  });
+  registrationForm = new FormGroup(
+    {
+      email: this.email,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      password: this.password,
+      passwordRepeated: this
+        .passwordRepeated,
+    },
+    [
+      this.bindPasswordToMatch.bind(
+        this
+      ),
+    ]
+  );
 
   info: any;
   constructor(
@@ -54,24 +68,38 @@ export class RegistrationComponent
             Routes.Account.LoginPage,
           ]);
         },
-        (error: any) => {console.log("error")}
+        (error: any) => {
+          console.log('error');
+        }
       );
   }
 
-  bindControlsToMatch() {
+  checkPasswordToMatch() {
     const obj1 = this.password;
     const obj2 = this.passwordRepeated;
-    return function (
-      control: AbstractControl
-    ): {
-      [key: string]: boolean;
-    } | null {
-      if (obj1.value != obj2.value) {
-        return {
-          'passwords match': false,
-        };
-      }
-      return null;
-    };
+
+    if (obj1?.value != obj2?.value) {
+      return {
+        'passwords match': false,
+      };
+    }
+
+    return null;
+  }
+
+  bindPasswordToMatch(
+    control: AbstractControl
+  ): {
+    [key: string]: boolean;
+  } | null {
+    console.log(control);
+
+    this.password?.validator(
+      this.password
+    );
+    this.passwordRepeated?.validator(
+      this.passwordRepeated
+    );
+    return null;
   }
 }
