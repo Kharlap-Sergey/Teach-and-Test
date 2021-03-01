@@ -9,11 +9,11 @@ using TeachAndTest.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Http;
 using TeachAndTest.Api.Common.JWT;
 using TeachAndTest.BusinessLogic.Account;
 using System;
 using TeachAndTest.BusinessLogic.Auth;
+using TeachAndTest.Worker;
 
 namespace TeachAndTest.Api
 {
@@ -64,6 +64,7 @@ namespace TeachAndTest.Api
             //todo Dependency injections match here
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAuthenticateService, AuthenticateService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
