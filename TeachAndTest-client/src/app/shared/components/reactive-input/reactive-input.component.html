@@ -12,29 +12,33 @@
       </label>
       <input
         #i
-        (input)="onChange($event.target.value)"
+        (input)="inputHandler($event)"
         (blur)="onTouched()"
         [disabled]="disabled"
         [name]="name"
+        [type]="type"
+        [autocomplete]="autocomplete"
         class="custom-input__input"
         [ngClass]="{
           'custom-input__input--invalid':
             controlDir.control.touched &&
-            i.value &&
             controlDir.control.invalid,
           'custom-input__input--valid':
-            controlDir.control.valid && i.value
+            controlDir.control.valid
         }"
       />
     </div>
     <div
       *ngIf="
-        i.value &&
         controlDir.control.touched &&
         controlDir.control.invalid
       "
       class="custom-input__error-msg"
     >
+      <div *ngFor="let error of getErrors()">
+        {{ error }}
+      </div>
+
       {{ errorMessage }}
     </div>
   </div>

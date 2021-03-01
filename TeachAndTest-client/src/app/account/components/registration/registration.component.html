@@ -5,42 +5,66 @@
   [formGroup]="registrationForm"
 >
   <div class="form-registration__body">
-    <app-custom-input
-      [inputControl]="email"
-      errorMessage="please enter your email"
+    <app-reactive-input
+      [formControl]="email"
+      [errorMessages]="{
+        common: 'enter a email'
+      }"
       label="email"
       type="email"
       required="true"
       pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-    ></app-custom-input>
-    <app-custom-input
-      [inputControl]="firstname"
-      required="true"
+    ></app-reactive-input>
+    <app-reactive-input
+      [formControl]="firstname"
+      required
       type="text"
       label="first name"
-    ></app-custom-input>
-    <app-custom-input
-      [inputControl]="lastname"
-      required="true"
-      type="text"
-      label="last name"
-    ></app-custom-input>
-    <app-custom-input
-      (onInput)="passwordChanged()"
-      [inputControl]="password"
+      pattern="^[A-Za-z]+$"
+      required
+      [errorMessages]="{
+        common: 'enter a username',
+        pattern: 'user only alphabet'
+      }"
+    ></app-reactive-input>
+    <app-reactive-input
+      [formControl]="lastname"
+      required
+      [type]="'text'"
+      [label]="'last name'"
+      pattern="^[A-Za-z]+$"
+      [errorMessages]="{
+        common: 'enter a username',
+        pattern: 'user only alphabet'
+      }"
+    ></app-reactive-input>
+    <app-reactive-input
+      [formControl]="password"
       label="password"
-    ></app-custom-input>
-    <app-custom-input
+      [type]="'text'"
       (onInput)="passwordChanged()"
-      [inputControl]="passwordRepeated"
+      required
+      [errorMessages]="{
+        common: 'enter a password',
+        'passwords match':
+          'passwords does not match'
+      }"
+    ></app-reactive-input>
+    <app-reactive-input
+      [formControl]="passwordRepeated"
       label="repeat password"
-    ></app-custom-input>
+      (onInput)="passwordChanged()"
+      required
+      [errorMessages]="{
+        common: 'enter a password',
+        'passwords match':
+          'passwords does not match'
+      }"
+    ></app-reactive-input>
 
-    <button
-
-      type="submit"
-    >
-      Sign in
-    </button>
+    <button type="submit">Sign in</button>
   </div>
 </form>
+<!-- pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$" -->
+{{this.password.valid}}
+{{this.passwordRepeated.valid}}

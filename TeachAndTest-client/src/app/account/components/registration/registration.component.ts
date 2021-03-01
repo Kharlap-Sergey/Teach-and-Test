@@ -62,9 +62,9 @@ export class RegistrationComponent
 
   passwordChanged() {
     console.log('change input');
+    this.password.updateValueAndValidity();
     this.passwordRepeated.updateValueAndValidity();
-    this.password.updateValueAndValidity();
-    this.password.updateValueAndValidity();
+
     console.log(
       'this.password.valid',
       this.password.valid
@@ -80,11 +80,9 @@ export class RegistrationComponent
   ): {
     [key: string]: boolean;
   } | null {
-    console.log('check password to match');
     const obj1 = this.password;
     const obj2 = this.passwordRepeated;
     if (obj1?.value != obj2?.value) {
-      console.log('dont match');
       return {
         'passwords match': false,
       };

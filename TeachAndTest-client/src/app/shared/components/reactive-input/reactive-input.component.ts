@@ -1,9 +1,10 @@
 import {
   Component,
-  forwardRef,
   Input,
   Self,
   OnInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -24,9 +25,16 @@ export class ReactiveInputComponent
     OnInit,
     ControlValueAccessor,
     Validator {
+  @Output() onInput = new EventEmitter()
+
   @Input() label: string;
   @Input() name: string;
-  @Input() errorMessage: string;
+  @Input() autocomplete: string;
+  @Input() type: string;
+  @Input() errorMessages: {
+    common: string;
+    [key: string]: string;
+  };
 
   private _value: string;
 
@@ -36,6 +44,7 @@ export class ReactiveInputComponent
   @Input()
   set value(val) {
     this._value = val;
+    this.onInput.emit()
     this.onChange(this._value);
   }
   disabled = false;
@@ -52,6 +61,18 @@ export class ReactiveInputComponent
     return validators;
   }
 
+  getErrors() : string[]{
+    const errors =[];
+    for(let error in this.controlDir.control.errors){
+      if(this.errorMessages?.[error]){
+        errors.push(this.errorMessages[error])
+      }
+    }
+    if(errors.length == 0){
+      errors.push(this.errorMessages.common)
+    }
+    return errors
+  }
   ngOnInit(): void {
     const control = this.controlDir.control;
     const validators: ValidatorFn[] = control.validator
@@ -61,6 +82,10 @@ export class ReactiveInputComponent
     control.updateValueAndValidity();
   }
 
+  inputHandler(e: any){
+    this.onChange(e.target.value);
+    this.onInput.emit()
+  }
   onChange: any = () => {};
   onTouched: any = () => {};
 
