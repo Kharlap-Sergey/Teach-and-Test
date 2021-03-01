@@ -1,13 +1,5 @@
 <form [formGroup]="formG">
-  <app-custom-input label="email" [inputControl]="email"></app-custom-input>
-
-  <app-custom-input label="firstName" [inputControl]="firstName">
-  </app-custom-input>
+  <app-counter-input [formControl]='counter'></app-counter-input>
 </form>
-
-email valid: {{email.valid}}
-<br>
-form valid:{{formG.valid}}
-<br>
 {{ formG.value | json }}
 

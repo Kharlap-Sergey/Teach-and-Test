@@ -16,14 +16,14 @@ import {
 })
 export class TestComponent
   implements OnInit {
-  firstName = new FormControl();
+  counter = new FormControl();
   email = new FormControl('', [
     this.Validator.bind(this),
   ]);
   // password = new FormControl('', [Validators.required]);
   formG = new FormGroup({
     email: this.email,
-    firstName: this.firstName,
+    counter: this.counter,
   });
   constructor() {}
 
