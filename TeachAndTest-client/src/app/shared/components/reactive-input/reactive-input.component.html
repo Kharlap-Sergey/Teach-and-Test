@@ -21,7 +21,7 @@
         class="custom-input__input"
         [ngClass]="{
           'custom-input__input--invalid':
-            controlDir.control.touched &&
+            (controlDir.control.touched || activated) &&
             controlDir.control.invalid,
           'custom-input__input--valid':
             controlDir.control.valid
@@ -30,7 +30,7 @@
     </div>
     <div
       *ngIf="
-        controlDir.control.touched &&
+      (controlDir.control.touched || activated)  &&
         controlDir.control.invalid
       "
       class="custom-input__error-msg"

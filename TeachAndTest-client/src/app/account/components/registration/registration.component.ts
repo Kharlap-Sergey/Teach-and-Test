@@ -28,7 +28,6 @@ export class RegistrationComponent
   passwordRepeated = new FormControl('', [
     this.checkPasswordToMatch.bind(this),
   ]);
-
   registrationForm = new FormGroup({
     email: this.email,
     firstname: this.firstname,
@@ -37,11 +36,18 @@ export class RegistrationComponent
     passwordRepeated: this.passwordRepeated,
   });
 
-  info: any;
   constructor(
     private remoteService: AccountService,
     private rout: Router
   ) {}
+
+  activated = false;
+  submitButtonHandler(e: any) {
+    this.activated = true;
+    if (this.registrationForm.invalid) {
+      e.preventDefault();
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -61,18 +67,8 @@ export class RegistrationComponent
   }
 
   passwordChanged() {
-    console.log('change input');
     this.password.updateValueAndValidity();
     this.passwordRepeated.updateValueAndValidity();
-
-    console.log(
-      'this.password.valid',
-      this.password.valid
-    );
-    console.log(
-      'this.passwordRepeated.valid',
-      this.passwordRepeated.valid
-    );
   }
 
   checkPasswordToMatch(
@@ -87,7 +83,6 @@ export class RegistrationComponent
         'passwords match': false,
       };
     }
-
     return null;
   }
 }

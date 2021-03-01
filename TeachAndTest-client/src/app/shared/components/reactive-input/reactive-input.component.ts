@@ -31,6 +31,7 @@ export class ReactiveInputComponent
   @Input() name: string;
   @Input() autocomplete: string;
   @Input() type: string;
+  @Input() activated: boolean;
   @Input() errorMessages: {
     common: string;
     [key: string]: string;

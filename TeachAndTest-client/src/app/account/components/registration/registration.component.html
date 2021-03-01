@@ -11,6 +11,7 @@
         common: 'enter a email'
       }"
       label="email"
+      [activated]="activated"
       type="email"
       required="true"
       pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
@@ -18,6 +19,7 @@
     <app-reactive-input
       [formControl]="firstname"
       required
+      [activated]="activated"
       type="text"
       label="first name"
       pattern="^[A-Za-z]+$"
@@ -29,6 +31,7 @@
     ></app-reactive-input>
     <app-reactive-input
       [formControl]="lastname"
+      [activated]="activated"
       required
       [type]="'text'"
       [label]="'last name'"
@@ -40,31 +43,44 @@
     ></app-reactive-input>
     <app-reactive-input
       [formControl]="password"
+      [activated]="activated"
       label="password"
       [type]="'text'"
       (onInput)="passwordChanged()"
       required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
       [errorMessages]="{
         common: 'enter a password',
         'passwords match':
-          'passwords does not match'
+          'passwords does not match',
+        pattern:
+          'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
       }"
     ></app-reactive-input>
     <app-reactive-input
+      [activated]="activated"
       [formControl]="passwordRepeated"
       label="repeat password"
       (onInput)="passwordChanged()"
       required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
       [errorMessages]="{
         common: 'enter a password',
         'passwords match':
-          'passwords does not match'
+          'passwords does not match',
+        pattern:
+          'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
       }"
     ></app-reactive-input>
 
-    <button type="submit">Sign in</button>
+    <button
+      type="submit"
+      (click)="submitButtonHandler($event)"
+    >
+      Sign in
+    </button>
   </div>
 </form>
-<!-- pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$" -->
-{{this.password.valid}}
-{{this.passwordRepeated.valid}}
+
+{{ this.password.valid }}
+{{ this.passwordRepeated.valid }}
