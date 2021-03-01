@@ -22,9 +22,7 @@ export class RegistrationComponent
   email = new FormControl();
   firstname = new FormControl();
   lastname = new FormControl();
-  password = new FormControl('', [
-    this.checkPasswordToMatch.bind(this),
-  ]);
+  password = new FormControl('');
   passwordRepeated = new FormControl('', [
     this.checkPasswordToMatch.bind(this),
   ]);
@@ -78,6 +76,9 @@ export class RegistrationComponent
   } | null {
     const obj1 = this.password;
     const obj2 = this.passwordRepeated;
+    if (!obj1?.value || !obj2?.value) {
+      return null;
+    }
     if (obj1?.value != obj2?.value) {
       return {
         'passwords match': false,
