@@ -1,6 +1,11 @@
+import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { AuthControllService } from './../../../shared/services/auth-controll.service';
+import {
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,25 +13,43 @@ import { AuthControllService } from './../../../shared/services/auth-controll.se
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  info: any;
   token: string;
-  constructor(private remoteService: AccountService, private authControll: AuthControllService) {}
+  email = new FormControl();
+  password = new FormControl();
+  loginForm = new FormGroup({
+    email: this.email,
+    password: this.password,
+  });
+  constructor(
+    private remoteService: AccountService,
+    private authControll: AuthControllService
+  ) {}
 
   ngOnInit(): void {
-    this.authControll.token.subscribe((token) => {this.token = token})
+    this.authControll.token.subscribe((token) => {
+      this.token = token;
+    });
+  }
+
+  activated = false;
+  submitButtonHandler(e: any) {
+    this.activated = true;
+    if (this.loginForm.invalid) {
+      e.preventDefault();
+    }
   }
 
   onClick() {
-    this.remoteService.testAuth(this.token).subscribe((data: any) => {
-      this.info = JSON.stringify(data);
-    });
+    this.remoteService
+      .testAuth(this.token)
+      .subscribe((data: any) => {});
   }
 
   onSubmit(value: any): void {
-    //this.remoteService.test().subscribe((data: any) => this.info = data );
-      this.remoteService.loginUser(value).subscribe((data: any) => {
-      this.info = JSON.stringify(data);
-      this.authControll.SetToken(data.token);
-    });
+    this.remoteService
+      .loginUser(value)
+      .subscribe((data: any) => {
+        this.authControll.SetToken(data.token);
+      });
   }
 }

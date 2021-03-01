@@ -1,37 +1,41 @@
-<form class="form-signin" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-  <div class="text-center mb-4">
-    <h1 class="h3 mb-3 font-weight-normal">First Try</h1>
-  </div>
+<form
+  class="form-signin"
+  (ngSubmit)="onSubmit(f.value)"
+  #f="ngForm"
+>
+  <app-reactive-input
+    [formControl]="email"
+    [errorMessages]="{
+      common: 'enter a email'
+    }"
+    label="email"
+    [activated]="activated"
+    type="email"
+    required="true"
+    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+  ></app-reactive-input>
 
-  <app-generic-Input
-    [placeholder]="'Email'"
-    [isRequired]="true"
-    [errorMsg]="'Please enter your name'"
-    [label]="'User Email'"
-    [pattern]="'[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}'"
-    ngModel
-    name="login"
-  ></app-generic-Input>
-
-  <app-generic-Input
-    [placeholder]="'password'"
-    [isRequired]="true"
-    [errorMsg]="'Please enter password'"
-    [label]="'password'"
-    [pattern]="'.*'"
-    ngModel
-    name="password"
-  ></app-generic-Input>
+  <app-reactive-input
+    [formControl]="password"
+    [activated]="activated"
+    label="password"
+    [type]="'text'"
+    required
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+    [errorMessages]="{
+      common: 'enter a password',
+      pattern:
+        'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
+    }"
+  ></app-reactive-input>
 
   <button
     class="btn btn-lg btn-primary btn-block"
-
+    (click)="submitButtonHandler($event)"
     type="submit"
   >
     Sign in
   </button>
-
-  {{info}}
 </form>
 
 <button (click)="onClick()">test auth</button>
