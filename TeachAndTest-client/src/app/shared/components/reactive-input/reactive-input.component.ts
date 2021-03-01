@@ -1,10 +1,9 @@
 import {
   Component,
-  ElementRef,
+  forwardRef,
   Input,
-  OnInit,
   Self,
-  ViewChild,
+  OnInit,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -13,48 +12,43 @@ import {
   ValidationErrors,
   Validator,
   ValidatorFn,
-  Validators,
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-generic-Input',
-  templateUrl: './generic-input.component.html',
-  styleUrls: ['./generic-input.component.scss'],
-  providers: [],
+  selector: 'app-reactive-input',
+  templateUrl: './reactive-input.component.html',
+  styleUrls: ['./reactive-input.component.scss'],
 })
-export class GenericInputComponent
+export class ReactiveInputComponent
   implements
     OnInit,
     ControlValueAccessor,
     Validator {
-  @ViewChild('input') input: ElementRef;
-  disabled: Boolean;
+  @Input() label: string;
+  @Input() name: string;
+  @Input() errorMessage: string;
 
-  @Input() type = 'text';
-  @Input() isRequired: boolean = false;
-  @Input() pattern: string = null;
-  @Input() label: string = null;
-  @Input() placeholder: string;
-  @Input() errorMsg: string;
+  private _value: string;
+
+  get value() {
+    return this._value;
+  }
+  @Input()
+  set value(val) {
+    this._value = val;
+    this.onChange(this._value);
+  }
+  disabled = false;
 
   constructor(
     @Self() public controlDir: NgControl
   ) {
     this.controlDir.valueAccessor = this;
   }
-
   validate(
     control: AbstractControl
   ): ValidationErrors {
     const validators: ValidatorFn[] = [];
-    if (this.isRequired) {
-      validators.push(Validators.required);
-    }
-    if (this.pattern) {
-      validators.push(
-        Validators.pattern(this.pattern)
-      );
-    }
     return validators;
   }
 
@@ -63,21 +57,15 @@ export class GenericInputComponent
     const validators: ValidatorFn[] = control.validator
       ? [control.validator]
       : [];
-    if (this.isRequired) {
-      validators.push(Validators.required);
-    }
-    if (this.pattern) {
-      validators.push(
-        Validators.pattern(this.pattern)
-      );
-    }
-
     control.setValidators(validators);
     control.updateValueAndValidity();
   }
 
-  writeValue(obj: any): void {
-    this.input.nativeElement.value = obj;
+  onChange: any = () => {};
+  onTouched: any = () => {};
+
+  writeValue(value: string): void {
+    this.value = value;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -88,8 +76,4 @@ export class GenericInputComponent
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
-  onChange(event: any) {}
-
-  onTouched() {}
 }

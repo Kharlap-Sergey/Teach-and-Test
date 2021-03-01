@@ -1,0 +1,41 @@
+<div class="custom-input">
+  <div class="custom-input__body">
+    <div class="custom-input__content">
+      <label
+        [for]="name"
+        class="custom-input__label"
+        [ngClass]="{
+          'custom-input__label--upper': i.value
+        }"
+      >
+        {{ label }}
+      </label>
+      <input
+        #i
+        (input)="onChange($event.target.value)"
+        (blur)="onTouched()"
+        [disabled]="disabled"
+        [name]="name"
+        class="custom-input__input"
+        [ngClass]="{
+          'custom-input__input--invalid':
+            controlDir.control.touched &&
+            i.value &&
+            controlDir.control.invalid,
+          'custom-input__input--valid':
+            controlDir.control.valid && i.value
+        }"
+      />
+    </div>
+    <div
+      *ngIf="
+        i.value &&
+        controlDir.control.touched &&
+        controlDir.control.invalid
+      "
+      class="custom-input__error-msg"
+    >
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>

@@ -16,25 +16,25 @@ import {
 })
 export class TestComponent
   implements OnInit {
-  counter = new FormControl();
-  email = new FormControl('', [
+
+  reactive = new FormControl("", [
+    Validators.required,
     this.Validator.bind(this),
   ]);
-  // password = new FormControl('', [Validators.required]);
-  formG = new FormGroup({
-    email: this.email,
-    counter: this.counter,
-  });
+  fg = new FormGroup(
+    {
+      inp: this.reactive
+    }
+  )
+  model: string
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.formG);
   }
 
   Validator(
     control: AbstractControl
   ): { [key: string]: boolean } | null {
-    console.log(this.formG);
     if (control.value != '123456') {
       console.log(
         'control.value',
