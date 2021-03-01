@@ -14,11 +14,8 @@ import { Routes } from 'src/app/shared/utils/router';
 
 @Component({
   selector: 'app-registration',
-  templateUrl:
-    './registration.component.html',
-  styleUrls: [
-    './registration.component.scss',
-  ],
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent
   implements OnInit {
@@ -26,30 +23,19 @@ export class RegistrationComponent
   firstname = new FormControl();
   lastname = new FormControl();
   password = new FormControl('', [
-    this.checkPasswordToMatch.bind(
-      this
-    ),
+    this.checkPasswordToMatch.bind(this),
   ]);
-  passwordRepeated = new FormControl(
-    '',
-    this.checkPasswordToMatch.bind(this)
-  );
+  passwordRepeated = new FormControl('', [
+    this.checkPasswordToMatch.bind(this),
+  ]);
 
-  registrationForm = new FormGroup(
-    {
-      email: this.email,
-      firstname: this.firstname,
-      lastname: this.lastname,
-      password: this.password,
-      passwordRepeated: this
-        .passwordRepeated,
-    },
-    [
-      this.bindPasswordToMatch.bind(
-        this
-      ),
-    ]
-  );
+  registrationForm = new FormGroup({
+    email: this.email,
+    firstname: this.firstname,
+    lastname: this.lastname,
+    password: this.password,
+    passwordRepeated: this.passwordRepeated,
+  });
 
   info: any;
   constructor(
@@ -74,32 +60,36 @@ export class RegistrationComponent
       );
   }
 
-  checkPasswordToMatch() {
+  passwordChanged() {
+    console.log('change input');
+    this.passwordRepeated.updateValueAndValidity();
+    this.password.updateValueAndValidity();
+    this.password.updateValueAndValidity();
+    console.log(
+      'this.password.valid',
+      this.password.valid
+    );
+    console.log(
+      'this.passwordRepeated.valid',
+      this.passwordRepeated.valid
+    );
+  }
+
+  checkPasswordToMatch(
+    control: AbstractControl
+  ): {
+    [key: string]: boolean;
+  } | null {
+    console.log('check password to match');
     const obj1 = this.password;
     const obj2 = this.passwordRepeated;
-
     if (obj1?.value != obj2?.value) {
+      console.log('dont match');
       return {
         'passwords match': false,
       };
     }
 
-    return null;
-  }
-
-  bindPasswordToMatch(
-    control: AbstractControl
-  ): {
-    [key: string]: boolean;
-  } | null {
-    console.log(control);
-
-    this.password?.validator(
-      this.password
-    );
-    this.passwordRepeated?.validator(
-      this.passwordRepeated
-    );
     return null;
   }
 }

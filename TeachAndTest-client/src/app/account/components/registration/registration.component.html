@@ -26,18 +26,18 @@
       label="last name"
     ></app-custom-input>
     <app-custom-input
+      (onInput)="passwordChanged()"
       [inputControl]="password"
       label="password"
     ></app-custom-input>
     <app-custom-input
+      (onInput)="passwordChanged()"
       [inputControl]="passwordRepeated"
       label="repeat password"
     ></app-custom-input>
 
     <button
-      [disabled]="
-        !registrationForm.valid
-      "
+
       type="submit"
     >
       Sign in

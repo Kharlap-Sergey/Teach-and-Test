@@ -13,7 +13,12 @@
       </label>
 
       <input
+        (input)="onInput.emit()"
         [name]="name"
+        [type]="type"
+        [required]="required"
+        [pattern]="pattern"
+        [formControl]="inputControl"
         class="custom-input__input"
         [ngClass]="{
           'custom-input__input--invalid':
@@ -25,10 +30,6 @@
             inputControl.value &&
             inputControl.touched
         }"
-        [type]="type"
-        [required]="required"
-        [pattern]="pattern"
-        [formControl]="inputControl"
       />
     </div>
     <div
