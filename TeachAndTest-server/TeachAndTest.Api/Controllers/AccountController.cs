@@ -5,18 +5,22 @@ using TeachAndTest.Api.Common.Controllers;
 using TeachAndTest.Api.Common.ViewModel;
 using TeachAndTest.BusinessLogic.Account;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Worker;
 
 namespace TeachAndTest.Api.Controllers
 {
     public class AccountController : ApiControllerBase
     {
         private readonly IAccountService accountService;
+        private readonly IEmailService emailService1;
 
         public AccountController(
-            IAccountService accountService
+            IAccountService accountService,
+            IEmailService emailService1
             )
         {
             this.accountService = accountService;
+            this.emailService1 = emailService1;
         }
 
         [HttpPost]
@@ -32,7 +36,7 @@ namespace TeachAndTest.Api.Controllers
             };
 
             User RegistratedUser = await accountService.CreateAsync(user, userVM.Password);
-
+            await emailService1.SendNotificationAsync(RegistratedUser.Email, "hello", "hello");
             return RegistratedUser;
         }
 

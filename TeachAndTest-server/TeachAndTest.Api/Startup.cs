@@ -64,7 +64,7 @@ namespace TeachAndTest.Api
             //todo Dependency injections match here
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAuthenticateService, AuthenticateService>();
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IEmailService, GmailService>();
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);

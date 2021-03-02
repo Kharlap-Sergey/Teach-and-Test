@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -28,6 +28,7 @@
     <ProjectReference Include="..\TeachAndTest.Api.Common\TeachAndTest.Api.Common.csproj" />
     <ProjectReference Include="..\TeachAndTest.BusinessLogic\TeachAndTest.BusinessLogic.csproj" />
     <ProjectReference Include="..\TeachAndTest.Domain\TeachAndTest.Domain.csproj" />
+    <ProjectReference Include="..\TeachAndTest.MailWorker\TeachAndTest.Worker.csproj" />
     <ProjectReference Include="..\TeachAndTest.Models\TeachAndTest.Models.csproj" />
   </ItemGroup>
 
