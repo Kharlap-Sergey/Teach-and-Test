@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
     this.remoteService
       .testAuth(this.token)
       .subscribe((data: any) => {});
+    this.remoteService
+      .test()
+      .subscribe((data: any) => {});
   }
 
   onSubmit(value: any): void {
