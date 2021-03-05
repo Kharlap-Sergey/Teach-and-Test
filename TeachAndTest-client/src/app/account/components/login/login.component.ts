@@ -6,6 +6,10 @@ import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
+import { SocialAuthService } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +26,8 @@ export class LoginComponent implements OnInit {
   });
   constructor(
     private remoteService: AccountService,
-    private authControll: AuthControllService
+    private authControll: AuthControllService,
+    private authService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +42,21 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       e.preventDefault();
     }
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(
+      GoogleLoginProvider.PROVIDER_ID
+    );
+
+    this.authService.authState.subscribe((user) => {
+      const loggedIn = (user != null);
+      console.log(user);
+      console.log('loggedIn', loggedIn)
+    });
+  }
+  signOut(): void {
+    this.authService.signOut();
   }
 
   onClick() {
