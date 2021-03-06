@@ -12,12 +12,6 @@ namespace TeachAndTest.BusinessLogic.Auth
             , bool isShouldBeLocked = false
             );
 
-        public Task<User> GetOrCreateExternalLoginUser(
-            string provider,
-            string key,
-            string email,
-            string firstName,
-            string lastName);
-
+        public Task<User> AuthenticateThrowGoogleAsync(string token);
     }
 }

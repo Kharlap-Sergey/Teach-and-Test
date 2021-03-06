@@ -35,23 +35,8 @@ namespace TeachAndTest.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<object>> GoogleLogin([FromBody] LoginGoogleRequestVM request)
         {
-            GoogleJsonWebSignature.Payload payload;
-            try
-            {
-                payload = await GoogleJsonWebSignature.ValidateAsync(
-                    request.GoogleJwtToken,
-                    new GoogleJsonWebSignature.ValidationSettings {
-                        Audience = new[] { 
-                            "664462309144-e1b6fgtcboicec22a1lo2bc8k76f1mh1.apps.googleusercontent.com" 
-                        }
-                    }
-                    );
-            }catch(Exception e){
-                throw;
-            }
+            var user = await this.authenticateService.AuthenticateThrowGoogleAsync(request.GoogleJwtToken);
 
-
-            var user = await authenticateService.GetOrCreateExternalLoginUser("google", payload.Subject, payload.Email, payload.GivenName, payload.FamilyName);
             var token = CustomJwtCreator.CreateJwt(user.Id);
             return new
             {

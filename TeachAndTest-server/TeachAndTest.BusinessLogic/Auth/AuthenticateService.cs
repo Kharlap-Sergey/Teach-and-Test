@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Google.Apis.Auth;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
+using TeachAndTest.BusinessLogic.Account;
 using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.BusinessLogic.Auth
@@ -10,14 +12,17 @@ namespace TeachAndTest.BusinessLogic.Auth
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IAccountService accountService;
 
         public AuthenticateService(
-                UserManager<User> userManager
-                , SignInManager<User> signInManager
+                UserManager<User> userManager, 
+                SignInManager<User> signInManager,
+                IAccountService accountService
             )
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.accountService = accountService;
         }
 
         public async Task<User> LoginAsync(
@@ -44,41 +49,37 @@ namespace TeachAndTest.BusinessLogic.Auth
             User user = await userManager.FindByNameAsync(userName);
             return user;
         }
-        public async Task<User> GetOrCreateExternalLoginUser(
-            string provider,
-            string key,
-            string email,
-            string firstName,
-            string lastName)
+
+        public async Task<User> AuthenticateThrowGoogleAsync(string token)
         {
-            // Login already linked to a user
-            var user = await userManager.FindByLoginAsync(provider, key);
-            if(user != null)
-                return user;
-
-            user = await userManager.FindByEmailAsync(email);
-            if(user == null)
+            GoogleJsonWebSignature.Payload payload;
+            try
             {
-                // No user exists with this email address, we create a new one
-                //Todo add users maper
-                user = new User
-                {
-                    Email = email,
-                    UserName = email,
-                };
-
-                await userManager.CreateAsync(user);
+                payload = await GoogleJsonWebSignature.ValidateAsync(
+                    token,
+                    new GoogleJsonWebSignature.ValidationSettings
+                    {
+                        Audience = new[] {
+                            "664462309144-e1b6fgtcboicec22a1lo2bc8k76f1mh1.apps.googleusercontent.com"
+                        }
+                    }
+                    );
+            }
+            catch(Exception e)
+            {
+                throw;
             }
 
-            // Link the user to this login
-            var info = new UserLoginInfo(provider, key, provider.ToUpperInvariant());
-            var result = await userManager.AddLoginAsync(user, info);
-            if(result.Succeeded)
-                return user;
 
-            return null;
+            var user = await this.accountService
+                .GetOrCreateExternalLoginUser(
+                "google", 
+                payload.Subject, 
+                payload.Email, 
+                payload.GivenName, 
+                payload.FamilyName);
 
+            return user;
         }
-
     }
 }
