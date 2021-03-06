@@ -26,7 +26,14 @@ export class AccountService {
     const body = userModel;
     return this.http.post(url, body, options);
   }
-
+  loginUserThrowGoogle(jwt: string ){
+    const url: string =  ApiRoutes.Authenticate.LoginUserThrowGoogle;
+    const options = {};
+    const body = {
+      googleJwtToken: jwt
+    }
+    return this.http.post(url, body, options);
+  }
   test() {
     const url: string = ApiRoutes.AccountController + "/test"
     console.log('send to test')

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthControllService } from './shared/services/auth-controll.service';
+import { AuthControlService } from 'src/app/shared/services/auth-control.service';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,15 @@ export class AppComponent implements OnInit {
 
   token = "";
 
-  constructor(private authControllService: AuthControllService){
+  constructor(private authControlService: AuthControlService){
 
   }
 
   onClick(){
-    this.authControllService.SetToken("reset");
+    this.authControlService.SetToken("reset");
   }
   ngOnInit(){
-    this.authControllService.token.subscribe(
+    this.authControlService.token.subscribe(
       (token: string) => {this.token = token}
     )
   }

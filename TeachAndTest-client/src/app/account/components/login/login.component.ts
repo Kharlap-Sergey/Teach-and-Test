@@ -1,15 +1,13 @@
 import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
-import { AuthControllService } from './../../../shared/services/auth-controll.service';
+import { AuthControlService } from '../../../shared/services/auth-control.service';
 import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
 import { SocialAuthService } from 'angularx-social-login';
-import {
-  GoogleLoginProvider,
-} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +24,12 @@ export class LoginComponent implements OnInit {
   });
   constructor(
     private remoteService: AccountService,
-    private authControll: AuthControllService,
-    private authService: SocialAuthService
+    private authControl: AuthControlService,
+    private socialService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
-    this.authControll.token.subscribe((token) => {
+    this.authControl.token.subscribe((token) => {
       this.token = token;
     });
   }
@@ -45,18 +43,21 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(
+    this.socialService.signIn(
       GoogleLoginProvider.PROVIDER_ID
     );
 
-    this.authService.authState.subscribe((user) => {
-      const loggedIn = (user != null);
-      console.log(user);
-      console.log('loggedIn', loggedIn)
+    this.socialService.authState.subscribe((user) => {
+      const loggedIn = user != null;
+      this.remoteService
+        .loginUserThrowGoogle(user.idToken)
+        .subscribe((data: any) => {
+          this.authControl.SetToken(data.token);
+        });
     });
   }
   signOut(): void {
-    this.authService.signOut();
+    this.socialService.signOut();
   }
 
   onClick() {
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
     this.remoteService
       .loginUser(value)
       .subscribe((data: any) => {
-        this.authControll.SetToken(data.token);
+        this.authControl.SetToken(data.token);
       });
   }
 }

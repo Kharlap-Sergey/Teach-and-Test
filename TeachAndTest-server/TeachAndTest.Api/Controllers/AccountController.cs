@@ -67,6 +67,7 @@ namespace TeachAndTest.Api.Controllers
             }
             return BadRequest();
         }
+
         [HttpGet]
         public async Task<ActionResult<object>> Test()
         {

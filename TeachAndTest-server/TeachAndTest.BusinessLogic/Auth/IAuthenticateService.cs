@@ -11,5 +11,13 @@ namespace TeachAndTest.BusinessLogic.Auth
             , bool isPersistent = true
             , bool isShouldBeLocked = false
             );
+
+        public Task<User> GetOrCreateExternalLoginUser(
+            string provider,
+            string key,
+            string email,
+            string firstName,
+            string lastName);
+
     }
 }

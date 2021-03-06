@@ -7,7 +7,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthControllService {
+export class AuthControlService {
   public token: BehaviorSubject<string> = new BehaviorSubject<string>(
     ''
   );

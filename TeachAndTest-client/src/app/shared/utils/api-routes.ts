@@ -4,6 +4,7 @@ interface Account {
 
 interface Authenticate {
   LoginUser: string;
+  LoginUserThrowGoogle: string;
 }
 
 export class ApiRoutes {
@@ -15,6 +16,7 @@ export class ApiRoutes {
 
   static AuthenticateController = ApiRoutes.HostsApi + "/authenticate";
   static Authenticate: Authenticate =  {
-    LoginUser: ApiRoutes.AuthenticateController + "/login"
+    LoginUser: ApiRoutes.AuthenticateController + "/login",
+    LoginUserThrowGoogle:  ApiRoutes.AuthenticateController + "/googlelogin"
   }
 }
