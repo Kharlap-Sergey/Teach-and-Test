@@ -9,7 +9,10 @@ import {
   ReactiveFormsModule,
   FormsModule,
 } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
@@ -18,6 +21,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
+import { JwtInterceptor } from '@app/shared/helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import {
     SocialLoginModule,
   ],
   providers: [
+
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -43,11 +48,11 @@ import {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '664462309144-e1b6fgtcboicec22a1lo2bc8k76f1mh1.apps.googleusercontent.com'
-            )
+            ),
           },
-        ]
+        ],
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
 })
 export class AccountModule {}

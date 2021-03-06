@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestComponent } from './test/test.component';
 import { SharedModule } from './shared/shared.module';
+import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
@@ -18,7 +19,11 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

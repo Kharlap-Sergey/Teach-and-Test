@@ -43,9 +43,9 @@ export class AccountService {
   testAuth(token: string) {
     const url: string = ApiRoutes.AccountController + "/testAuth"
     const options = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+      // headers: {
+      //   Authorization: "Bearer " + token,
+      // },
     };
 
     console.log('send to test')
