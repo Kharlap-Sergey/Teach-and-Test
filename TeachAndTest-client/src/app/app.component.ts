@@ -18,8 +18,5 @@ export class AppComponent implements OnInit {
     this.authControlService.SetToken("reset");
   }
   ngOnInit(){
-    this.authControlService.token.subscribe(
-      (token: string) => {this.token = token}
-    )
   }
 }

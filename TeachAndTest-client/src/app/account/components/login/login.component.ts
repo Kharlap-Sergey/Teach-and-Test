@@ -15,7 +15,6 @@ import { GoogleLoginProvider } from 'angularx-social-login';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  token: string;
   email = new FormControl();
   password = new FormControl();
   loginForm = new FormGroup({
@@ -29,9 +28,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authControl.token.subscribe((token) => {
-      this.token = token;
-    });
+
   }
 
   activated = false;
@@ -62,7 +59,7 @@ export class LoginComponent implements OnInit {
 
   onClick() {
     this.remoteService
-      .testAuth(this.token)
+      .testAuth(this.authControl.token)
       .subscribe((data: any) => {});
     this.remoteService
       .test()
