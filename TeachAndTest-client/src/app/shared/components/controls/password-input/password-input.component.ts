@@ -5,7 +5,7 @@ import {
   Self,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { ReactiveInputComponent } from '@shared/components/inputs/reactive-input/reactive-input.component';
+import { ReactiveInputComponent } from '@shared/components/controls/reactive-input/reactive-input.component';
 
 @Component({
   selector: 'app-password-input',
