@@ -21,6 +21,10 @@ export class TestComponent
     Validators.required,
     this.Validator.bind(this),
   ]);
+
+  password = new FormControl("", [
+    Validators.required,
+  ]);
   fg = new FormGroup(
     {
       inp: this.reactive
