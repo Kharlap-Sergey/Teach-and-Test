@@ -1,12 +1,16 @@
 import {
   Component,
+  Input,
   OnInit,
   Self,
 } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
+  Form,
+  FormGroup,
   NgControl,
+  NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
   ValidatorFn,
@@ -18,53 +22,16 @@ import {
   styleUrls: ['./custom-form.component.scss'],
 })
 export class CustomFormComponent
-  implements OnInit, ControlValueAccessor, Validator {
-  private _value: any;
+  implements OnInit{
 
-  get value() {
-    return this._value;
-  }
-  // @Input()
-  set value(val) {
-    this._value = val;
-    //this.onInput.emit();
-    this.onChange(this._value);
-  }
-
+  @Input() formGroup: FormGroup;
+  form: FormGroup;
   disabled = false;
 
-  constructor(@Self() public controlDir: NgControl) {
-    this.controlDir.valueAccessor = this;
-  }
-  validate(
-    control: AbstractControl
-  ): ValidationErrors {
-    const validators: ValidatorFn[] = [];
-    return validators;
+  constructor() {
   }
 
   ngOnInit(): void {
-    const control = this.controlDir.control;
-    const validators: ValidatorFn[] = control.validator
-      ? [control.validator]
-      : [];
-    control.setValidators(validators);
-    control.updateValueAndValidity();
-  }
-
-  onChange: any = () => {};
-  onTouched: any = () => {};
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.form = this.formGroup
   }
 }

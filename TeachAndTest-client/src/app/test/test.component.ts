@@ -27,7 +27,8 @@ export class TestComponent
   ]);
   fg = new FormGroup(
     {
-      inp: this.reactive
+      inp: this.reactive,
+      pas: this.password
     }
   )
   model: string
