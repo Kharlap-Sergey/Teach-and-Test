@@ -1,0 +1,29 @@
+.registration-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-registration {
+	&__body {
+    padding: 1rem;
+    border: .5px solid black;
+    border-radius: 2px;
+    box-shadow: 0 0 1rem .05rem gray;
+    width: fit-content;
+  }
+  &__title {
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 3rem;
+    font-family: Inter;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+   }
+
+	&__input { }
+  &__submint{
+  }
+
+  &__footer { }
+}

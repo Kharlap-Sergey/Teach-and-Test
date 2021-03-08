@@ -1,93 +1,99 @@
-<form
-  class="form-registration"
-  #f="ngForm"
-  (ngSubmit)="onSubmit(f.value)"
-  [formGroup]="registrationForm"
->
-  <div class="form-registration__body">
-    <div class="form-registration__input">
-      <app-reactive-input
-        [formControl]="email"
-        [errorMessages]="{
-          common: 'enter a email'
-        }"
-        label="email"
-        [activated]="activated"
-        type="email"
-        required="true"
-        pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-      ></app-reactive-input>
+<div class="registration-page">
+  <form
+    class="form-registration"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f.value)"
+    [formGroup]="registrationForm"
+  >
+    <div class="form-registration__body">
+      <div class="form-registration__title">
+        registration
+      </div>
+      <div class="form-registration__input">
+        <app-reactive-input
+          [formControl]="email"
+          [errorMessages]="{
+            common: 'enter a email'
+          }"
+          label="email"
+          [activated]="activated"
+          type="email"
+          required="true"
+          pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+        ></app-reactive-input>
+      </div>
+      <div class="form-registration__input">
+        <app-reactive-input
+          [formControl]="firstname"
+          required
+          [activated]="activated"
+          type="text"
+          label="first name"
+          pattern="^[A-Za-z]+$"
+          required
+          [errorMessages]="{
+            common: 'enter a username',
+            pattern: 'user only alphabet'
+          }"
+        ></app-reactive-input>
+      </div>
+      <div class="form-registration__input">
+        <app-reactive-input
+          [formControl]="lastname"
+          [activated]="activated"
+          required
+          [type]="'text'"
+          [label]="'last name'"
+          pattern="^[A-Za-z]+$"
+          [errorMessages]="{
+            common: 'enter a username',
+            pattern: 'user only alphabet'
+          }"
+        ></app-reactive-input>
+      </div>
+      <div class="form-registration__input">
+        <app-reactive-input
+          [formControl]="password"
+          [activated]="activated"
+          label="password"
+          [type]="'text'"
+          (onInput)="passwordChanged()"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+          [errorMessages]="{
+            common: 'enter a password',
+            'passwords match':
+              'passwords does not match',
+            pattern:
+              'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
+          }"
+        ></app-reactive-input>
+      </div>
+      <div class="form-registration__input">
+        <app-reactive-input
+          [activated]="activated"
+          [formControl]="passwordRepeated"
+          label="repeat password"
+          (onInput)="passwordChanged()"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+          [errorMessages]="{
+            common: 'enter a password',
+            'passwords match':
+              'passwords does not match',
+            pattern:
+              'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
+          }"
+        ></app-reactive-input>
+      </div>
+      <div class="form-registration__footer">
+        Already have a account?
+      </div>
+      <app-submit-button
+        class="form-registration__submint"
+        (click)="submitButtonHandler($event)"
+        >Register</app-submit-button
+      >
     </div>
-    <div class="form-registration__input">
-      <app-reactive-input
-        [formControl]="firstname"
-        required
-        [activated]="activated"
-        type="text"
-        label="first name"
-        pattern="^[A-Za-z]+$"
-        required
-        [errorMessages]="{
-          common: 'enter a username',
-          pattern: 'user only alphabet'
-        }"
-      ></app-reactive-input>
-    </div>
-    <div class="form-registration__input">
-      <app-reactive-input
-        [formControl]="lastname"
-        [activated]="activated"
-        required
-        [type]="'text'"
-        [label]="'last name'"
-        pattern="^[A-Za-z]+$"
-        [errorMessages]="{
-          common: 'enter a username',
-          pattern: 'user only alphabet'
-        }"
-      ></app-reactive-input>
-    </div>
-    <div class="form-registration__input">
-      <app-reactive-input
-        [formControl]="password"
-        [activated]="activated"
-        label="password"
-        [type]="'text'"
-        (onInput)="passwordChanged()"
-        required
-        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
-        [errorMessages]="{
-          common: 'enter a password',
-          'passwords match':
-            'passwords does not match',
-          pattern:
-            'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
-        }"
-      ></app-reactive-input>
-    </div>
-    <div class="form-registration__input">
-      <app-reactive-input
-        [activated]="activated"
-        [formControl]="passwordRepeated"
-        label="repeat password"
-        (onInput)="passwordChanged()"
-        required
-        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
-        [errorMessages]="{
-          common: 'enter a password',
-          'passwords match':
-            'passwords does not match',
-          pattern:
-            'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
-        }"
-      ></app-reactive-input>
-    </div>
-
-    <button
-      type="submit"
-      (click)="submitButtonHandler($event)"
-    >
-      Sign in
-    </button>
-  </div>
-</form>
+  </form>
+</div>

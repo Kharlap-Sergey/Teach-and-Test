@@ -9,6 +9,8 @@ import { CounterInputComponent } from './components/counter-input/counter-input.
 import { ReactiveInputComponent } from './components/controls/reactive-input/reactive-input.component';
 import { PasswordInputComponent } from './components/controls/password-input/password-input.component';
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
+import { SubmitButtonComponent } from './components/controls/submit-button/submit-button.component';
+import { CustomFormComponent } from './components/controls/custom-form/custom-form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { CustomInputComponent } from './components/controls/custom-input/custom-
     ReactiveInputComponent,
     PasswordInputComponent,
     CustomInputComponent,
+    SubmitButtonComponent,
+    CustomFormComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { CustomInputComponent } from './components/controls/custom-input/custom-
     CounterInputComponent,
     ReactiveInputComponent,
     PasswordInputComponent,
+    SubmitButtonComponent,
+    CustomFormComponent,
   ],
 })
 export class SharedModule {}

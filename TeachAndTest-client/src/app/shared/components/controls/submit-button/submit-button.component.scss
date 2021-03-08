@@ -1,0 +1,19 @@
+.submit-control {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: Inter;
+	&__btn {
+    padding: 12px 22px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    transition: linear .3s;
+    &:hover{
+      background-color: white;
+      color: black;
+    }
+  }
+}

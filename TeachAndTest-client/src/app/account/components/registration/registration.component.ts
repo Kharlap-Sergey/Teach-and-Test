@@ -50,6 +50,10 @@ export class RegistrationComponent
   ngOnInit(): void {}
 
   onSubmit(value: any): void {
+    if(this.registrationForm.invalid){
+      this.activated = true;
+      return;
+    }
     this.remoteService
       .registerNewUser(value)
       .subscribe(
