@@ -22,7 +22,10 @@
    }
 
 	&__input { }
-  &__submint{
+  &__submit{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
   }
 
   &__footer { }

@@ -52,7 +52,7 @@
         ></app-reactive-input>
       </div>
       <div class="form-registration__input">
-        <app-reactive-input
+        <app-password-input
           [formControl]="password"
           [activated]="activated"
           label="password"
@@ -67,10 +67,10 @@
             pattern:
               'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
           }"
-        ></app-reactive-input>
+        ></app-password-input>
       </div>
       <div class="form-registration__input">
-        <app-reactive-input
+        <app-password-input
           [activated]="activated"
           [formControl]="passwordRepeated"
           label="repeat password"
@@ -84,13 +84,13 @@
             pattern:
               'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
           }"
-        ></app-reactive-input>
+        ></app-password-input>
       </div>
       <div class="form-registration__footer">
         Already have a account?
       </div>
       <app-submit-button
-        class="form-registration__submint"
+        class="form-registration__submit"
         (click)="submitButtonHandler($event)"
         >Register</app-submit-button
       >
