@@ -1,3 +1,5 @@
+@import "colors.scss";
+
 .custom-input {
 	&__body {
     padding: 4px;
@@ -22,12 +24,11 @@
     font-size: inherit;
     opacity: 0.7;
     border: 0;
-    border-bottom: 3px solid;
+    border-bottom: 3px solid rgb(4, 16, 189);
     border-radius: 2px;
     outline: none;
     &--invalid{
-      border-bottom-color: lightsalmon;
-      background-color: lightcoral;
+      border-bottom-color: $error--color;
     }
     &--valid{
       border-bottom-color: limegreen;
@@ -36,6 +37,6 @@
 
    &__error-msg{
       font-size: 2rem;
-      color: red;
+      color: $error--color;
    }
 }

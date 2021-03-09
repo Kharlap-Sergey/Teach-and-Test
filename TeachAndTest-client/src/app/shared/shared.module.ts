@@ -10,6 +10,7 @@ import { ReactiveInputComponent } from './components/controls/reactive-input/rea
 import { PasswordInputComponent } from './components/controls/password-input/password-input.component';
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
 import { SubmitButtonComponent } from './components/controls/submit-button/submit-button.component';
+import { InputErrorsComponent } from './components/controls/input-errors/input-errors.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SubmitButtonComponent } from './components/controls/submit-button/submi
     PasswordInputComponent,
     CustomInputComponent,
     SubmitButtonComponent,
+    InputErrorsComponent,
   ],
   imports: [
     CommonModule,

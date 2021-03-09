@@ -35,9 +35,8 @@
       "
       class="custom-input__error-msg"
     >
-      <div *ngFor="let error of getErrors()">
-        {{ error }}
-      </div>
+      <app-input-errors [Errors]="getErrors()">
+      </app-input-errors>
 
       {{ errorMessage }}
     </div>
