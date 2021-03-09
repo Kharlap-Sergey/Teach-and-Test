@@ -1,0 +1,15 @@
+@import "colors.scss";
+
+.link{
+  display: inline;
+  outline: none;
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor:  pointer;
+  &:hover{
+    color: $blue;
+    text-decoration-color: $blue;
+  }
+}

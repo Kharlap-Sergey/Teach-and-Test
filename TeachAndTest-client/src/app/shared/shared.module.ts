@@ -11,6 +11,8 @@ import { PasswordInputComponent } from './components/controls/password-input/pas
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
 import { SubmitButtonComponent } from './components/controls/submit-button/submit-button.component';
 import { InputErrorsComponent } from './components/controls/input-errors/input-errors.component';
+import { LinkComponent } from './components/link/link.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { InputErrorsComponent } from './components/controls/input-errors/input-e
     CustomInputComponent,
     SubmitButtonComponent,
     InputErrorsComponent,
+    LinkComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule,
   ],
@@ -33,6 +37,7 @@ import { InputErrorsComponent } from './components/controls/input-errors/input-e
     ReactiveInputComponent,
     PasswordInputComponent,
     SubmitButtonComponent,
+    LinkComponent,
   ],
 })
 export class SharedModule {}

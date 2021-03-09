@@ -86,14 +86,16 @@
           }"
         ></app-password-input>
       </div>
-      <div class="form-registration__footer">
-        Already have a account?
-      </div>
+
       <app-submit-button
         class="form-registration__submit"
         (click)="submitButtonHandler($event)"
         >Register</app-submit-button
       >
+      <div class="form-registration__footer">
+        Already have a account?
+        <app-link [to]="'/account/login'">Login</app-link>
+      </div>
     </div>
   </form>
 </div>

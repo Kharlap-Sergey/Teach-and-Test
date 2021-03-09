@@ -8,7 +8,7 @@
     padding: 1rem;
     border: .5px solid black;
     border-radius: 2px;
-    box-shadow: 0 0 1rem .05rem gray;
+    box-shadow: 0 0 1rem .05rem black;
     width: fit-content;
   }
   &__title {
@@ -20,13 +20,16 @@
     letter-spacing: .1rem;
     text-transform: uppercase;
    }
-
-	&__input { }
   &__submit{
+    margin-top: 15px;
+    padding: 5px;
     display: flex;
     justify-content: flex-end;
-    padding: 5px;
   }
 
-  &__footer { }
+  &__footer {
+    padding: 6px;
+    margin-bottom: 15px;
+    font-size: 2rem;
+  }
 }
