@@ -10,7 +10,6 @@ import { ReactiveInputComponent } from './components/controls/reactive-input/rea
 import { PasswordInputComponent } from './components/controls/password-input/password-input.component';
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
 import { SubmitButtonComponent } from './components/controls/submit-button/submit-button.component';
-import { CustomFormComponent } from './components/controls/custom-form/custom-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { CustomFormComponent } from './components/controls/custom-form/custom-fo
     PasswordInputComponent,
     CustomInputComponent,
     SubmitButtonComponent,
-    CustomFormComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +31,6 @@ import { CustomFormComponent } from './components/controls/custom-form/custom-fo
     ReactiveInputComponent,
     PasswordInputComponent,
     SubmitButtonComponent,
-    CustomFormComponent,
   ],
 })
 export class SharedModule {}
