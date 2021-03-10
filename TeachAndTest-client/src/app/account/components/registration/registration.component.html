@@ -94,8 +94,14 @@
       >
       <div class="form-registration__footer">
         Already have an account?
-        <app-link [to]="'/account/login'">Log in</app-link>
+        <app-link [to]="'/account/login'"
+          >Log in</app-link
+        >
       </div>
+
+      <app-google-auth-btn
+        class="form-registration__google-auth"
+      ></app-google-auth-btn>
     </div>
   </form>
 </div>

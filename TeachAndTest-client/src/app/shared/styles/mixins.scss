@@ -1,0 +1,14 @@
+@mixin btn {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: linear 0.3s;
+  cursor: pointer;
+  cursor: hand;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}

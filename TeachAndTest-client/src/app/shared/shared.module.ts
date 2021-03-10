@@ -12,6 +12,7 @@ import { SubmitButtonComponent } from './components/controls/submit-button/submi
 import { InputErrorsComponent } from './components/controls/input-errors/input-errors.component';
 import { LinkComponent } from './components/link/link.component';
 import { RouterModule } from '@angular/router';
+import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/google-auth-btn.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     SubmitButtonComponent,
     InputErrorsComponent,
     LinkComponent,
+    GoogleAuthBtnComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { RouterModule } from '@angular/router';
     PasswordInputComponent,
     SubmitButtonComponent,
     LinkComponent,
+    GoogleAuthBtnComponent,
   ],
 })
 export class SharedModule {}
