@@ -6,6 +6,7 @@
 .form-registration {
 	&__body {
     padding: 1rem;
+    padding-top: 2rem;
     border: .5px solid black;
     border-radius: 2px;
     box-shadow: 0 0 1rem .05rem black;
@@ -28,6 +29,7 @@
   }
 
   &__footer {
+    margin-top: 1rem;
     padding: 6px;
     margin-bottom: 15px;
     font-size: 2rem;

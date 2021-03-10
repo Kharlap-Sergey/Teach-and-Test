@@ -7,9 +7,11 @@
   background: none;
   text-decoration: underline;
   font-weight: 500;
+  color: $blue;
+  text-decoration-color: $blue;
   cursor:  pointer;
   &:hover{
-    color: $blue;
-    text-decoration-color: $blue;
+    color: black;
+    text-decoration-color: black;
   }
 }

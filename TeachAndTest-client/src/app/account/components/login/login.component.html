@@ -1,44 +1,60 @@
-<form
-  class="form-signin"
-  (ngSubmit)="onSubmit(f.value)"
-  #f="ngForm"
->
-  <app-reactive-input
-    [formControl]="email"
-    [errorMessages]="{
-      common: 'enter a email'
-    }"
-    label="email"
-    [activated]="activated"
-    type="email"
-    required="true"
-    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-  ></app-reactive-input>
-
-  <app-reactive-input
-    [formControl]="password"
-    [activated]="activated"
-    label="password"
-    [type]="'text'"
-    required
-    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
-    [errorMessages]="{
-      common: 'enter a password',
-      pattern:
-        'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
-    }"
-  ></app-reactive-input>
-
-  <button
-    class="btn btn-lg btn-primary btn-block"
-    (click)="submitButtonHandler($event)"
-    type="submit"
+<div class="login-page">
+  <form
+    class="login-form"
+    (ngSubmit)="onSubmit(f.value)"
+    #f="ngForm"
+    [formGroup]="this.loginForm"
   >
-    Sign in
-  </button>
-</form>
+    <div class="login-form__body">
+      <div class="login-form__title">
+        Log in
+      </div>
+      <app-reactive-input
+        [formControl]="email"
+        [errorMessages]="{
+          common: 'enter a email'
+        }"
+        label="email"
+        [activated]="activated"
+        type="email"
+        required="true"
+        pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+      ></app-reactive-input>
 
+      <app-reactive-input
+        [formControl]="password"
+        [activated]="activated"
+        label="password"
+        [type]="'text'"
+        required
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
+        [errorMessages]="{
+          common: 'enter a password',
+          pattern:
+            'a password between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter'
+        }"
+      ></app-reactive-input>
+      <app-submit-button
+        class="login-form__submit"
+        (click)="submitButtonHandler($event)"
+        >Log in</app-submit-button
+      >
+      <div class="login-form__footer">
+        Do not have an account?
+        <app-link [to]="'/account/registration'"
+          >Register</app-link
+        >
+      </div>
+
+      <app-google-auth-btn
+        class="login-form__google-auth"
+      ></app-google-auth-btn>
+    </div>
+  </form>
+</div>
 <button (click)="onClick()">test auth</button>
 
-<button (click)="signInWithGoogle()">google sign in</button>
+<button (click)="signInWithGoogle()">
+  google sign in
+</button>
 <button (click)="signOut()">sign out</button>

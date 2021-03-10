@@ -22,7 +22,7 @@ namespace TeachAndTest.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<object>> Login([FromBody] LoginRequestVM loginRequest)
         {
-            var user = await authenticateService.LoginAsync(loginRequest.Login, loginRequest.Password);
+            var user = await authenticateService.LoginAsync(loginRequest.Email, loginRequest.Password);
             var authJwtToken = CustomJwtCreator.CreateJwt(user.Id);
 
             return new
