@@ -13,6 +13,7 @@ import { InputErrorsComponent } from './components/controls/input-errors/input-e
 import { LinkComponent } from './components/link/link.component';
 import { RouterModule } from '@angular/router';
 import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/google-auth-btn.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/go
     InputErrorsComponent,
     LinkComponent,
     GoogleAuthBtnComponent,
+    NavBarComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/go
     SubmitButtonComponent,
     LinkComponent,
     GoogleAuthBtnComponent,
+    NavBarComponent,
   ],
 })
 export class SharedModule {}
