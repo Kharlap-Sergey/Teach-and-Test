@@ -24,7 +24,7 @@
     font-size: inherit;
     opacity: 0.7;
     border: 0;
-    border-bottom: 2px solid $blue;
+    border-bottom: 2px solid $dark-gray;
     border-radius: 2px;
     outline: none;
     &--invalid{
@@ -32,6 +32,9 @@
     }
     &--valid{
       border-bottom-color: green;
+    }
+    &:focus {
+      border-bottom-color: $blue;
     }
    }
 

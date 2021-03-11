@@ -48,6 +48,15 @@ export class CustomInputComponent
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
+
+  isShowInvalidity(): boolean {
+    return (
+      ((this.controlDir.control.touched &&
+        this.controlDir.control.value) ||
+        this.activated) &&
+      this.controlDir.control.invalid
+    );
+  }
   validate(
     control: AbstractControl
   ): ValidationErrors {

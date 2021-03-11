@@ -20,19 +20,15 @@
         [autocomplete]="autocomplete"
         class="custom-input__input"
         [ngClass]="{
-          'custom-input__input--invalid':
-            (controlDir.control.touched || activated) &&
-            controlDir.control.invalid,
+          'custom-input__input--invalid': isShowInvalidity(),
           'custom-input__input--valid':
-            controlDir.control.valid
+            controlDir.control.valid &&
+            (activated || controlDir.control.value)
         }"
       />
     </div>
     <div
-      *ngIf="
-      (controlDir.control.touched || activated)  &&
-        controlDir.control.invalid
-      "
+      *ngIf="isShowInvalidity()"
       class="custom-input__error-msg"
     >
       <app-input-errors [Errors]="getErrors()">
