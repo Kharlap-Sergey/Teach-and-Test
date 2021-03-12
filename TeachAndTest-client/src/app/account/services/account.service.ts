@@ -28,6 +28,7 @@ export class AccountService {
   }
   loginUserThrowGoogle(jwt: string ){
     const url: string =  ApiRoutes.Authenticate.LoginUserThrowGoogle;
+
     const options = {};
     const body = {
       googleJwtToken: jwt

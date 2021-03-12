@@ -29,7 +29,7 @@ export class GoogleAuthBtnComponent implements OnInit {
       this.remoteService
         .loginUserThrowGoogle(user.idToken)
         .subscribe((data: any) => {
-          this.authControl.SetToken(data.token);
+          this.authControl.login(data, data.token);
         });
     });
   }

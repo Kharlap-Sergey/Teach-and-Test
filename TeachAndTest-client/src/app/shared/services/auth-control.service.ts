@@ -10,8 +10,8 @@ export class AuthControlService {
     ''
   );
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
   constructor() {
     this.currentUserSubject = new BehaviorSubject<User>(
@@ -28,10 +28,12 @@ export class AuthControlService {
     return this._token.value;
   }
 
-  login(user: User, token: string): void {
+  login(user: any, token: string): void {
+    console.log('user', user)
     localStorage.setItem('currentUser', JSON.stringify(user));
     localStorage.setItem('token', JSON.stringify(token));
     this.currentUserSubject.next(user);
+    //todo add redirect to home
   }
 
   logout() {

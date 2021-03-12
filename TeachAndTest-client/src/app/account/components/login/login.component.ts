@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
+  //not need
   signInWithGoogle(): void {
     this.socialService.signIn(
       GoogleLoginProvider.PROVIDER_ID
@@ -46,10 +48,12 @@ export class LoginComponent implements OnInit {
 
     this.socialService.authState.subscribe((user) => {
       const loggedIn = user != null;
+      console.log('jwt1')
       this.remoteService
         .loginUserThrowGoogle(user.idToken)
         .subscribe((data: any) => {
-          this.authControl.SetToken(data.token);
+          console.log('jwt')
+          //this.authControl.login(data, data.token);
         });
     });
   }
@@ -70,7 +74,7 @@ export class LoginComponent implements OnInit {
     this.remoteService
       .loginUser(value)
       .subscribe((data: any) => {
-        this.authControl.SetToken(data.token);
+        this.authControl.login(data, data.token);
       });
   }
 }

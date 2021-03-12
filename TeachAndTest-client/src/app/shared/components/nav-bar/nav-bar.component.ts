@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthControlService } from '@app/shared/services/auth-control.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -32,10 +33,18 @@ export class NavBarComponent
     },
   ];
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
+  user: any;
+  constructor(
+    private router: Router,
+    private authControl: AuthControlService
+  ) {
+    authControl.currentUser.subscribe( user => {
+      console.log("user was changed");
+      this.user = user;
+    })
   }
+
+  ngOnInit(): void {}
   ngAfterViewInit() {
     console.log(this.navBar.nativeElement);
   }
@@ -59,7 +68,7 @@ export class NavBarComponent
     this.previousY = window.pageYOffset;
   }
 
-  selected(to: string){
+  selected(to: string) {
     return this.router.url == to;
   }
 }

@@ -11,12 +11,50 @@
             [to]="path.to"
             class="navbar__link"
             [ngClass]="{
-              'navbar__link--selected': this.selected(path.to)
+              'navbar__link--selected': this.selected(
+                path.to
+              )
             }"
             >{{ path.content }}
           </app-nav-link>
         </li>
       </ul>
+      <div
+        *ngIf="
+          this.user;
+          then thenBlock;
+          else elseBlock
+        "
+      ></div>
+      <ng-template #thenBlock>
+        <div class="navbar__profile">logined</div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div class="navbar__notloged">
+          <app-nav-link
+            [to]="'/account/login'"
+            class="navbar__link"
+            [ngClass]="{
+              'navbar__link--selected': this.selected(
+                '/account/login'
+              )
+            }"
+          >
+            login
+          </app-nav-link>
+          <app-nav-link
+            [to]="'/account/registration'"
+            class="navbar__link"
+            [ngClass]="{
+              'navbar__link--selected': this.selected(
+                '/account/registration'
+              )
+            }"
+          >
+            registration
+          </app-nav-link>
+        </div>
+      </ng-template>
     </div>
   </div>
 </nav>
