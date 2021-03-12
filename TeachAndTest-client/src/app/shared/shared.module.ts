@@ -14,6 +14,7 @@ import { LinkComponent } from './components/link/link.component';
 import { RouterModule } from '@angular/router';
 import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/google-auth-btn.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     LinkComponent,
     GoogleAuthBtnComponent,
     NavBarComponent,
+    NavLinkComponent,
   ],
   imports: [
     CommonModule,

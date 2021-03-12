@@ -1,5 +1,22 @@
 <nav class="navbar" id="navbar" #navbar>
-  <div class="navbar__container">
-    <app-link [to]="'/account/login'">Login</app-link>
+  <div class="navbar__body">
+    <div class="navbar__row">
+      <div class="navbar__logo">Teach&Test</div>
+      <ul class="navbar__container">
+        <li
+          class="navbar__element"
+          *ngFor="let path of this.pathObjects"
+        >
+          <app-nav-link
+            [to]="path.to"
+            class="navbar__link"
+            [ngClass]="{
+              'navbar__link--selected': this.selected(path.to)
+            }"
+            >{{ path.content }}
+          </app-nav-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -18,8 +18,7 @@ const routes: Routes = [
   {
     path: '',
     component: TestComponent,
-    canActivate: [AuthGuard],
-
+    //canActivate: [AuthGuard],
   },
 ];
 

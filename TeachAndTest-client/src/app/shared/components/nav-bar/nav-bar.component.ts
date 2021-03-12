@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,11 +15,27 @@ import {
 export class NavBarComponent
   implements OnInit, AfterViewInit {
   @ViewChild('navbar') navBar: any;
-  previousY: number;
 
-  constructor() {}
+  private previousY: number;
+  pathObjects = [
+    {
+      to: '/',
+      content: 'home',
+    },
+    {
+      to: '/account/login',
+      content: 'login',
+    },
+    {
+      to: '/account/registration',
+      content: 'register',
+    },
+  ];
 
-  ngOnInit(): void {}
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+  }
   ngAfterViewInit() {
     console.log(this.navBar.nativeElement);
   }
@@ -40,5 +57,9 @@ export class NavBarComponent
       this.navBar.nativeElement.style.zIndex = z;
     }
     this.previousY = window.pageYOffset;
+  }
+
+  selected(to: string){
+    return this.router.url == to;
   }
 }
