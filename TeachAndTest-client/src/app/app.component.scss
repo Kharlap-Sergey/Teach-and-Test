@@ -1,6 +1,14 @@
 .app {
-	&__nav {
-    height: 50px;
-   }
-	&__page { }
+  height: 1px;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  &__page {
+    min-width: 100%;
+    min-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 }

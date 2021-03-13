@@ -6,9 +6,7 @@
     [formGroup]="this.loginForm"
   >
     <div class="login-form__body">
-      <div class="login-form__title">
-        Log in
-      </div>
+      <div class="login-form__title">Log in</div>
       <app-reactive-input
         [formControl]="email"
         [errorMessages]="{
@@ -51,10 +49,10 @@
       ></app-google-auth-btn>
     </div>
   </form>
-</div>
-<button (click)="onClick()">test auth</button>
+  <!-- <button (click)="onClick()">test auth</button> -->
 
-<button (click)="signInWithGoogle()">
-  google sign in
-</button>
-<button (click)="signOut()">sign out</button>
+  <!-- <button (click)="signInWithGoogle()">
+    google sign in
+  </button>
+  <button (click)="signOut()">sign out</button> -->
+</div>

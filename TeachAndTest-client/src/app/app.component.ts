@@ -7,15 +7,8 @@ import { AuthControlService } from 'src/app/shared/services/auth-control.service
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  token = "";
-
   constructor(private authControlService: AuthControlService){
 
-  }
-
-  onClick(){
-    this.authControlService.SetToken("reset");
   }
   ngOnInit(){
   }

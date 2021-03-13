@@ -1,5 +1,4 @@
 .navbar {
-  margin: 50px 0;
   height: fit-content;
   &__body{
     position: fixed;
@@ -8,9 +7,13 @@
     display: block;
   }
 	&__row {
+    padding: .2rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &__divider{
+    flex-grow: 1;
   }
 	&__logo {
     font-size: 2rem;
