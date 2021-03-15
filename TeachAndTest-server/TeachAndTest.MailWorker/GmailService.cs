@@ -1,15 +1,5 @@
-﻿using MimeKit;
-using MailKit.Net.Smtp;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic;
-using Google.Apis.Auth.OAuth2;
-using System.IO;
-using Google.Apis.Gmail.v1;
-using System.Threading;
-using Google.Apis.Util.Store;
-using Google.Apis.Services;
-using Google.Apis.Gmail.v1.Data;
-using System.Buffers.Text;
 using System.Net.Mail;
 using SmtpClient = System.Net.Mail.SmtpClient;
 using System.Net;
@@ -41,6 +31,7 @@ namespace TeachAndTest.Worker
                 Body = body
             })
             {
+                message.IsBodyHtml = true;
                 smtp.Send(message);
             }
         }
