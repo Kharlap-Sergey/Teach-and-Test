@@ -22,11 +22,13 @@ import {
   FacebookLoginProvider,
 } from 'angularx-social-login';
 import { JwtInterceptor } from '@app/shared/helpers/jwt.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     RegistrationComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
