@@ -16,7 +16,9 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+    }),
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
