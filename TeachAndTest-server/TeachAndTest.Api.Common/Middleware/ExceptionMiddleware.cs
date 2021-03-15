@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using TeachAndTest.Api.Common.Exceptions;
 
 namespace TeachAndTest.Api.Common.Middleware
 {
@@ -73,16 +73,6 @@ namespace TeachAndTest.Api.Common.Middleware
                 StatusCode = context.Response.StatusCode,
                 Message = message
             }.ToString());
-        }
-    }
-
-    public sealed class ErrorDetails
-    {
-        public int StatusCode { get; set; }
-        public string Message { get; set; }
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
         }
     }
 }
