@@ -14,6 +14,7 @@ using TeachAndTest.BusinessLogic.Account;
 using System;
 using TeachAndTest.BusinessLogic.Auth;
 using TeachAndTest.Worker;
+using TeachAndTest.Api.Common.Middleware;
 
 namespace TeachAndTest.Api
 {
@@ -111,6 +112,9 @@ namespace TeachAndTest.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
+            app.UseGlobalExceptionHandler();
 
             //todo cors policy resolution É
             //include CORS
