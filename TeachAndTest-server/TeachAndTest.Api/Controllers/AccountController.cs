@@ -50,7 +50,7 @@ namespace TeachAndTest.Api.Controllers
             //Todo the link doesn't look like lick it is just plain text
             await emailService.SendMailAsync(RegistratedUser.Email, 
                 "Confirm your account", 
-                $"<a href='{callbackUrl}'>link</a>");
+                $"<a href='{callbackUrl}'>confirm your registration</a>");
             return RegistratedUser;
         }
 
