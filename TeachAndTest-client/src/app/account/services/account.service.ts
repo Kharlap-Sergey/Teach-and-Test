@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
 import { Injectable, Self } from '@angular/core';
+import { AuthorizedResponse } from '@app/shared/models/authorized-response';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
@@ -24,8 +25,9 @@ export class AccountService {
     const url: string = ApiRoutes.Authenticate.LoginUser;
     const options = {};
     const body = userModel;
-    return this.http.post(url, body, options);
+    return this.http.post<AuthorizedResponse>(url, body, options);
   }
+
   loginUserThrowGoogle(jwt: string ){
     const url: string =  ApiRoutes.Authenticate.LoginUserThrowGoogle;
 
@@ -33,7 +35,7 @@ export class AccountService {
     const body = {
       googleJwtToken: jwt
     }
-    return this.http.post(url, body, options);
+    return this.http.post<AuthorizedResponse>(url, body, options);
   }
   test() {
     const url: string = ApiRoutes.AccountController + "/test"
