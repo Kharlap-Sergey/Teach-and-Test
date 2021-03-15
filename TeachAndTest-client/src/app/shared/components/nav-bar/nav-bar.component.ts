@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthControlService } from '@app/shared/services/auth-control.service';
+import { Routes } from '@app/shared/utils/routes';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,6 +18,7 @@ export class NavBarComponent
   implements OnInit, AfterViewInit {
   @ViewChild('navbar') navBar: any;
 
+  routes = Routes;
   private previousY: number;
   pathObjects = [
     {
@@ -24,29 +26,28 @@ export class NavBarComponent
       content: 'home',
     },
     {
-      to: '/account/login',
+      to: this.routes.Account.LoginPage,
       content: 'login',
     },
     {
-      to: '/account/registration',
+      to: this.routes.Account.RegisterPage,
       content: 'register',
     },
   ];
 
   user: any;
+
   constructor(
     private router: Router,
     private authControl: AuthControlService
   ) {
-    authControl.currentUser.subscribe( user => {
-      console.log("user was changed");
+    this.authControl.currentUser.subscribe( user => {
       this.user = user;
     })
   }
 
   ngOnInit(): void {}
   ngAfterViewInit() {
-    console.log(this.navBar.nativeElement);
   }
 
   @HostListener('window:scroll', ['$event'])

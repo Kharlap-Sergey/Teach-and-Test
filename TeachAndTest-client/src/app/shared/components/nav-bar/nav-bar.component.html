@@ -31,11 +31,11 @@
       <ng-template #thenBlock>
         <div class="navbar__profile">
           <app-nav-link
-            [to]="'/account/profile'"
+          [to]="routes.Account.ProfilePage(this.user.id)"
             class="navbar__link"
             [ngClass]="{
               'navbar__link--selected': this.selected(
-                '/account/profile'
+                routes.Account.ProfilePage(this.user.id)
               )
             }"
           >
@@ -46,22 +46,22 @@
       <ng-template #elseBlock>
         <div class="navbar__notloged">
           <app-nav-link
-            [to]="'/account/login'"
+            [to]="routes.Account.LoginPage"
             class="navbar__link"
             [ngClass]="{
               'navbar__link--selected': this.selected(
-                '/account/login'
+                routes.Account.LoginPage
               )
             }"
           >
             login
           </app-nav-link>
           <app-nav-link
-            [to]="'/account/registration'"
+            [to]="routes.Account.RegisterPage"
             class="navbar__link"
             [ngClass]="{
               'navbar__link--selected': this.selected(
-                '/account/registration'
+                routes.Account.RegisterPage
               )
             }"
           >

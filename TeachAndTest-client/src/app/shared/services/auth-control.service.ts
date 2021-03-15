@@ -29,7 +29,6 @@ export class AuthControlService {
   }
 
   login(user: any, token: string): void {
-    console.log('user', user)
     localStorage.setItem('currentUser', JSON.stringify(user));
     localStorage.setItem('token', JSON.stringify(token));
     this.currentUserSubject.next(user);
