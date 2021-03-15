@@ -29,7 +29,19 @@
         "
       ></div>
       <ng-template #thenBlock>
-        <div class="navbar__profile">logined</div>
+        <div class="navbar__profile">
+          <app-nav-link
+            [to]="'/account/profile'"
+            class="navbar__link"
+            [ngClass]="{
+              'navbar__link--selected': this.selected(
+                '/account/profile'
+              )
+            }"
+          >
+            profile
+          </app-nav-link>
+        </div>
       </ng-template>
       <ng-template #elseBlock>
         <div class="navbar__notloged">
