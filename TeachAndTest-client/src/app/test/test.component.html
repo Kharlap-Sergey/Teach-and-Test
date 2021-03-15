@@ -1,22 +1,15 @@
-<!-- <form [formGroup]="fg">
-  <app-reactive-input
-    formControlName="inp"
-    [label]="'input'"
-  ></app-reactive-input>
-  {{ reactive.valid }}
-</form>
-{{ fg.valid }}
-<hr />
-<app-reactive-input
-  [(ngModel)]="model"
-  pattern="^1.*"
-></app-reactive-input> -->
+<button (click)="showToasterSuccess()">
+  Success Toaster
+</button>
 
+<button (click)="showToasterError()">
+  Error Toaster
+</button>
 
+<button (click)="showToasterInfo()">
+  Info Toaster
+</button>
 
-<!-- <app-custom-form [formGroup]='fg'>
-  <app-password-input [formControl]="this.password">
-  </app-password-input>
-</app-custom-form> -->
-
-{{ fg.value | json }}
+<button (click)="showToasterWarning()">
+  Warning Toaster
+</button>
