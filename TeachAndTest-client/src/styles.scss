@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~normalize.css/normalize";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import '~ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   font-size: 66.5%;
@@ -11,12 +12,20 @@ html {
   font-family: Inter;
 }
 
-*{margin:0; padding:0}
-
-html,
-body,
-app-root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
+//override toastr styles
+.toastr{
+  @extend .ngx-toastr;
+  font-size: 1.5rem;
+}
+.toast-success {
+  background-color: rgb(15, 94, 54);
+}
+.toast-error {
+  background-color: rgb(156, 28, 28);
+}
+.toast-info {
+  background-color: #2F96B4;
+}
+.toast-warning {
+  background-color: #F89406;
 }
