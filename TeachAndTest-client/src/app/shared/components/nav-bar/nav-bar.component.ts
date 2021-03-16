@@ -26,8 +26,8 @@ export class NavBarComponent
       content: 'home',
     },
     {
-      to: this.routes.Account.LoginPage,
-      content: 'login',
+      to: "/test",
+      content: 'test',
     },
     {
       to: this.routes.Account.RegisterPage,

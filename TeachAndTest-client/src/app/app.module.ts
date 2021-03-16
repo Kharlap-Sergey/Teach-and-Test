@@ -23,7 +23,6 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     //https://www.npmjs.com/package/ngx-toastr
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
@@ -33,7 +32,6 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     SharedModule,
-
     //https://www.npmjs.com/package/ngx-spinner
     NgxSpinnerModule,
   ],
