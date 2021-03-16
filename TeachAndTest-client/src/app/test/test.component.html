@@ -1,22 +1,3 @@
-<!-- <form [formGroup]="fg">
-  <app-reactive-input
-    formControlName="inp"
-    [label]="'input'"
-  ></app-reactive-input>
-  {{ reactive.valid }}
-</form>
-{{ fg.valid }}
-<hr />
-<app-reactive-input
-  [(ngModel)]="model"
-  pattern="^1.*"
-></app-reactive-input> -->
-
-
-
-<!-- <app-custom-form [formGroup]='fg'>
-  <app-password-input [formControl]="this.password">
-  </app-password-input>
-</app-custom-form> -->
-
-{{ fg.value | json }}
+<app-submit-button [loading]="loading" (click)="loadEmmet()">
+  Load
+</app-submit-button>

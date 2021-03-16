@@ -1,7 +1,10 @@
 <div class="submit-control">
   <button
     (click)="click.emit($event)"
+    [class.submit-control--loading]="loading"
     type="submit"
+    [class.spinner]="loading"
+    [disabled]="loading"
     class="submit-control__btn"
   >
     <ng-content></ng-content>
