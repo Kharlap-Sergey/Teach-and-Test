@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-test',
@@ -15,40 +16,22 @@ import {
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent
-  implements OnInit {
+{
+  loading: boolean;
 
-  reactive = new FormControl("", [
-    Validators.required,
-    this.Validator.bind(this),
-  ]);
-
-  password = new FormControl("", [
-    Validators.required,
-  ]);
-  fg = new FormGroup(
-    {
-      inp: this.reactive,
-      pas: this.password
-    }
-  )
-  model: string
-  constructor() {}
-
-  ngOnInit(): void {
+  /**
+   *
+   */
+  constructor(public spinner: NgxSpinnerService) {
+    this.loading = false;
   }
 
-  Validator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    if (control.value != '123456') {
-      console.log(
-        'control.value',
-        control.value
-      );
-      return {
-        'match to the pattern': false,
-      };
-    }
-    return null;
+  loadEmmet(){
+    this.loading = true;
+    this.spinner.show();
+    setTimeout(() => {
+      this.loading = false;
+      this.spinner.hide();
+    }, 2000)
   }
 }
