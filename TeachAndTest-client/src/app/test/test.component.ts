@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-test',
@@ -21,15 +22,16 @@ export class TestComponent
   /**
    *
    */
-  constructor() {
+  constructor(public spinner: NgxSpinnerService) {
     this.loading = false;
   }
 
   loadEmmet(){
     this.loading = true;
-
+    this.spinner.show();
     setTimeout(() => {
-      //this.loading = false;
+      this.loading = false;
+      this.spinner.hide();
     }, 2000)
   }
 }
