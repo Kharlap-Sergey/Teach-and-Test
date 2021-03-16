@@ -35,6 +35,7 @@
       <app-submit-button
         class="login-form__submit"
         (click)="submitButtonHandler($event)"
+        [loading]="this.isLoading"
         >Log in</app-submit-button
       >
       <div class="login-form__footer">
@@ -49,10 +50,4 @@
       ></app-google-auth-btn>
     </div>
   </form>
-  <!-- <button (click)="onClick()">test auth</button> -->
-
-  <!-- <button (click)="signInWithGoogle()">
-    google sign in
-  </button>
-  <button (click)="signOut()">sign out</button> -->
 </div>

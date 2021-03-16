@@ -1,13 +1,11 @@
-import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../services/account.service';
-import { AuthControlService } from '../../../shared/services/auth-control.service';
 import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
-import { SocialAuthService } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
+import { NotificationService } from '@app/shared/services/notification.service';
+import { AuthControlService } from '@app/shared/services/auth-control.service';
+import { AccountService } from '@app/account/services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +13,30 @@ import { GoogleLoginProvider } from 'angularx-social-login';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  email = new FormControl();
-  password = new FormControl();
-  loginForm = new FormGroup({
+  private _loading = false;
+  public set isLoading(value: boolean) {
+    this._loading = value;
+  }
+  public get isLoading(): boolean {
+    return this._loading;
+  }
+
+  public activated = false;
+  public email = new FormControl();
+  public password = new FormControl();
+  public loginForm = new FormGroup({
     email: this.email,
     password: this.password,
   });
+
   constructor(
     private remoteService: AccountService,
     private authControl: AuthControlService,
-    private socialService: SocialAuthService
+    private notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  activated = false;
   submitButtonHandler(e: any) {
     this.activated = true;
     if (this.loginForm.invalid) {
@@ -39,42 +44,24 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
-  //not need
-  signInWithGoogle(): void {
-    this.socialService.signIn(
-      GoogleLoginProvider.PROVIDER_ID
-    );
-
-    this.socialService.authState.subscribe((user) => {
-      const loggedIn = user != null;
-      console.log('jwt1')
-      this.remoteService
-        .loginUserThrowGoogle(user.idToken)
-        .subscribe((data: any) => {
-          console.log('jwt')
-          //this.authControl.login(data, data.token);
-        });
-    });
-  }
-  signOut(): void {
-    this.socialService.signOut();
-  }
-
-  onClick() {
-    this.remoteService
-      .testAuth(this.authControl.token)
-      .subscribe((data: any) => {});
-    this.remoteService
-      .test()
-      .subscribe((data: any) => {});
-  }
-
   onSubmit(value: any): void {
+    this.isLoading = true;
     this.remoteService
       .loginUser(value)
-      .subscribe((data: any) => {
-        this.authControl.login(data, data.token);
-      });
+      .subscribe(
+        (data: any) => {
+          this.isLoading = false;
+          this.authControl.login(data, data.token);
+        },
+        (error: any) => {
+          this.isLoading = false;
+          this.notificationService.showError(
+            'error',
+            error.error.Message
+          );
+        },
+        () => {
+        }
+      );
   }
 }
