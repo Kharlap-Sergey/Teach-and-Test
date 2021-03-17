@@ -17,11 +17,12 @@ import { TestComponent } from './test/test.component';
 import { SharedModule } from './shared/shared.module';
 import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorHandlerInterceptor } from '@shared/helpers/error-handler.interceptor';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
-    BrowserModule,
+  BrowserModule,
     BrowserAnimationsModule,
     //https://www.npmjs.com/package/ngx-toastr
     ToastrModule.forRoot({
@@ -39,6 +40,11 @@ import { ToastrModule } from 'ngx-toastr';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
       multi: true,
     },
   ],
