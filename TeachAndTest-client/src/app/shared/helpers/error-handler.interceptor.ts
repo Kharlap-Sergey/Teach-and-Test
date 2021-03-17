@@ -37,9 +37,16 @@ export class ErrorHandlerInterceptor
               err.error.Message,
               'error'
             );
-            if (err.status == 401)
-              console.log('unauth');
-            //this.router.navigate([Routes.Account.LoginPage])
+            if (err.status == 401) {
+              this.notificationService.actionInfo(
+                'you will be redirected to the login page',
+                () => {
+                  this.router.navigate([
+                    Routes.Account.LoginPage,
+                  ]);
+                }
+              );
+            }
           }
         }
       )
