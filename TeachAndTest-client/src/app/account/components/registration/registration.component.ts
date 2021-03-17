@@ -11,22 +11,35 @@ import {
 import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { Routes } from '@app/shared/utils/routes';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
-export class RegistrationComponent
-  implements OnInit {
-  email = new FormControl();
-  firstname = new FormControl();
-  lastname = new FormControl();
-  password = new FormControl('');
-  passwordRepeated = new FormControl('', [
+export class RegistrationComponent implements OnInit {
+  private _loading = false;
+  public set isLoading(value: boolean) {
+    if (value) {
+      this.spinner.show();
+    } else {
+      this.spinner.hide();
+    }
+    this._loading = value;
+  }
+  public get isLoading(): boolean {
+    return this._loading;
+  }
+
+  public email = new FormControl();
+  public firstname = new FormControl();
+  public lastname = new FormControl();
+  public password = new FormControl('');
+  public passwordRepeated = new FormControl('', [
     this.checkPasswordToMatch.bind(this),
   ]);
-  registrationForm = new FormGroup({
+  public registrationForm = new FormGroup({
     email: this.email,
     firstname: this.firstname,
     lastname: this.lastname,
@@ -35,6 +48,7 @@ export class RegistrationComponent
   });
 
   constructor(
+    private spinner: NgxSpinnerService,
     private remoteService: AccountService,
     private rout: Router
   ) {}
@@ -50,20 +64,22 @@ export class RegistrationComponent
   ngOnInit(): void {}
 
   onSubmit(value: any): void {
-    if(this.registrationForm.invalid){
+    if (this.registrationForm.invalid) {
       this.activated = true;
       return;
     }
+    this.isLoading = true;
     this.remoteService
       .registerNewUser(value)
       .subscribe(
         (data: any) => {
+          this.isLoading = false;
           this.rout.navigate([
             Routes.Account.LoginPage,
           ]);
         },
         (error: any) => {
-          console.log('error');
+          this.isLoading = false
         }
       );
   }
