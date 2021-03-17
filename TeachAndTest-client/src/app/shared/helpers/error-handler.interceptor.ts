@@ -28,8 +28,7 @@ export class ErrorHandlerInterceptor
     return next.handle(request).pipe(
       tap(
         (event) => {
-          if (event instanceof HttpResponse){
-
+          if (event instanceof HttpResponse) {
           }
         },
         (err) => {
@@ -39,7 +38,8 @@ export class ErrorHandlerInterceptor
               'error'
             );
             if (err.status == 401)
-              this.router.navigate([Routes.Account.LoginPage])
+              console.log('unauth');
+            //this.router.navigate([Routes.Account.LoginPage])
           }
         }
       )

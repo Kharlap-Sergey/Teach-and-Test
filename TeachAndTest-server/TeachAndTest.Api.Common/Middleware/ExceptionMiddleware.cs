@@ -45,9 +45,11 @@ namespace TeachAndTest.Api.Common.Middleware
             //code logic here
             if (exception is AuthorizeException)
             {
-                var e = exception as AuthorizeException;
-                message = e.Message;
                 statusCode = HttpStatusCode.NotFound;
+            }
+            if(exception is UnauthorizedUserException)
+            {
+                statusCode = HttpStatusCode.Unauthorized;
             }
             //else if (exception is DuplicateEmailException)
             //{
