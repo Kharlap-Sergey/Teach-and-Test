@@ -21,7 +21,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
-import { JwtInterceptor } from '@app/shared/helpers/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
@@ -31,13 +31,14 @@ import { ProfileComponent } from './components/profile/profile.component';
     ProfileComponent,
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     AccountRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    NgxSpinnerModule
   ],
   providers: [
 

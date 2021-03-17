@@ -25,6 +25,15 @@ export class NotificationService {
     });
   }
 
+  actionInfo(message: string, action: any) {
+    this.toastr
+      .info(message, 'tap to confirm', {
+        toastClass: 'toastr',
+      })
+      .onTap.subscribe(() => {
+        action();
+      });
+  }
   showWarning(message: string, title: string) {
     this.toastr.warning(message, title, {
       toastClass: 'toastr',

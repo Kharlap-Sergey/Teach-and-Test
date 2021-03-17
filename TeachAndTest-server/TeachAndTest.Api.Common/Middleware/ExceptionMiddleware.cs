@@ -3,6 +3,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Exceptions;
+using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.Api.Common.Middleware
 {
@@ -36,14 +37,20 @@ namespace TeachAndTest.Api.Common.Middleware
             context.Response.ContentType = "application/json";
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
             string message = "Something was incorrect";
+            if(exception.Message.Length > 0)
+            {
+                message = exception.Message;
+            }
 
             //code logic here
-            //if (exception is InvalidCredentialExeption)
-            //{
-            //    var e = exception as InvalidCredentialExeption;
-            //    message = e.Message;
-            //    statusCode = HttpStatusCode.Unauthorized;
-            //}
+            if (exception is AuthorizeException)
+            {
+                statusCode = HttpStatusCode.NotFound;
+            }
+            if(exception is UnauthorizedUserException)
+            {
+                statusCode = HttpStatusCode.Unauthorized;
+            }
             //else if (exception is DuplicateEmailException)
             //{
             //    message = "this email is already taken";

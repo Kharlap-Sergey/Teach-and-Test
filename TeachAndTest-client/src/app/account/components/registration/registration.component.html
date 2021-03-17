@@ -5,6 +5,13 @@
     (ngSubmit)="onSubmit(f.value)"
     [formGroup]="registrationForm"
   >
+    <ngx-spinner
+      [fullScreen]="false"
+      type="ball-clip-rotate-multiple"
+      size="medium"
+    >
+      <!-- <p class="loading"></p> -->
+    </ngx-spinner>
     <div class="form-registration__body">
       <div class="form-registration__title">
         registration
@@ -100,6 +107,8 @@
       </div>
 
       <app-google-auth-btn
+        (startLogin)="this.isLoading = true"
+        (endLogin)="this.isLoading = false"
         class="form-registration__google-auth"
       ></app-google-auth-btn>
     </div>

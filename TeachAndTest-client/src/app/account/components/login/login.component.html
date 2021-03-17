@@ -5,6 +5,13 @@
     #f="ngForm"
     [formGroup]="this.loginForm"
   >
+    <ngx-spinner
+      [fullScreen]="false"
+      type="ball-clip-rotate-multiple"
+      size="medium"
+    >
+      <!-- <p class="loading"></p> -->
+    </ngx-spinner>
     <div class="login-form__body">
       <div class="login-form__title">Log in</div>
       <app-reactive-input
@@ -35,6 +42,7 @@
       <app-submit-button
         class="login-form__submit"
         (click)="submitButtonHandler($event)"
+        [loading]="this.isLoading"
         >Log in</app-submit-button
       >
       <div class="login-form__footer">
@@ -45,14 +53,10 @@
       </div>
 
       <app-google-auth-btn
+        (startLogin)="this.isLoading = true"
+        (endLogin)="this.isLoading = false"
         class="login-form__google-auth"
       ></app-google-auth-btn>
     </div>
   </form>
-  <!-- <button (click)="onClick()">test auth</button> -->
-
-  <!-- <button (click)="signInWithGoogle()">
-    google sign in
-  </button>
-  <button (click)="signOut()">sign out</button> -->
 </div>
