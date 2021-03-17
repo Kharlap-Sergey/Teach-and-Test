@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic.Account;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.BusinessLogic.Auth
 {
@@ -43,7 +44,7 @@ namespace TeachAndTest.BusinessLogic.Auth
             if(!result.Succeeded)
             {
                 //todo Implement this feature 
-                throw new Exception("The user name or password is not correct");
+                throw new AuthorizeException();
             }
 
             User user = await userManager.FindByNameAsync(userName);

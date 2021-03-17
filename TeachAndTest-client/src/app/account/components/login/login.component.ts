@@ -3,11 +3,9 @@ import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
-import { NotificationService } from '@app/shared/services/notification.service';
 import { AuthControlService } from '@app/shared/services/auth-control.service';
 import { AccountService } from '@app/account/services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,7 +37,6 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private remoteService: AccountService,
     private authControl: AuthControlService,
-    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -55,15 +52,10 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.remoteService.loginUser(value).subscribe(
       (data: any) => {
-        this.isLoading = false;
         this.authControl.login(data, data.token);
       },
       (error: any) => {
         this.isLoading = false;
-        this.notificationService.showError(
-          'error',
-          error.error.Message
-        );
       },
       () => {}
     );
