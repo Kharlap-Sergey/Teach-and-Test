@@ -5,6 +5,13 @@
     #f="ngForm"
     [formGroup]="this.loginForm"
   >
+    <ngx-spinner
+      [fullScreen]="false"
+      type="ball-clip-rotate-multiple"
+      size="medium"
+    >
+      <!-- <p class="loading"></p> -->
+    </ngx-spinner>
     <div class="login-form__body">
       <div class="login-form__title">Log in</div>
       <app-reactive-input
@@ -46,6 +53,8 @@
       </div>
 
       <app-google-auth-btn
+        (startLogin)="this.isLoading = true"
+        (endLogin)="this.isLoading = false"
         class="login-form__google-auth"
       ></app-google-auth-btn>
     </div>

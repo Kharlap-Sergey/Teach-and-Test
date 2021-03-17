@@ -6,6 +6,7 @@ import {
 import { NotificationService } from '@app/shared/services/notification.service';
 import { AuthControlService } from '@app/shared/services/auth-control.service';
 import { AccountService } from '@app/account/services/account.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,11 @@ import { AccountService } from '@app/account/services/account.service';
 export class LoginComponent implements OnInit {
   private _loading = false;
   public set isLoading(value: boolean) {
+    if (value) {
+      this.spinner.show();
+    } else {
+      this.spinner.hide();
+    }
     this._loading = value;
   }
   public get isLoading(): boolean {
@@ -30,6 +36,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
+    private spinner: NgxSpinnerService,
     private remoteService: AccountService,
     private authControl: AuthControlService,
     private notificationService: NotificationService
@@ -46,22 +53,19 @@ export class LoginComponent implements OnInit {
 
   onSubmit(value: any): void {
     this.isLoading = true;
-    this.remoteService
-      .loginUser(value)
-      .subscribe(
-        (data: any) => {
-          this.isLoading = false;
-          this.authControl.login(data, data.token);
-        },
-        (error: any) => {
-          this.isLoading = false;
-          this.notificationService.showError(
-            'error',
-            error.error.Message
-          );
-        },
-        () => {
-        }
-      );
+    this.remoteService.loginUser(value).subscribe(
+      (data: any) => {
+        this.isLoading = false;
+        this.authControl.login(data, data.token);
+      },
+      (error: any) => {
+        this.isLoading = false;
+        this.notificationService.showError(
+          'error',
+          error.error.Message
+        );
+      },
+      () => {}
+    );
   }
 }
