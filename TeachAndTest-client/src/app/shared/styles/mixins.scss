@@ -1,9 +1,11 @@
+@import "colors.scss";
+
 @mixin btn {
-  background-color: black;
-  color: white;
-  border: 1px solid black;
-  border-radius: 2px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: $light-blue;
+  color: black;
+  border: 1px solid  $light-blue;
+  border-radius: 3px;
+  box-shadow: 0 4px 6px 0 rgba($light-blue, 0.6);
   transition: linear 0.3s;
   cursor: pointer;
   cursor: hand;

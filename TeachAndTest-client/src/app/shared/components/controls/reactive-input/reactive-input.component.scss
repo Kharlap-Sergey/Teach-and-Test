@@ -6,14 +6,14 @@
   }
   &__content{
     position: relative;
-    font-size: 3rem;
+    font-size: 2rem;
   }
 	&__label {
     display: block;
     position: relative;
     letter-spacing: 1px;
     z-index: -1;
-    bottom: -3.2rem;
+    bottom: -2rem;
     transition: linear .15s;
     &--upper{
       bottom: 0;
@@ -21,20 +21,21 @@
   }
 
 	&__input {
+    width: 100%;
     font-size: inherit;
     opacity: 0.7;
     border: 0;
-    border-bottom: 2px solid $dark-gray;
+    border-bottom: 2px solid rgba($dark-gray, 0.4);
     border-radius: 2px;
     outline: none;
     &--invalid{
-      border-bottom-color: $error--color;
+      border-bottom-color: rgba($error--color, 0.4);
     }
     &--valid{
-      border-bottom-color: green;
+      border-bottom-color: rgba($green, 0.4);
     }
     &:focus {
-      border-bottom-color: $blue;
+      border-bottom-color: rgba($blue, 0.4);
     }
    }
 

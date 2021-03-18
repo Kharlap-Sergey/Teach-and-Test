@@ -2,14 +2,11 @@
 
 .google-btn {
   @include btn;
-
-  margin: 25px;
   padding: 4px;
   width: 80%;
   min-width: 220px;
   max-width: 220px;
   height: 42px;
-  // font-family: Inter;
   align-self: center;
   user-select: none;
   display: flex;
@@ -34,7 +31,7 @@
   .btn-text {
     float: right;
     margin: 15px 14px 40px 40px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     color: inherit;
     user-select: none;
