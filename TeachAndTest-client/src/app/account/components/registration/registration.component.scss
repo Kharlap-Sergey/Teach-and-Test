@@ -9,9 +9,9 @@
 	&__body {
     padding: 1rem;
     padding-top: 2rem;
-    border: .5px solid black;
+    //border: .5px solid black;
     border-radius: 2px;
-    box-shadow: 0 0 1rem .05rem black;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     width: fit-content;
   }
   &__title {
