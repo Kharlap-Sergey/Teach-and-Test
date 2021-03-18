@@ -14,11 +14,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent implements OnInit {
   private _loading = false;
   public set isLoading(value: boolean) {
-    if (value) {
-      this.spinner.show();
-    } else {
-      this.spinner.hide();
-    }
+    // if (value) {
+    //   this.spinner.show();
+    // } else {
+    //   this.spinner.hide();
+    // }
     this._loading = value;
   }
   public get isLoading(): boolean {

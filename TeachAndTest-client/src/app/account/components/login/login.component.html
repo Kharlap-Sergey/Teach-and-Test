@@ -5,13 +5,7 @@
     #f="ngForm"
     [formGroup]="this.loginForm"
   >
-    <ngx-spinner
-      [fullScreen]="false"
-      type="ball-clip-rotate-multiple"
-      size="medium"
-    >
-      <!-- <p class="loading"></p> -->
-    </ngx-spinner>
+    <app-loader [isLoading]="this.isLoading"></app-loader>
     <div class="login-form__body">
       <div class="login-form__title">Log in</div>
       <div class="login-form__input">

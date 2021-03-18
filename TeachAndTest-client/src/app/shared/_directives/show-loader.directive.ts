@@ -1,4 +1,5 @@
 import {
+  ComponentFactoryResolver,
   Directive,
   ElementRef,
   Input,
@@ -6,6 +7,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LoaderComponent } from '@shared/components/loader/loader.component';
 
 @Directive({
   selector: '[showLoader]',
@@ -15,18 +17,26 @@ export class ShowLoaderDirective {
   @Input() public set showLoader(
     value: boolean
   ) {
+    if (value) {
+      this.spinner.show();
+    } else {
+      this.spinner.hide();
+    }
     this._isLoading = value;
 
     console.log(`this.isLoading`, this._isLoading);
   }
 
   constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private spinner: NgxSpinnerService,
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef
   ) {
-    this.viewContainer.createEmbeddedView(this.templateRef);
+    const loaderComponent = this.componentFactoryResolver.resolveComponentFactory(LoaderComponent)
+    this.viewContainer.createComponent(loaderComponent);
 
-    this.viewContainer.insert(this.viewContainer.createEmbeddedView(this.templateRef))
+    this.viewContainer.createEmbeddedView(this.templateRef);
   }
 
   private enableLoader(): void {}

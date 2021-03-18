@@ -16,6 +16,8 @@ import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/go
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.component';
 import { ShowLoaderDirective } from './_directives/show-loader.directive';
+import { LoaderComponent } from './components/loader/loader.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,10 @@ import { ShowLoaderDirective } from './_directives/show-loader.directive';
     NavBarComponent,
     NavLinkComponent,
     ShowLoaderDirective,
+    LoaderComponent,
   ],
   imports: [
+    NgxSpinnerModule,
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
@@ -46,6 +50,7 @@ import { ShowLoaderDirective } from './_directives/show-loader.directive';
     GoogleAuthBtnComponent,
     NavBarComponent,
     ShowLoaderDirective,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}
