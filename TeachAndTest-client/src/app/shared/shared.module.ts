@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { GoogleAuthBtnComponent } from './components/controls/google-auth-btn/google-auth-btn.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.component';
+import { ShowLoaderDirective } from './_directives/show-loader.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.compone
     GoogleAuthBtnComponent,
     NavBarComponent,
     NavLinkComponent,
+    ShowLoaderDirective,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.compone
     LinkComponent,
     GoogleAuthBtnComponent,
     NavBarComponent,
+    ShowLoaderDirective,
   ],
 })
 export class SharedModule {}
