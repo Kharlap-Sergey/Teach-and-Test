@@ -1,12 +1,17 @@
 .navbar {
   height: fit-content;
   &__body {
-    background-color: #fff;
-    box-shadow: inset 1px 0 5px 0 rgba(0, 0, 0, 0.178);
+    //background: #fff;
+    //box-shadow: inset 1px 0 5px 0 rgba(0, 0, 0, 0.178);
     position: fixed;
+    z-index: 100;
     top: 0;
     width: 100%;
     display: block;
+
+    background-color: rgba(0, 204, 255, 0.356);
+    box-shadow: inset 1px 0 5px 0 rgba(48, 161, 192, 0.445);
+    backdrop-filter: blur(15px);
   }
   &__row {
     padding: 0.2rem 2rem;

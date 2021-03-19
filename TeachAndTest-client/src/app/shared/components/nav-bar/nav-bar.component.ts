@@ -54,7 +54,7 @@ export class NavBarComponent
   onScroll($event: Event) {
     if (this.previousY) {
       let opacity = 1;
-      let z = 0;
+      let z = 100;
       let deltaH = Math.abs(
         this.previousY - window.pageYOffset
       );
