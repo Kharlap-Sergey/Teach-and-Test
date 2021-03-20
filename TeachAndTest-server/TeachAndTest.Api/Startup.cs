@@ -60,9 +60,12 @@ namespace TeachAndTest.Api
             });
             services.AddIdentity<User, Role>()
                    .AddEntityFrameworkStores<CustomDbContext>()
-                   .AddDefaultTokenProviders(); 
+                   .AddDefaultTokenProviders();
+
 
             //todo Dependency injections match here
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            //totd inject services automaticly
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IEmailService, GmailService>();
