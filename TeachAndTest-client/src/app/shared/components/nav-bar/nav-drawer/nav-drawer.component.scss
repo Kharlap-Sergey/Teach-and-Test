@@ -1,0 +1,34 @@
+:host {
+  &.drawer-open {
+    display: block;
+    width: 70vh;
+    height: 100vh;
+  }
+}
+
+.drawer{
+  &__btn{
+    padding: 3px;
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    &--close {
+      background-image: url("https://cdnjs.loli.net/ajax/libs/material-design-icons/3.0.1/navigation/drawable-hdpi/ic_apps_black_18dp.png");
+    }
+    &--open {
+      background-image: url("https://cdnjs.loli.net/ajax/libs/material-design-icons/3.0.1/navigation/drawable-hdpi/ic_close_black_18dp.png");
+    }
+  }
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  &__link{
+    font-size: 2.5rem;
+  }
+}

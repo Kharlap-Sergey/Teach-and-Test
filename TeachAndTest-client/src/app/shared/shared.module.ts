@@ -18,6 +18,7 @@ import { NavLinkComponent } from './components/nav-bar/nav-link/nav-link.compone
 import { ShowLoaderDirective } from './_directives/show-loader.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NavLinkComponent,
     ShowLoaderDirective,
     LoaderComponent,
+    NavDrawerComponent,
   ],
   imports: [
     NgxSpinnerModule,

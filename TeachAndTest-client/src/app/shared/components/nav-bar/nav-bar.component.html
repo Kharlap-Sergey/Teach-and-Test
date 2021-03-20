@@ -1,8 +1,13 @@
 <nav class="navbar" id="navbar" #navbar>
   <div class="navbar__body">
-    <div class="navbar__row">
+    <div class="navbar__row navbar__row--drawler">
+      <app-nav-drawer
+        [pathObjects]="this.pathObjects"
+      ></app-nav-drawer>
+    </div>
+    <div class="navbar__row navbar__row--plain">
       <div class="navbar__logo">Teach&Test</div>
-      <div class="navbar__divider"></div>
+      <div class="navbar__divider navbar__divider--plain"></div>
       <ul class="navbar__container">
         <li
           class="navbar__element"
@@ -31,11 +36,15 @@
       <ng-template #thenBlock>
         <div class="navbar__profile">
           <app-nav-link
-          [to]="routes.Account.ProfilePage(this.user.id)"
+            [to]="
+              routes.Account.ProfilePage(this.user.id)
+            "
             class="navbar__link"
             [ngClass]="{
               'navbar__link--selected': this.selected(
-                routes.Account.ProfilePage(this.user.id)
+                routes.Account.ProfilePage(
+                  this.user.id
+                )
               )
             }"
           >

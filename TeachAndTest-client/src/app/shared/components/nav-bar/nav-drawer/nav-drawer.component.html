@@ -1,0 +1,20 @@
+<button
+  (click)="this.onTriggerDrawer()"
+  class="drawer__btn"
+  [ngClass]="{
+    'drawer__btn--close': !isDrawerOpen,
+    'drawer__btn--open': isDrawerOpen
+  }"
+></button>
+
+<ul class="drawer__content" *ngIf="this.isDrawerOpen">
+  <li
+    class="drawer__element"
+    *ngFor="let path of this.pathObjects"
+    (click)="onNavLinkClicked($event)"
+  >
+    <a [routerLink]="path.to" class="drawer__link">{{
+      path.content
+    }}</a>
+  </li>
+</ul>

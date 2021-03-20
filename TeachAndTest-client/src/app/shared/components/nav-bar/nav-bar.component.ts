@@ -18,9 +18,10 @@ export class NavBarComponent
   implements OnInit, AfterViewInit {
   @ViewChild('navbar') navBar: any;
 
-  routes = Routes;
   private previousY: number;
-  pathObjects = [
+  public isDrawlerOpen: boolean = false;
+  public routes = Routes;
+  public pathObjects = [
     {
       to: '/',
       content: 'home',
@@ -35,7 +36,7 @@ export class NavBarComponent
     },
   ];
 
-  user: any;
+  public user: any;
 
   constructor(
     private router: Router,
@@ -48,6 +49,10 @@ export class NavBarComponent
 
   ngOnInit(): void {}
   ngAfterViewInit() {
+  }
+
+  onDrawlerClick(value: boolean){
+    this.isDrawlerOpen = !value;
   }
 
   @HostListener('window:scroll', ['$event'])

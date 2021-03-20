@@ -9,8 +9,9 @@
     width: 100%;
     display: block;
 
-    background-color: rgba(0, 204, 255, 0.356);
-    box-shadow: inset 1px 0 5px 0 rgba(48, 161, 192, 0.445);
+    background-color: rgba(0, 204, 255, 0.2);
+    box-shadow: inset 1px 0 5px 0
+      rgba(48, 161, 192, 0.445);
     backdrop-filter: blur(15px);
   }
   &__row {
@@ -18,6 +19,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &--drawler{
+      display: none;
+    }
   }
   &__divider {
     flex-grow: 1;
@@ -40,6 +44,30 @@
     margin: 0 5px;
     &--selected {
       border-bottom: 1px solid black;
+    }
+  }
+}
+
+@media screen and (max-width: 500px){
+  .navbar {
+    &__divider--plain {
+      display: none;
+    }
+    &__logo {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .navbar {
+    &__row {
+      &--plain {
+        display: none;
+      }
+      &--drawler{
+        display: block;
+      }
     }
   }
 }

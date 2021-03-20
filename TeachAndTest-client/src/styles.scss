@@ -12,6 +12,14 @@ html {
   font-family: Inter;
 }
 
+ul {
+  padding: 0;
+}
+li {
+  outline: none;
+  list-style: none;
+}
+
 //override toastr styles
 .toastr{
   @extend .ngx-toastr;
