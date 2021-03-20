@@ -13,8 +13,8 @@
     *ngFor="let path of this.pathObjects"
     (click)="onNavLinkClicked($event)"
   >
-    <a [routerLink]="path.to" class="drawer__link">{{
-      path.content
-    }}</a>
+    <app-nav-link [to]="path.to" class="drawer__link">
+      {{ path.content }}
+    </app-nav-link>
   </li>
 </ul>
