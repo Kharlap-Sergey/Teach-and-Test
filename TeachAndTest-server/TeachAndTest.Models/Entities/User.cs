@@ -7,6 +7,6 @@ namespace TeachAndTest.Models.Entities
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public int AvatarId { set; get; }
-        public Image Avatart { set; get; }
+        public FileDetails Avatar { set; get; }
     }
 }

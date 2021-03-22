@@ -15,6 +15,7 @@ using System;
 using TeachAndTest.BusinessLogic.Auth;
 using TeachAndTest.Worker;
 using TeachAndTest.Api.Common.Middleware;
+using TeachAndTest.BusinessLogic.Files;
 
 namespace TeachAndTest.Api
 {
@@ -68,6 +69,7 @@ namespace TeachAndTest.Api
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IEmailService, GmailService>();
+            services.AddScoped<IFilesService, FilesService>();
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
@@ -125,6 +127,7 @@ namespace TeachAndTest.Api
                             .AllowAnyMethod()
                             .AllowAnyHeader());
 
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

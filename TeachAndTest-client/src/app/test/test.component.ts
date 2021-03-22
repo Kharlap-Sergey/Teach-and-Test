@@ -6,29 +6,51 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpClient } from '@angular/common/http';
+import { ApiRoutes } from 'src/app/shared/utils/api-routes';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
-export class TestComponent
-{
-  loading: boolean;
-
+export class TestComponent {
   /**
    *
    */
-  constructor(public spinner: NgxSpinnerService) {
-    this.loading = false;
-  }
+  constructor(private http: HttpClient) {}
+  public file: any;
 
-  loadEmmet(){
-    this.loading = true;
-    this.spinner.show();
-    setTimeout(() => {
-      this.loading = false;
-      this.spinner.hide();
-    }, 2000)
+  selectedFile: File = null;
+
+  onFileSelected(event: any) {
+    console.log(
+      `event.target.files`,
+      event.target.files
+    );
+    this.selectedFile = <File>event.target.files[0];
+  }
+  sendTosServer() {
+    const fd = new FormData();
+
+    // https://developer.mozilla.org/ru/docs/Web/API/FormData/append
+    fd.append(
+      'image',
+      this.selectedFile,
+      this.selectedFile.name
+    );
+    console.log(fd.getAll("image"));
+    this.http
+      .post(ApiRoutes.HostsApi + '/files/upload', fd)
+      .subscribe((res) => {
+        console.log('res: ', res);
+      });
+  }
+  loadFrom() {
+    this.http
+      .get(ApiRoutes.HostsApi + `/files/download/229adcb1-b0a1-4d5f-81e0-2629abb57a51`)
+      .subscribe((res) => {
+        console.log('res: ', res);
+      });
   }
 }
