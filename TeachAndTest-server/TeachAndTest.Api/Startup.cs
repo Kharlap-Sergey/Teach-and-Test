@@ -36,7 +36,6 @@ namespace TeachAndTest.Api
               options.UseSqlServer(connection));
 
 
-
             //Configuration for Identity
             services.Configure<IdentityOptions>(options =>
             {
