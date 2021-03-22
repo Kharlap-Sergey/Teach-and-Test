@@ -46,11 +46,28 @@ export class TestComponent {
         console.log('res: ', res);
       });
   }
-  loadFrom() {
-    this.http
-      .get(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`)
-      .subscribe((res) => {
-        console.log('res: ', res);
-      });
+  async loadFrom() {
+    const options = {
+      method: "GET",
+      headers: {
+      },
+    };
+    const response = await fetch(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
+    if (response.ok) {
+      const data = await response.blob();
+      var reader = new FileReader();
+
+      reader.onload = function (event) {
+        console.log(`event`, event)
+      };
+
+      reader.readAsDataURL(data);
+    } else {
+    }
+    // this.http
+    //   .get(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
+    //   .subscribe((res) => {
+    //     console.log('res: ', res);
+    //   });
   }
 }
