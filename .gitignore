@@ -1,7 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/vs,vscode,angular,aspnetcore,web
 # Edit at https://www.toptal.com/developers/gitignore?templates=vs,vscode,angular,aspnetcore,web
-wwwwroot/*
+wwwroot/
 
 ### Angular ###
 ## Angular ##

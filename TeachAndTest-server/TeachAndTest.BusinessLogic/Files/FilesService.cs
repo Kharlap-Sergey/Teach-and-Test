@@ -42,11 +42,11 @@ namespace TeachAndTest.BusinessLogic.Files
                 var fileReadPath = Path.Combine(
                     path, 
                     "wwwroot", 
-                    fileDetails.Id.ToString());
+                    fileDetails.Id.ToString() + fileDetails.DocType);
 
-                using (var fileStream = new FileStream(fileReadPath+"."+fileDetails.DocType, FileMode.Open))
+                using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
                 {
-                    var res = new PhysicalFileResult(fileReadPath, fileDetails.DocType);
+                    var res = new PhysicalFileResult(fileReadPath, "application/file");
                     return res;
                 }
 
@@ -73,7 +73,7 @@ namespace TeachAndTest.BusinessLogic.Files
         private async Task<FileDetails> SaveFile(IFormFile file)
         {
             var fileDetails = new FileDetails();
-            var fileType = Path.GetExtension(file.FileName).Substring(1);
+            var fileType = Path.GetExtension(file.FileName);
             var filePath = hostingEnvironment.ContentRootPath;
             var docName = Path.GetFileName(file.FileName);
             if (file != null && file.Length > 0)

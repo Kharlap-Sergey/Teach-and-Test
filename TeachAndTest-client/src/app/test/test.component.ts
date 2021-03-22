@@ -48,7 +48,7 @@ export class TestComponent {
   }
   loadFrom() {
     this.http
-      .get(ApiRoutes.HostsApi + `/files/download/229adcb1-b0a1-4d5f-81e0-2629abb57a51`)
+      .get(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`)
       .subscribe((res) => {
         console.log('res: ', res);
       });
