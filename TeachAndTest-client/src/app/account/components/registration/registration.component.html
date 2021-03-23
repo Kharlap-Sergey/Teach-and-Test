@@ -5,13 +5,9 @@
     (ngSubmit)="onSubmit(f.value)"
     [formGroup]="registrationForm"
   >
-    <ngx-spinner
-      [fullScreen]="false"
-      type="ball-clip-rotate-multiple"
-      size="medium"
-    >
-      <!-- <p class="loading"></p> -->
-    </ngx-spinner>
+    <app-loader
+      [isLoading]="this.isLoading"
+    ></app-loader>
     <div class="form-registration__body">
       <div class="form-registration__title">
         registration
