@@ -39,7 +39,7 @@ export class TestComponent {
       this.selectedFile,
       this.selectedFile.name
     );
-    console.log(fd.getAll("image"));
+    console.log(fd.getAll('image'));
     this.http
       .post(ApiRoutes.HostsApi + '/files/upload', fd)
       .subscribe((res) => {
@@ -47,27 +47,31 @@ export class TestComponent {
       });
   }
   async loadFrom() {
-    const options = {
-      method: "GET",
-      headers: {
-      },
-    };
-    const response = await fetch(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
-    if (response.ok) {
-      const data = await response.blob();
-      var reader = new FileReader();
+    // const options = {
+    //   method: "GET",
+    //   headers: {
+    //   },
+    // };
+    // const response = await fetch(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
+    // if (response.ok) {
+    //   const data = await response.blob();
+    //   var reader = new FileReader();
 
-      reader.onload = function (event) {
-        console.log(`event`, event)
-      };
+    //   reader.onload = function (event) {
+    //     console.log(`event`, event)
+    //   };
 
-      reader.readAsDataURL(data);
-    } else {
-    }
-    // this.http
-    //   .get(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
-    //   .subscribe((res) => {
-    //     console.log('res: ', res);
-    //   });
+    //   reader.readAsDataURL(data);
+    // } else {
+    // }
+    this.http
+      .get(
+        ApiRoutes.HostsApi +
+          `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`,
+        { responseType: 'blob' }
+      )
+      .subscribe((blob) => {
+        console.log(`blob`, blob)
+      });
   }
 }
