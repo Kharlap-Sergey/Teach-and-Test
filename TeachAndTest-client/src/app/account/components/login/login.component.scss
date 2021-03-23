@@ -8,12 +8,10 @@
 .login-form {
   position: relative;
   &__body {
-    padding: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-    //border: .5px solid rgb(0, 0, 0);
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     border-radius: 2px;
-    //box-shadow: 0 0 1rem .05rem black;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
     width: fit-content;
   }
