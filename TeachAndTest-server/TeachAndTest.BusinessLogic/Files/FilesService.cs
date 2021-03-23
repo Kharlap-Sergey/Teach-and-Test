@@ -46,7 +46,7 @@ namespace TeachAndTest.BusinessLogic.Files
 
                 using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
                 {
-                    var res = new PhysicalFileResult(fileReadPath, "application/octet");
+                    var res = new PhysicalFileResult(fileReadPath, "image/png");
                     return res;
                 }
 

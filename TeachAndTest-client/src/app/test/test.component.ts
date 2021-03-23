@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,6 +8,7 @@ import {
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-test',
@@ -18,9 +19,15 @@ export class TestComponent {
   /**
    *
    */
-  constructor(private http: HttpClient) {}
-  public file: any;
+  @ViewChild("img") img: any;
 
+  constructor(
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+    ) {}
+  public file: any;
+  image: any;
+  imageBlobUrl: any;
   selectedFile: File = null;
 
   onFileSelected(event: any) {
@@ -46,6 +53,16 @@ export class TestComponent {
         console.log('res: ', res);
       });
   }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageBlobUrl = reader.result;
+    }, false);
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
   async loadFrom() {
     // const options = {
     //   method: "GET",
@@ -68,10 +85,25 @@ export class TestComponent {
       .get(
         ApiRoutes.HostsApi +
           `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`,
-        { responseType: 'blob' }
+        { responseType: 'blob'}
       )
-      .subscribe((blob) => {
-        console.log(`blob`, blob)
+      .subscribe((response) => {
+        // console.log(`blob`, blob);
+        // let objectURL = URL.createObjectURL(blob);
+        // this.image = this.sanitizer.bypassSecurityTrustUrl(
+        //   objectURL
+        // );
+
+        console.log(`response`, response)
+        this.createImageFromBlob(response);
+        // var reader = new FileReader ();
+        // reader.readAsDataURL(blob:)
+
+        // reader.onload =  (event: any) =>  {
+        //   this.image = event.target.result;
+        // }
       });
+
+      console.log(`img`, this.img)
   }
 }
