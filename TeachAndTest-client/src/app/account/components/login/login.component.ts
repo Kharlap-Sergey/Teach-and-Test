@@ -1,24 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormControl,
 } from '@angular/forms';
 import { AuthControlService } from '@app/shared/services/auth-control.service';
 import { AccountService } from '@app/account/services/account.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   private _loading = false;
   public set isLoading(value: boolean) {
-    // if (value) {
-    //   this.spinner.show();
-    // } else {
-    //   this.spinner.hide();
-    // }
     this._loading = value;
   }
   public get isLoading(): boolean {
@@ -34,12 +29,9 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private spinner: NgxSpinnerService,
     private remoteService: AccountService,
     private authControl: AuthControlService,
   ) {}
-
-  ngOnInit(): void {}
 
   submitButtonHandler(e: any) {
     this.activated = true;
