@@ -10,6 +10,6 @@ namespace TeachAndTest.BusinessLogic.Files
     public interface  IFilesService
     {
         public Task<List<FileDetails>> UploadAsync(IList<IFormFile> files);
-        public Task<PhysicalFileResult> DownloadAsync(Guid id);
+        public Task<string> DownloadAsync(Guid id);
     }
 }

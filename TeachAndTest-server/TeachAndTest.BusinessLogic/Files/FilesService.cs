@@ -25,7 +25,7 @@ namespace TeachAndTest.BusinessLogic.Files
             this.hostingEnvironment = hostingEnvironment;
             this.filesRepository = filesRepository;
         }
-        public async Task<PhysicalFileResult> DownloadAsync(Guid id)
+        public async Task<string> DownloadAsync(Guid id)
         {
             FileDetails fileDetails = await this.filesRepository.GetByIdAsync(id);
             if (fileDetails != null)
@@ -46,8 +46,7 @@ namespace TeachAndTest.BusinessLogic.Files
 
                 using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
                 {
-                    var res = new PhysicalFileResult(fileReadPath, "image/png");
-                    return res;
+                    return fileReadPath;
                 }
 
                 throw new Exception();

@@ -33,8 +33,12 @@ namespace TeachAndTest.Api.Controllers
         public async Task<IActionResult> Download(string id)
         {
             var guidId = new Guid(id);
-            PhysicalFileResult file =
-              await this.filesService.DownloadAsync(guidId);
+
+            PhysicalFileResult file = new PhysicalFileResult(
+                await this.filesService.DownloadAsync(guidId),
+                "image/png"
+                );
+              
             return file;
         }
     }

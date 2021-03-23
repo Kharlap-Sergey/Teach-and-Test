@@ -27,7 +27,7 @@ export class TestComponent {
     ) {}
   public file: any;
   image: any;
-  imageBlobUrl: any;
+  imageBlobUrl: any = "";
   selectedFile: File = null;
 
   onFileSelected(event: any) {
@@ -57,7 +57,8 @@ export class TestComponent {
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      this.imageBlobUrl = reader.result;
+      this.imageBlobUrl =
+      reader.result;
     }, false);
     if (image) {
       reader.readAsDataURL(image);
@@ -84,7 +85,7 @@ export class TestComponent {
     this.http
       .get(
         ApiRoutes.HostsApi +
-          `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`,
+          `/files/download/255def21-d50d-43a9-958b-faf6de5bbcd8`,
         { responseType: 'blob'}
       )
       .subscribe((response) => {

@@ -6,4 +6,4 @@
 
 <img #img [src]='this.image' />
 
-<img [src]="imageBlobUrl">
+<img [src]=" imageBlobUrl | safeHtmlUrl">
