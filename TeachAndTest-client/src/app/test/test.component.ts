@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpClient } from '@angular/common/http';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LocalStorageWrapper } from './../shared/utils/local-storage-wrapper';
 
 @Component({
   selector: 'app-test',
@@ -24,7 +25,10 @@ export class TestComponent {
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer
-    ) {}
+    ) {
+      LocalStorageWrapper.setItem("abc", "sergey");
+      console.log(`object`, LocalStorageWrapper.getItem("abc"));
+    }
   public file: any;
   image: any;
   imageBlobUrl: any = "";

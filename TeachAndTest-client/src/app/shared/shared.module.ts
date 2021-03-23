@@ -4,7 +4,6 @@ import {
   ReactiveFormsModule,
   FormsModule,
 } from '@angular/forms';
-import { CounterInputComponent } from './components/counter-input/counter-input.component';
 import { ReactiveInputComponent } from './components/controls/reactive-input/reactive-input.component';
 import { PasswordInputComponent } from './components/controls/password-input/password-input.component';
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
@@ -23,7 +22,6 @@ import { SafeHtmlUrlPipe } from './_pipes/safe-html-url.pipe';
 
 @NgModule({
   declarations: [
-    CounterInputComponent,
     ReactiveInputComponent,
     PasswordInputComponent,
     CustomInputComponent,
@@ -46,7 +44,6 @@ import { SafeHtmlUrlPipe } from './_pipes/safe-html-url.pipe';
     FormsModule,
   ],
   exports: [
-    CounterInputComponent,
     ReactiveInputComponent,
     PasswordInputComponent,
     SubmitButtonComponent,
