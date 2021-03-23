@@ -7,6 +7,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using TeachAndTest.Domain;
+using TeachAndTest.Models;
 using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.BusinessLogic.Files
@@ -25,7 +26,7 @@ namespace TeachAndTest.BusinessLogic.Files
             this.hostingEnvironment = hostingEnvironment;
             this.filesRepository = filesRepository;
         }
-        public async Task<string> DownloadAsync(Guid id)
+        public async Task<FileResponse> DownloadAsync(Guid id)
         {
             FileDetails fileDetails = await this.filesRepository.GetByIdAsync(id);
             if (fileDetails != null)
@@ -46,7 +47,11 @@ namespace TeachAndTest.BusinessLogic.Files
 
                 using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
                 {
-                    return fileReadPath;
+                    return new FileResponse
+                    {
+                        Path = fileReadPath,
+                        Type = fileDetails.DocType
+                    };
                 }
 
                 throw new Exception();

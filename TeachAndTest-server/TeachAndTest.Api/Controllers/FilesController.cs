@@ -26,20 +26,50 @@ namespace TeachAndTest.Api.Controllers
         {
             var details = await this.filesService.UploadAsync(formFiles.Files.ToList());
             return details;
-            return null;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Download(string id)
+        [HttpGet("{guidId}")]
+        public async Task<IActionResult> Download(Guid guidId)
         {
-            var guidId = new Guid(id);
+            var result = await this.filesService.DownloadAsync(guidId);
 
             PhysicalFileResult file = new PhysicalFileResult(
-                await this.filesService.DownloadAsync(guidId),
-                "image/png"
+                result.Path,
+                "text/plain"
                 );
               
             return file;
+        }
+
+        [HttpGet("{guidId}")]
+        public async Task<IActionResult> DownloadImage(Guid guidId, [FromQuery] string? contentType)
+        {
+            //var guidId = new Guid(id);
+            var result = await this.filesService.DownloadAsync(guidId);
+
+            PhysicalFileResult file = new PhysicalFileResult(
+                result.Path,
+                contentType ?? this.GetImageType(result.Type)
+                );
+
+            return file;
+        }
+
+        private string GetImageType(string fileFormat = "")
+        {
+            var contentType = "image/png";
+
+            switch (fileFormat)
+            {
+                case ".png":
+                    contentType = "image/png";
+                    break;
+                case ".svg":
+                    contentType = "image/svg+xml";
+                    break;
+            }
+
+            return contentType;
         }
     }
 }

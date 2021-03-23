@@ -37,6 +37,7 @@ export class TestComponent {
     );
     this.selectedFile = <File>event.target.files[0];
   }
+
   sendTosServer() {
     const fd = new FormData();
 
@@ -65,44 +66,15 @@ export class TestComponent {
     }
   }
   async loadFrom() {
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //   },
-    // };
-    // const response = await fetch(ApiRoutes.HostsApi + `/files/download/2053c2f5-3b72-46d4-ac06-db21b96ac45d`, options)
-    // if (response.ok) {
-    //   const data = await response.blob();
-    //   var reader = new FileReader();
-
-    //   reader.onload = function (event) {
-    //     console.log(`event`, event)
-    //   };
-
-    //   reader.readAsDataURL(data);
-    // } else {
-    // }
     this.http
       .get(
         ApiRoutes.HostsApi +
-          `/files/download/255def21-d50d-43a9-958b-faf6de5bbcd8`,
+          `/files/DownloadImage/255def21-d50d-43a9-958b-faf6de5bbcd8`,
         { responseType: 'blob'}
       )
       .subscribe((response) => {
-        // console.log(`blob`, blob);
-        // let objectURL = URL.createObjectURL(blob);
-        // this.image = this.sanitizer.bypassSecurityTrustUrl(
-        //   objectURL
-        // );
-
         console.log(`response`, response)
         this.createImageFromBlob(response);
-        // var reader = new FileReader ();
-        // reader.readAsDataURL(blob:)
-
-        // reader.onload =  (event: any) =>  {
-        //   this.image = event.target.result;
-        // }
       });
 
       console.log(`img`, this.img)
