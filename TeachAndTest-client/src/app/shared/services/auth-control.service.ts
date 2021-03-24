@@ -13,7 +13,8 @@ export class AuthControlService {
 
   constructor() {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(LocalStorageWrapper.getItem('currentUser'))
+      //JSON.parse(LocalStorageWrapper.getItem('currentUser'))
+      null
     );
     this._token = new BehaviorSubject<string>(
       ''

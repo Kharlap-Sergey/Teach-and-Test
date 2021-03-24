@@ -10,13 +10,15 @@ import { HttpClient } from '@angular/common/http';
 import { ApiRoutes } from 'src/app/shared/utils/api-routes';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocalStorageWrapper } from './../shared/utils/local-storage-wrapper';
+import { PortalService } from './../portal/portal.service';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
-export class TestComponent {
+export class TestComponent
+  implements OnInit{
   /**
    *
    */
@@ -24,11 +26,15 @@ export class TestComponent {
 
   constructor(
     private http: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private portal: PortalService
     ) {
       LocalStorageWrapper.setItem("abc", "sergey");
       console.log(`object`, LocalStorageWrapper.getItem("abc"));
     }
+  ngOnInit(): void {
+    this.portal.show();
+  }
   public file: any;
   image: any;
   imageBlobUrl: any = "";
