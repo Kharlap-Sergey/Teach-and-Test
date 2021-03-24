@@ -4,7 +4,7 @@ export class LocalStorageWrapper{
 
   private static cryptr = new SimpleCrypto("secret");
 
-  public static getItem(key: string){
+  public static getItem(key: string): any{
     return this.cryptr.decrypt(localStorage.getItem(key));
   }
 
