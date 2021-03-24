@@ -1,0 +1,43 @@
+@import "mixins.scss";
+
+.google-btn {
+  @include btn;
+
+  margin: 25px;
+  padding: 4px;
+  width: 80%;
+  min-width: 220px;
+  max-width: 220px;
+  height: 42px;
+  // font-family: Inter;
+  align-self: center;
+  user-select: none;
+  display: flex;
+
+  &__wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    user-select: none;
+  }
+  &__svg {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+    user-select: none;
+  }
+
+  &__text{
+    float: right;
+    margin: 15px 14px 40px 40px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: inherit;
+    user-select: none;
+  }
+}

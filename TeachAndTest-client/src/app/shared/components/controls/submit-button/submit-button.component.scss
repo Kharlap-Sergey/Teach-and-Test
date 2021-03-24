@@ -1,0 +1,14 @@
+@import "mixins.scss";
+
+.submit-control {
+  width: fit-content;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: Inter;
+	&__btn {
+    @include btn;
+    padding: 12px 22px;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+}

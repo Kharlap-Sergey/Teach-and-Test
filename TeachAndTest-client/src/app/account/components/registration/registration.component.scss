@@ -1,0 +1,41 @@
+.registration-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-registration {
+	&__body {
+    padding: 1rem;
+    padding-top: 2rem;
+    border: .5px solid black;
+    border-radius: 2px;
+    box-shadow: 0 0 1rem .05rem black;
+    width: fit-content;
+  }
+  &__title {
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 3rem;
+    font-family: Inter;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+   }
+  &__submit{
+    margin-top: 15px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__footer {
+    margin-top: 1rem;
+    padding: 6px;
+    margin-bottom: 15px;
+    font-size: 2rem;
+  }
+  &__google-auth{
+    display: flex;
+    justify-content: center;
+  }
+}

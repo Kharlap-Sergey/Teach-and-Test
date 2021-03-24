@@ -1,0 +1,40 @@
+<div class="custom-input">
+  <div class="custom-input__body">
+    <div class="custom-input__content">
+      <label
+        [for]="name"
+        class="custom-input__label"
+        [ngClass]="{
+          'custom-input__label--upper': i.value
+        }"
+      >
+        {{ label }}
+      </label>
+      <input
+        #i
+        (input)="inputHandler($event)"
+        (blur)="onTouched()"
+        [disabled]="disabled"
+        [name]="name"
+        [type]="type"
+        [autocomplete]="autocomplete"
+        class="custom-input__input"
+        [ngClass]="{
+          'custom-input__input--invalid': isShowInvalidity(),
+          'custom-input__input--valid':
+            controlDir.control.valid &&
+            (activated || controlDir.control.value)
+        }"
+      />
+    </div>
+    <div
+      *ngIf="isShowInvalidity()"
+      class="custom-input__error-msg"
+    >
+      <app-input-errors [Errors]="getErrors()">
+      </app-input-errors>
+
+      {{ errorMessage }}
+    </div>
+  </div>
+</div>

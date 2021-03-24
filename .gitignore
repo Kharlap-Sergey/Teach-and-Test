@@ -518,19 +518,4 @@ MigrationBackup/
 !.vscode/extensions.json
 *.code-workspace
 
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
-
-# End of https://www.toptal.com/developers/gitignore/api/vs,vscode,angular,aspnetcore,web
+# End of https://www.toptal.com/developers/gitignore/api/vs,vscode,angular,aspnetcore
