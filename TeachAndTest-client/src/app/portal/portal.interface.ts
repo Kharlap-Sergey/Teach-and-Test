@@ -1,4 +1,4 @@
 export interface PortalInterface{
-  show(name?: string): any;
+  show(component: any): any;
   hide(): any;
 }

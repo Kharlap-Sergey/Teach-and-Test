@@ -1,32 +1,55 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
+import { PortalDirective } from './portal.directive';
 import { PortalInterface } from './portal.interface';
 import { PortalService } from './portal.service';
 
 @Component({
   selector: 'app-portal',
-  template: `
-    <p>
-      portal works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: "./portal.component.html",
+  styles: [],
 })
-export class PortalComponent implements OnInit, PortalInterface {
-  @Input() name:string = "";
+export class PortalComponent
+  implements
+    PortalInterface,
+    OnDestroy,
+    AfterViewInit {
 
-  constructor(private portalService: PortalService) {
-    this.portalService.Subscribe(this);
-   }
+  @ViewChild(PortalDirective, {static: true}) portal: PortalDirective;
 
-  show(name?: string) {
-    console.log(name);
+  @Input() name: string = '';
+
+  constructor(
+    private portalService: PortalService,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {
+    this.name = this.portalService.subscribe(this);
   }
+  ngAfterViewInit(): void {
+
+  }
+  ngOnDestroy(): void {
+    this.portalService.unsubscribe(this.name);
+  }
+
+  show(component: any) {
+    this.portal.viewContainerRef.clear()
+
+    const componentFactoryResolver = this.componentFactoryResolver.resolveComponentFactory(
+      component
+    );
+    this.portal.viewContainerRef.createComponent(
+      componentFactoryResolver
+    )
+  }
+
   hide() {
-    throw new Error('Method not implemented.');
+    this.portal.viewContainerRef.clear()
   }
-
-  ngOnInit(): void {
-  }
-
 }

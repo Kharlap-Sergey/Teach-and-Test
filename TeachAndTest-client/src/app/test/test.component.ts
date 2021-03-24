@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -11,6 +16,8 @@ import { ApiRoutes } from 'src/app/shared/utils/api-routes';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocalStorageWrapper } from './../shared/utils/local-storage-wrapper';
 import { PortalService } from './../portal/portal.service';
+import { LoaderComponent } from '@shared/components/loader/loader.component';
+import { SubmitButtonComponent } from '@app/shared/components/controls/submit-button/submit-button.component';
 
 @Component({
   selector: 'app-test',
@@ -18,26 +25,32 @@ import { PortalService } from './../portal/portal.service';
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent
-  implements OnInit{
+  implements OnInit, AfterViewInit {
   /**
    *
    */
-  @ViewChild("img") img: any;
+  @ViewChild('img') img: any;
 
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,
     private portal: PortalService
-    ) {
-      LocalStorageWrapper.setItem("abc", "sergey");
-      console.log(`object`, LocalStorageWrapper.getItem("abc"));
-    }
+  ) {
+    LocalStorageWrapper.setItem('abc', 'sergey');
+    console.log(
+      `object`,
+      LocalStorageWrapper.getItem('abc')
+    );
+  }
+  show(){
+    this.portal.show(SubmitButtonComponent);
+  }
+  ngAfterViewInit(): void {}
   ngOnInit(): void {
-    this.portal.show();
   }
   public file: any;
   image: any;
-  imageBlobUrl: any = "";
+  imageBlobUrl: any = '';
   selectedFile: File = null;
 
   onFileSelected(event: any) {
@@ -67,10 +80,13 @@ export class TestComponent
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.imageBlobUrl =
-      reader.result;
-    }, false);
+    reader.addEventListener(
+      'load',
+      () => {
+        this.imageBlobUrl = reader.result;
+      },
+      false
+    );
     if (image) {
       reader.readAsDataURL(image);
     }
@@ -80,13 +96,13 @@ export class TestComponent
       .get(
         ApiRoutes.HostsApi +
           `/files/DownloadImage/255def21-d50d-43a9-958b-faf6de5bbcd8`,
-        { responseType: 'blob'}
+        { responseType: 'blob' }
       )
       .subscribe((response) => {
-        console.log(`response`, response)
+        console.log(`response`, response);
         this.createImageFromBlob(response);
       });
 
-      console.log(`img`, this.img)
+    console.log(`img`, this.img);
   }
 }

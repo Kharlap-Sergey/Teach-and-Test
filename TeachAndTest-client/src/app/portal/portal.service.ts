@@ -1,40 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { PortalInterface } from './portal.interface';
 import { Guid } from 'guid-typescript';
-
-type subscriberModel = {
-  subscriber: PortalInterface;
-  name: string;
-};
 
 @Injectable({
   providedIn: 'root',
 })
 export class PortalService {
-  private subscribers: subscriberModel[];
+  private subscribers: {
+    [key: string]: PortalInterface;
+  } = {};
 
-  constructor() {
-    this.subscribers = [];
-  }
+  constructor() {}
 
-  public Subscribe(
+  public subscribe(
     subscriber: PortalInterface,
     name?: string
-  ) {
+  ): string {
     if (!name) {
       name = Guid.create().toString();
     }
 
-    this.subscribers.push({
-      subscriber,
-      name,
-    });
+    this.subscribers[name] = subscriber;
+
+    return name;
   }
 
-  public show() {
-    for(let subscriber of this.subscribers){
-      subscriber.subscriber.show(subscriber.name);
+  public unsubscribe(name: string) {
+    delete this.subscribers[name];
+  }
+
+  public show(component: any, portalName?: string) {
+    for (let name in this.subscribers) {
+      if (!portalName || portalName == name) {
+        this.subscribers[name].show(component);
+      }
     }
   }
 }
