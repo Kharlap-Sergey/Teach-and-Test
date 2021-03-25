@@ -8,17 +8,19 @@
   </div>
   <form
     class="img-uploader__form"
-    onSubmit="{handleSubmit}"
+    (submit)="this.sendTosServer()"
     encType="multipart/form-data"
     method="post"
   >
-    <input
+      <input
       class="img-uploader__input"
       type="file"
       name="file"
+
       accept=".jpg"
-      onChange="{handleSelection}"
-      title=" "
+      multiple="false"
+      (change)="this.onFileSelected($event)"
+      title=""
     />
     <app-submit-button>Send</app-submit-button>
   </form>
