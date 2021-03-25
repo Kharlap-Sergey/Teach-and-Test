@@ -1,0 +1,18 @@
+.modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__body {
+    background-color: white;
+    padding: 20px;
+  }
+}
