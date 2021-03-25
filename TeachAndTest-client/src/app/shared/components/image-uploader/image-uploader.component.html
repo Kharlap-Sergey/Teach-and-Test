@@ -1,10 +1,14 @@
 <div class="img-uploader">
   <div class="img-uploader__preview">
-    <img class="img-uploader__preimg" alt="img" />
+    <img
+      [src]="imageBlobUrl | safeHtmlUrl"
+      class="img-uploader__preimg"
+      alt="img"
+    />
   </div>
   <form
     class="img-uploader__form"
-    onSubmit={handleSubmit}
+    onSubmit="{handleSubmit}"
     encType="multipart/form-data"
     method="post"
   >
@@ -13,7 +17,7 @@
       type="file"
       name="file"
       accept=".jpg"
-      onChange={handleSelection}
+      onChange="{handleSelection}"
       title=" "
     />
     <app-submit-button>Send</app-submit-button>
