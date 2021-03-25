@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from '@shared/helpers/error-handler.interceptor';
+import { PortalModule } from './portal/portal.module';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
@@ -35,6 +36,7 @@ import { ErrorHandlerInterceptor } from '@shared/helpers/error-handler.intercept
     SharedModule,
     //https://www.npmjs.com/package/ngx-spinner
     NgxSpinnerModule,
+    PortalModule,
   ],
   providers: [
     {

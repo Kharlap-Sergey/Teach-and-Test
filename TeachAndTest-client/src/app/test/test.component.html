@@ -1,2 +1,11 @@
+<input type="file" id="input" multiple (change)="onFileSelected($event)" >
 
+<button (click)="this.sendTosServer()">send to server</button>
 
+<button (click)="this.loadFrom()">load</button>
+
+<img #img [src]='this.image' />
+
+<img [src]=" imageBlobUrl | safeHtmlUrl">
+
+<button (click)="show()">show</button>

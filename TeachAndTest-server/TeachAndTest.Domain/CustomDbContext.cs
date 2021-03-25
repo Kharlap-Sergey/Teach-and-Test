@@ -6,6 +6,7 @@ namespace TeachAndTest.Domain
 {
     public class CustomDbContext : IdentityDbContext<User, Role, int>
     {
+        public DbSet<FileDetails> Files { set; get; }
         public CustomDbContext(
             DbContextOptions<CustomDbContext> options
             )

@@ -11,7 +11,7 @@
   user-select: none;
   display: flex;
 
-  .google-icon-wrapper {
+  &__wrapper {
     position: absolute;
     margin-top: 1px;
     margin-left: 1px;
@@ -20,7 +20,7 @@
     border-radius: 2px;
     user-select: none;
   }
-  .google-icon-svg {
+  &__svg {
     position: absolute;
     margin-top: 11px;
     margin-left: 11px;
@@ -28,7 +28,8 @@
     height: 18px;
     user-select: none;
   }
-  .btn-text {
+
+  &__text{
     float: right;
     margin: 15px 14px 40px 40px;
     font-size: 1.5rem;

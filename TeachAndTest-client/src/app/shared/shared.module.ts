@@ -4,7 +4,6 @@ import {
   ReactiveFormsModule,
   FormsModule,
 } from '@angular/forms';
-import { CounterInputComponent } from './components/counter-input/counter-input.component';
 import { ReactiveInputComponent } from './components/controls/reactive-input/reactive-input.component';
 import { PasswordInputComponent } from './components/controls/password-input/password-input.component';
 import { CustomInputComponent } from './components/controls/custom-input/custom-input.component';
@@ -19,10 +18,10 @@ import { ShowLoaderDirective } from './_directives/show-loader.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.component';
+import { SafeHtmlUrlPipe } from './_pipes/safe-html-url.pipe';
 
 @NgModule({
   declarations: [
-    CounterInputComponent,
     ReactiveInputComponent,
     PasswordInputComponent,
     CustomInputComponent,
@@ -35,6 +34,7 @@ import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.c
     ShowLoaderDirective,
     LoaderComponent,
     NavDrawerComponent,
+    SafeHtmlUrlPipe,
   ],
   imports: [
     NgxSpinnerModule,
@@ -44,7 +44,6 @@ import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.c
     FormsModule,
   ],
   exports: [
-    CounterInputComponent,
     ReactiveInputComponent,
     PasswordInputComponent,
     SubmitButtonComponent,
@@ -53,6 +52,7 @@ import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.c
     NavBarComponent,
     ShowLoaderDirective,
     LoaderComponent,
+    SafeHtmlUrlPipe,
   ],
 })
 export class SharedModule {}

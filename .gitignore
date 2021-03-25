@@ -1,6 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/vs,vscode,angular,aspnetcore,web
 # Edit at https://www.toptal.com/developers/gitignore?templates=vs,vscode,angular,aspnetcore,web
+wwwroot/
 
 ### Angular ###
 ## Angular ##
@@ -9,7 +10,6 @@ dist/
 tmp/
 app/**/*.js
 app/**/*.js.map
-
 # dependencies
 node_modules/
 bower_components/
