@@ -20,6 +20,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NavDrawerComponent } from './components/nav-bar/nav-drawer/nav-drawer.component';
 import { SafeHtmlUrlPipe } from './_pipes/safe-html-url.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ModalComponent } from './components/modal/modal.component';
     LoaderComponent,
     NavDrawerComponent,
     SafeHtmlUrlPipe,
-    ModalComponent
+    ModalComponent,
+    ImageUploaderComponent
   ],
   imports: [
   NgxSpinnerModule,
@@ -56,6 +58,7 @@ import { ModalComponent } from './components/modal/modal.component';
     LoaderComponent,
     SafeHtmlUrlPipe,
     ModalComponent,
+    ImageUploaderComponent,
   ],
 })
 export class SharedModule {}

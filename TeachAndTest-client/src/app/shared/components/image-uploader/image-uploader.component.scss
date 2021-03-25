@@ -1,0 +1,29 @@
+//@import "shared/mixins.scss";
+
+.img-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 470px;
+  height: 300px;
+  padding: 5px;
+  overflow: hidden;
+  //@include prity-bg;
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    content: " ";
+  }
+  &__preview {
+    margin-right: 15px;
+  }
+  &__preimg {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    border-radius: 50% !important;
+  }
+}

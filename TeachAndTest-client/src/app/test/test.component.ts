@@ -30,7 +30,10 @@ export class TestComponent
    *
    */
   @ViewChild('img') img: any;
-
+  isModalOpened = true;
+  onClose(event: any){
+    this.isModalOpened = false;
+  }
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,

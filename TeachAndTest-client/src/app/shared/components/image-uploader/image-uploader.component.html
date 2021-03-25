@@ -1,0 +1,21 @@
+<div class="img-uploader">
+  <div class="img-uploader__preview">
+    <img class="img-uploader__preimg" alt="img" />
+  </div>
+  <form
+    class="img-uploader__form"
+    onSubmit={handleSubmit}
+    encType="multipart/form-data"
+    method="post"
+  >
+    <input
+      class="img-uploader__input"
+      type="file"
+      name="file"
+      accept=".jpg"
+      onChange={handleSelection}
+      title=" "
+    />
+    <app-submit-button>Send</app-submit-button>
+  </form>
+</div>

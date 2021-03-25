@@ -1,5 +1,13 @@
 <div class="modal" *ngIf="this.show">
   <div class="modal__body">
+    <div class="modal__close">
+      <button
+        class="modal__close-btn"
+        (click)="onClose($event)"
+      >
+        <div>+</div>
+      </button>
+    </div>
     <ng-content></ng-content>
   </div>
 </div>
