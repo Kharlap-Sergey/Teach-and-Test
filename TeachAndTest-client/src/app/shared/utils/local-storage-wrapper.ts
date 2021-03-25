@@ -1,15 +1,17 @@
-import SimpleCrypto from "simple-crypto-js"
+//import SimpleCrypto from "simple-crypto-js"
 
 export class LocalStorageWrapper{
 
-  private static cryptr = new SimpleCrypto("secret");
+  //private static cryptr = new SimpleCrypto("secret");
 
   public static getItem(key: string): any{
-    return this.cryptr.decrypt(localStorage.getItem(key));
+    //return this.cryptr.decrypt(localStorage.getItem(key));
+    return localStorage.getItem(key);
   }
 
   public static setItem(key: string, value: string){
-    const encrypted = this.cryptr.encrypt(value);
+    //const encrypted = this.cryptr.encrypt(value);
+    const encrypted = value;
     localStorage.setItem(key, encrypted)
   }
 

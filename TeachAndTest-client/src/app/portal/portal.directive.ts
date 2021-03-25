@@ -4,7 +4,5 @@ import { Directive, ViewContainerRef } from '@angular/core';
   selector: '[appPortal]'
 })
 export class PortalDirective {
-
   constructor(public viewContainerRef: ViewContainerRef) { }
-
 }

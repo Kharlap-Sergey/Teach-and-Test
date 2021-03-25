@@ -16,10 +16,10 @@ export class PortalService {
     subscriber: PortalInterface,
     name?: string
   ): string {
+    console.log(`name`, name)
     if (!name) {
       name = Guid.create().toString();
     }
-
     this.subscribers[name] = subscriber;
 
     return name;

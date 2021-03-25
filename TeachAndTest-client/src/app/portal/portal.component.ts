@@ -5,6 +5,8 @@ import {
   Injector,
   Input,
   OnDestroy,
+  OnInit,
+  TemplateRef,
   ViewChild,
   ViewRef,
 } from '@angular/core';
@@ -14,48 +16,46 @@ import { PortalService } from './portal.service';
 
 @Component({
   selector: 'app-portal',
-  templateUrl: "./portal.component.html",
+  templateUrl: './portal.component.html',
   styles: [],
 })
 export class PortalComponent
   implements
     PortalInterface,
     OnDestroy,
-    AfterViewInit {
+    OnInit {
+  @ViewChild(PortalDirective, { static: true })
+  portal: PortalDirective;
 
-  @ViewChild(PortalDirective, {static: true}) portal: PortalDirective;
-
-  @Input() name: string = '';
+  @Input() portalName: string;
 
   constructor(
     private portalService: PortalService,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
   ) {
-    this.name = this.portalService.subscribe(this);
-  }
-  ngAfterViewInit(): void {
 
+  }
+
+  ngOnInit(): void {
+    this.portalName = this.portalService.subscribe(
+      this,
+      this.portalName
+    );
   }
   ngOnDestroy(): void {
-    this.portalService.unsubscribe(this.name);
+    this.portalService.unsubscribe(this.portalName);
   }
 
-  show(component: any) {
-    this.portal.viewContainerRef.clear()
-
-    const componentFactoryResolver = this.componentFactoryResolver.resolveComponentFactory(
+  show(component: TemplateRef<any>) {
+    this.portal.viewContainerRef.clear();
+    const ref = this.portal.viewContainerRef.createEmbeddedView(
       component
     );
-    const compRef = componentFactoryResolver.create(this.injector);
-    this.portal.viewContainerRef.insert(compRef as ViewRef)
-    this.portal.viewContainerRef.createComponent(
-
-      componentFactoryResolver
-    )
+    this.portal.viewContainerRef.insert(ref);
   }
 
   hide() {
-    this.portal.viewContainerRef.clear()
+    this.portal.viewContainerRef.clear();
   }
 }
