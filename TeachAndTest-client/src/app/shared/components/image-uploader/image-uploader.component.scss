@@ -1,5 +1,3 @@
-//@import "shared/mixins.scss";
-
 .img-uploader {
   display: flex;
   align-items: center;
@@ -8,7 +6,6 @@
   height: 300px;
   padding: 5px;
   overflow: hidden;
-  //@include prity-bg;
   &__form {
     display: flex;
     flex-direction: column;
@@ -17,9 +14,13 @@
     content: " ";
   }
   &__preview {
+    position: relative;
+    height: 100%;
+    width: 230px;
     margin-right: 15px;
   }
   &__preimg {
+    position: absolute;
     width: 230px;
     height: 230px;
     object-fit: cover;
