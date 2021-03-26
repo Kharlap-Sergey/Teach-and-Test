@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ApiRoutes } from '@app/shared/utils/api-routes';
+import { Component, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { FileService } from './../../services/file.service';
 
 @Component({
@@ -9,6 +7,9 @@ import { FileService } from './../../services/file.service';
   styleUrls: ['./image-uploader.component.scss'],
 })
 export class ImageUploaderComponent implements OnInit {
+  @Output() onComplete = new EventEmitter();
+  @ViewChild("plus") plus: any;
+
   public imageBlobUrl: any = "assets/image.png"
   public selectedFile: File = null;
 
@@ -18,6 +19,7 @@ export class ImageUploaderComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
+    this.createImageFromBlob(this.selectedFile);
   }
 
   sendTosServer() {
@@ -31,8 +33,7 @@ export class ImageUploaderComponent implements OnInit {
 
     this.fileService.upload(fd).subscribe(
       (res : any)=> {
-        console.log(`res`, res[0].id)
-        this.loadFrom(res[0].id);
+        this.onComplete.emit(res);
       }
     )
   }
@@ -47,11 +48,8 @@ export class ImageUploaderComponent implements OnInit {
     };
   }
 
-  async loadFrom(id: string) {
-    this.fileService
-      .downloadImage(id)
-      .subscribe((response) => {
-        this.createImageFromBlob(response);
-      });
+  handlePlusClick(){
+    console.log(`this.input`, this.plus.nativeElement.click)
+    this.plus.nativeElement.click()
   }
 }

@@ -5,6 +5,12 @@
       class="img-uploader__preimg"
       alt="img"
     />
+    <img
+      [src]="'assets/plus.png'"
+      class="img-uploader__preimg img-uploader__preimg--load"
+      alt="img"
+      (click)="handlePlusClick()"
+    />
   </div>
   <form
     class="img-uploader__form"
@@ -12,16 +18,18 @@
     encType="multipart/form-data"
     method="post"
   >
+    <div class="stash">
       <input
-      class="img-uploader__input"
-      type="file"
-      name="file"
-
-      accept=".jpg,.png"
-      multiple="false"
-      (change)="this.onFileSelected($event)"
-      title=""
-    />
+        #plus
+        class="img-uploader__input"
+        type="file"
+        name="file"
+        accept=".jpg,.png"
+        multiple="false"
+        (change)="this.onFileSelected($event)"
+        title=""
+      />
+    </div>
     <app-submit-button>Send</app-submit-button>
   </form>
 </div>

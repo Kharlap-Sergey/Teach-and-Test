@@ -20,6 +20,12 @@ li {
   list-style: none;
 }
 
+.stash {
+  display: inline;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
 //override toastr styles
 .toastr{
   @extend .ngx-toastr;
