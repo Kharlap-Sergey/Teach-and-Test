@@ -68,10 +68,10 @@ namespace TeachAndTest.Api.Controllers
             return BadRequest();
         }
 
-        [HttpGet("userId"]
-        public async Task<ActionResult<User>> Get(int userId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> Get(int id)
         {
-            var user = await userManager.FindByIdAsync(userId.ToString());
+            var user = await userManager.FindByIdAsync(id.ToString());
 
             return user;
         }

@@ -23,12 +23,14 @@ import {
 } from 'angularx-social-login';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserDetailsComponent } from './components/profile/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     RegistrationComponent,
     LoginComponent,
     ProfileComponent,
+    UserDetailsComponent,
   ],
   imports: [
   CommonModule,

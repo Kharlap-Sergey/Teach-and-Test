@@ -39,7 +39,8 @@ export class AccountService {
   }
 
   getUser(userId: number){
-    const url: string = 
+    const url: string = ApiRoutes.Account.Get(userId);
+    return this.http.get(url);
   }
   test() {
     const url: string = ApiRoutes.AccountController + "/test"

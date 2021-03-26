@@ -30,6 +30,11 @@ export class NavBarComponent
       to: "/test",
       content: 'test',
     },
+
+    {
+      to: this.routes.Account.ProfilePage(1),
+      content: 'test_profile',
+    },
     {
       to: this.routes.Account.RegisterPage,
       content: 'register',

@@ -36,7 +36,6 @@ namespace TeachAndTest.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<object>> GoogleLogin([FromBody] LoginGoogleRequestVM request)
         {
-            throw new UnauthorizedUserException();
             var user = await this.authenticateService.AuthenticateThrowGoogleAsync(request.GoogleJwtToken);
 
             var token = CustomJwtCreator.CreateJwt(user.Id);

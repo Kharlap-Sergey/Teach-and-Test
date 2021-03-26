@@ -1,5 +1,6 @@
 interface Account {
   RegisterNewAccount: string;
+  Get: (id: number) => string;
 }
 
 interface Authenticate {
@@ -22,7 +23,9 @@ export class ApiRoutes {
     RegisterNewAccount:
       ApiRoutes.AccountController + '/register',
     Get:
-      ApiRoutes.AccountController +
+      (id: number): string => {
+        return  ApiRoutes.AccountController + "/get/" + id;
+      }
   };
 
   static AuthenticateController =
