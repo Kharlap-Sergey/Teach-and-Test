@@ -68,6 +68,13 @@ namespace TeachAndTest.Api.Controllers
             return BadRequest();
         }
 
+        [HttpGet("userId"]
+        public async Task<ActionResult<User>> Get(int userId)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+
+            return user;
+        }
         [HttpGet]
         public async Task<ActionResult<object>> Test()
         {

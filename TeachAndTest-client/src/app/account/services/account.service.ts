@@ -37,6 +37,10 @@ export class AccountService {
     }
     return this.http.post<AuthorizedResponse>(url, body, options);
   }
+
+  getUser(userId: number){
+    const url: string = 
+  }
   test() {
     const url: string = ApiRoutes.AccountController + "/test"
     console.log('send to test')

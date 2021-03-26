@@ -21,6 +21,8 @@ export class ApiRoutes {
   static Account: Account = {
     RegisterNewAccount:
       ApiRoutes.AccountController + '/register',
+    Get:
+      ApiRoutes.AccountController +
   };
 
   static AuthenticateController =
