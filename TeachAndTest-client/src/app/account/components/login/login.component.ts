@@ -44,7 +44,8 @@ export class LoginComponent{
     this.isLoading = true;
     this.remoteService.loginUser(value).subscribe(
       (data: any) => {
-        this.authControl.login(data, data.token);
+        this.authControl.login(data.user, data.token);
+        this.isLoading = false;
       },
       (error: any) => {
         this.isLoading = false;
