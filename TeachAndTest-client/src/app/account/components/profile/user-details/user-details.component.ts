@@ -7,7 +7,7 @@ import { User } from '@app/shared/models/user';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: User = new User();
 
   constructor() { }
 

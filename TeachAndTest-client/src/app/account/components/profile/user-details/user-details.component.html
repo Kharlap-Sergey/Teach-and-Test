@@ -1,1 +1,19 @@
-{{user | json}}
+<div class="user-details">
+  <div
+    *ngIf="this.user; then thenBlock; else elseBlock"
+  ></div>
+</div>
+
+<ng-template #thenBlock>
+  <div class="user-details__avatar"></div>
+  <div class="user-details__info">
+    <div class="user-details__name">
+      {{ user.firstname }}
+    </div>
+    <div class="user-details__email">
+      {{ user.email }}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #elseBlock>loader</ng-template>
