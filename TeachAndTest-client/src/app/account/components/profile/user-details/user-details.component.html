@@ -5,7 +5,10 @@
 </div>
 
 <ng-template #thenBlock>
-  <div class="user-details__avatar"></div>
+  <div class="user-details__avatar">
+    <app-avatar-image [imageId]="user.avatarId">
+    </app-avatar-image>
+  </div>
   <div class="user-details__info">
     <div class="user-details__name">
       {{ user.firstname }}
@@ -17,3 +20,5 @@
 </ng-template>
 
 <ng-template #elseBlock>loader</ng-template>
+
+{{user | json}}

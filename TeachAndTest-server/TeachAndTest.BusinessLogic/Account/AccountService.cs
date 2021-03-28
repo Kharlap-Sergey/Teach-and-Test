@@ -93,7 +93,8 @@ namespace TeachAndTest.BusinessLogic.Account
 
         public async Task<User> GetUserAsync(int id)
         {
-            User user = await userManager.FindByIdAsync(id.ToString());
+            var stringId = id.ToString();
+            User user = await userManager.FindByIdAsync(stringId);
             if(user == null)
             {
                 throw new NotFoundException();
