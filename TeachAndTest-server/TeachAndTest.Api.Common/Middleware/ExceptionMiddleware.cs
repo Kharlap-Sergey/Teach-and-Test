@@ -47,9 +47,13 @@ namespace TeachAndTest.Api.Common.Middleware
             {
                 statusCode = HttpStatusCode.NotFound;
             }
-            if(exception is UnauthorizedUserException)
+            else if(exception is UnauthorizedUserException)
             {
                 statusCode = HttpStatusCode.Unauthorized;
+            }
+            else if(exception is NotFoundException)
+            {
+                statusCode = HttpStatusCode.NotFound;
             }
             //else if (exception is DuplicateEmailException)
             //{

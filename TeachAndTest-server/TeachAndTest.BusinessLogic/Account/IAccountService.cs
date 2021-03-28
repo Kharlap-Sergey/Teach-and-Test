@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.BusinessLogic.Account
@@ -13,5 +14,15 @@ namespace TeachAndTest.BusinessLogic.Account
             string email,
             string firstName,
             string lastName);
+
+        public Task<User> GetUserAsync(
+            int id
+            );
+
+        public Task<bool> ChangePasswordAsync(
+            int userId,
+            string oldPassword,
+            string newPassword
+            );
     }
 }

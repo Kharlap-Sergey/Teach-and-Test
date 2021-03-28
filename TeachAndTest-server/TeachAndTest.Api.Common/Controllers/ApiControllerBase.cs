@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.Api.Common.Controllers
 {
@@ -6,5 +7,13 @@ namespace TeachAndTest.Api.Common.Controllers
     [Route("api/[controller]/[action]")]
     public class ApiControllerBase : ControllerBase
     {
+        protected int GetCommitterId()
+        {
+            if (User.Identity == null)
+            {
+                throw new UnauthorizedUserException();
+            }
+            return int.Parse(User.Identity.Name);
+        }
     }
 }

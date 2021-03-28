@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.BusinessLogic.Account
 {
@@ -15,6 +17,31 @@ namespace TeachAndTest.BusinessLogic.Account
         {
             this.userManager = userManager;
         }
+
+        public async Task<bool> ChangePasswordAsync(
+            int userId,
+            string oldPassword, 
+            string newPassword
+            )
+        {
+            //todo: confine amount of unsuccesfull attemptes to change password
+            User user = await this.userManager
+                .FindByIdAsync(userId.ToString());
+
+            if(user == null)
+            {
+                throw new Exception("internal problem with user");
+            }
+
+            var result = await this.userManager
+                .ChangePasswordAsync(
+                user,
+                oldPassword,
+                newPassword
+                );
+            return result.Succeeded;
+        }
+
         public async Task<User> CreateAsync(User user, string password)
         {
             var result = await userManager.CreateAsync(user, password);
@@ -62,6 +89,17 @@ namespace TeachAndTest.BusinessLogic.Account
 
             return null;
 
+        }
+
+        public async Task<User> GetUserAsync(int id)
+        {
+            User user = await userManager.FindByIdAsync(id.ToString());
+            if(user == null)
+            {
+                throw new NotFoundException();
+            }
+
+            return user;
         }
     }
 }

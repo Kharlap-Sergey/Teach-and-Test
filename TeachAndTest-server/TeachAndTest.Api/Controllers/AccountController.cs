@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Controllers;
 using TeachAndTest.Api.Common.ViewModel;
+using TeachAndTest.Api.Common.ViewModel.Account;
 using TeachAndTest.BusinessLogic.Account;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Worker;
@@ -54,6 +56,13 @@ namespace TeachAndTest.Api.Controllers
             return RegistratedUser;
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<User>> UpdateUser(UpdateUserVM request)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -71,10 +80,32 @@ namespace TeachAndTest.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> Get(int id)
         {
-            var user = await userManager.FindByIdAsync(id.ToString());
-
+            var user = await this.accountService.GetUserAsync(id);
             return user;
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> ChangePassword(
+            ChangePasswordRequestVM request)
+        {
+            bool success = await this.accountService
+                .ChangePasswordAsync(
+                    this.GetCommitterId(),
+                    request.OldPassword,
+                    request.NewPassword
+                );
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+
+        #region test
         [HttpGet]
         public async Task<ActionResult<object>> Test()
         {
@@ -96,5 +127,6 @@ namespace TeachAndTest.Api.Controllers
             return result;
 
         }
+        #endregion
     }
 }
