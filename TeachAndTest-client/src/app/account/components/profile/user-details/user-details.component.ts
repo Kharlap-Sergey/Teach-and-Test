@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '@app/shared/models/user';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-details',
@@ -7,11 +8,14 @@ import { User } from '@app/shared/models/user';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  @Input() user: User = new User();
+  @Input() public user: User
 
-  constructor() { }
+  constructor(
+    private spinner: NgxSpinnerService
+  ) {
+    this.user = null;
+  }
 
   ngOnInit(): void {
   }
-
 }

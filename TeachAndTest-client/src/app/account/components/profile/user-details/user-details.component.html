@@ -1,24 +1,26 @@
 <div class="user-details">
+  <app-loader [isLoading]="!this.user"></app-loader>
   <div
-    *ngIf="this.user; then thenBlock; else elseBlock"
+    *ngIf="this.user; then thenBlock"
   ></div>
 </div>
 
 <ng-template #thenBlock>
   <div class="user-details__avatar">
-    <app-avatar-image [imageId]="user.avatarId">
+    <app-avatar-image
+      class="user-details__image"
+      [imageId]="user.avatarId">
     </app-avatar-image>
   </div>
   <div class="user-details__info">
     <div class="user-details__name">
       {{ user.firstname }}
     </div>
+    <div class="user-details__lastname">
+      {{ user.lastname }}
+    </div>
     <div class="user-details__email">
       {{ user.email }}
     </div>
   </div>
 </ng-template>
-
-<ng-template #elseBlock>loader</ng-template>
-
-{{user | json}}
