@@ -73,7 +73,7 @@ namespace TeachAndTest.BusinessLogic.Auth
 
 
             var user = await this.accountService
-                .GetOrCreateExternalLoginUser(
+                .GetOrCreateExternalLoginUserAsync(
                 "google", 
                 payload.Subject, 
                 payload.Email, 

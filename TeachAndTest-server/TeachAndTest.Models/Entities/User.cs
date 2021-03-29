@@ -7,7 +7,7 @@ namespace TeachAndTest.Models.Entities
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public Guid AvatarId { set; get; }
+        public Guid? AvatarId { set; get; }
         public FileDetails Avatar { set; get; }
     }
 }

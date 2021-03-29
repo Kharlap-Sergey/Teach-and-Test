@@ -104,6 +104,17 @@ namespace TeachAndTest.Api.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<User>> UploadAvatar(Guid avatarId)
+        {
+            User user = await this.accountService
+                .UploadAvatarAsync(
+                    avatarId,
+                    this.GetCommitterId()
+                );
+            return user;
+        }
 
         #region test
         [HttpGet]

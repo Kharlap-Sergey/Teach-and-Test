@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
+using TeachAndTest.BusinessLogic.Files;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Models.Exceptions;
 
@@ -10,12 +11,15 @@ namespace TeachAndTest.BusinessLogic.Account
     public class AccountService : IAccountService
     {
         private readonly UserManager<User> userManager;
+        private readonly IFilesService filesService;
 
         public AccountService(
-            UserManager<User> userManager
+            UserManager<User> userManager,
+            IFilesService filesService
             )
         {
             this.userManager = userManager;
+            this.filesService = filesService;
         }
 
         public async Task<bool> ChangePasswordAsync(
@@ -53,7 +57,7 @@ namespace TeachAndTest.BusinessLogic.Account
             return await userManager.FindByNameAsync(user.UserName);
         }
 
-        public async Task<User> GetOrCreateExternalLoginUser(
+        public async Task<User> GetOrCreateExternalLoginUserAsync(
           string provider,
           string key,
           string email,
@@ -99,6 +103,31 @@ namespace TeachAndTest.BusinessLogic.Account
             {
                 throw new NotFoundException();
             }
+
+            return user;
+        }
+
+        public async Task<User> UploadAvatarAsync(
+            Guid avatarId,
+            int committerId
+            )
+        {
+            var user = await this.userManager.FindByIdAsync(
+               committerId.ToString()
+               );
+
+            if (user == null)
+            {
+                throw new Exception("user not found");
+            }
+
+            var fileDetails = await this.filesService.GetFileDetailsAsync(
+                avatarId,
+                committerId
+                );
+
+            user.AvatarId = fileDetails.Id;
+            await this.userManager.UpdateAsync(user);
 
             return user;
         }

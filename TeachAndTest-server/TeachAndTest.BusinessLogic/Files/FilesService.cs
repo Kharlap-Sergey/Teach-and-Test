@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TeachAndTest.Domain;
 using TeachAndTest.Models;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.BusinessLogic.Files
 {
@@ -28,53 +29,73 @@ namespace TeachAndTest.BusinessLogic.Files
         }
         public async Task<FileResponse> DownloadAsync(Guid id)
         {
-            FileDetails fileDetails = await this.filesRepository.GetByIdAsync(id);
-            if (fileDetails != null)
+            FileDetails fileDetails = await
+                this.GetFileDetailsAsync(id);
+            System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition
             {
-                System.Net.Mime.ContentDisposition cd = new System.Net.Mime.ContentDisposition
+                FileName = fileDetails.DocumentName,
+                Inline = false
+            };
+
+            //get physical path
+            var path = hostingEnvironment.ContentRootPath;
+            var fileReadPath = Path.Combine(
+                path,
+                "wwwroot",
+                fileDetails.Id.ToString() + fileDetails.DocType);
+
+            using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
+            {
+                return new FileResponse
                 {
-                    FileName = fileDetails.DocumentName,
-                    Inline = false
+                    Path = fileReadPath,
+                    Type = fileDetails.DocType
                 };
-                //Response.Headers.Add("Content-Disposition", cd.ToString());
-
-                //get physical path
-                var path = hostingEnvironment.ContentRootPath;
-                var fileReadPath = Path.Combine(
-                    path, 
-                    "wwwroot", 
-                    fileDetails.Id.ToString() + fileDetails.DocType);
-
-                using (var fileStream = new FileStream(fileReadPath, FileMode.Open))
-                {
-                    return new FileResponse
-                    {
-                        Path = fileReadPath,
-                        Type = fileDetails.DocType
-                    };
-                }
-
-                throw new Exception();
             }
-            else
-            {
-                throw new Exception("File note founded");
-            }
+
+            throw new Exception();
         }
 
-        public async Task<List<FileDetails>> UploadAsync(IList<IFormFile> files)
+        public async Task<FileDetails> GetFileDetailsAsync(Guid fileId)
+        {
+            return await this.GetFileDetailsAsync(fileId, null);
+        }
+
+        public async Task<FileDetails> GetFileDetailsAsync(
+            Guid fileId,
+            int? commiterId
+            )
+        {
+            var fileDetails = await this.filesRepository.GetByIdAsync(fileId);
+
+            if (fileDetails == null)
+            {
+                throw new NotFoundException();
+            }
+
+            this.CheckToPrivate(fileDetails, commiterId);
+            return fileDetails;
+        }
+
+        public async Task<List<FileDetails>> UploadAsync(
+            IList<IFormFile> files,
+            int committerId
+            )
         {
             var filesDetails = new List<FileDetails>();
 
             foreach (var file in files)
             {
-                var filedetails = await SaveFile(file);
+                var filedetails = await this.SaveFileAsync(file, committerId);
                 filesDetails.Add(filedetails);
             }
             return filesDetails;
         }
 
-        private async Task<FileDetails> SaveFile(IFormFile file)
+        private async Task<FileDetails> SaveFileAsync(
+            IFormFile file,
+            int committerId
+            )
         {
             var fileDetails = new FileDetails();
             var fileType = Path.GetExtension(file.FileName);
@@ -86,6 +107,8 @@ namespace TeachAndTest.BusinessLogic.Files
                 fileDetails.DocumentName = docName;
                 fileDetails.DocType = fileType;
                 fileDetails.DocUrl = Path.Combine(filePath, "wwwroot", fileDetails.Id.ToString() + fileDetails.DocType);
+                fileDetails.Created = DateTime.Now;
+                fileDetails.AuthorId = committerId;
                 using (var stream = new FileStream(fileDetails.DocUrl, FileMode.OpenOrCreate))
                 {
                     await file.CopyToAsync(stream);
@@ -98,6 +121,21 @@ namespace TeachAndTest.BusinessLogic.Files
             else
             {
                 throw new Exception();
+            }
+        }
+
+        private void CheckToPrivate(
+            FileDetails fileDetails,
+            int? committerId
+            )
+        {
+            if (!fileDetails.IsPrivate)
+                return;
+
+            if (fileDetails.AuthorId != null &&
+                fileDetails.AuthorId != committerId)
+            {
+                throw new NotAllowedException();
             }
         }
     }

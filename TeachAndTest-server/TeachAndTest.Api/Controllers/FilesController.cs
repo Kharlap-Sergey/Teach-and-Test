@@ -21,10 +21,14 @@ namespace TeachAndTest.Api.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<List<FileDetails>>> Upload(IFormCollection formFiles)
         {
-            var details = await this.filesService.UploadAsync(formFiles.Files.ToList());
+            var details = await this.filesService
+                .UploadAsync(
+                formFiles.Files.ToList(),
+                this.GetCommitterId()
+                );
             return details;
         }
 
@@ -37,12 +41,15 @@ namespace TeachAndTest.Api.Controllers
                 result.Path,
                 "text/plain"
                 );
-              
+
             return file;
         }
 
         [HttpGet("{guidId}")]
-        public async Task<IActionResult> DownloadImage(Guid guidId, [FromQuery] string? contentType)
+        public async Task<IActionResult> DownloadImage(
+            Guid guidId,
+            [FromQuery] string contentType
+            )
         {
             //var guidId = new Guid(id);
             var result = await this.filesService.DownloadAsync(guidId);

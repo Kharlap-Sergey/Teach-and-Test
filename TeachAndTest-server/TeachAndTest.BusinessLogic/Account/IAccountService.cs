@@ -7,8 +7,12 @@ namespace TeachAndTest.BusinessLogic.Account
     public interface IAccountService
     {
         public Task<User> CreateAsync(User user, string password);
-
-        public Task<User> GetOrCreateExternalLoginUser(
+        public Task<bool> ChangePasswordAsync(
+            int userId,
+            string oldPassword,
+            string newPassword
+        );
+        public Task<User> GetOrCreateExternalLoginUserAsync(
             string provider,
             string key,
             string email,
@@ -18,11 +22,9 @@ namespace TeachAndTest.BusinessLogic.Account
         public Task<User> GetUserAsync(
             int id
             );
-
-        public Task<bool> ChangePasswordAsync(
-            int userId,
-            string oldPassword,
-            string newPassword
+        public Task<User> UploadAvatarAsync(
+            Guid avatarId,
+            int commiterId
             );
     }
 }
