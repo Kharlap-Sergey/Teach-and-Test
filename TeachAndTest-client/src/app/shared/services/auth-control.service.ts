@@ -34,6 +34,7 @@ export class AuthControlService {
     LocalStorageWrapper.setItem('currentUser', JSON.stringify(user));
     LocalStorageWrapper.setItem('token', JSON.stringify(token));
     this.currentUserSubject.next(user);
+    this._token.next(token);
   }
 
   logout() {
@@ -41,6 +42,7 @@ export class AuthControlService {
     LocalStorageWrapper.removeItem('currentUser');
     LocalStorageWrapper.removeItem('token');
     this.currentUserSubject.next(null);
+    this._token.next("");
   }
 
   SetToken(value: string): void {

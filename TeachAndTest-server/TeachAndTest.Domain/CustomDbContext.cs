@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TeachAndTest.Domain.Configurations;
 using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.Domain
@@ -18,7 +19,9 @@ namespace TeachAndTest.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new UsersConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
