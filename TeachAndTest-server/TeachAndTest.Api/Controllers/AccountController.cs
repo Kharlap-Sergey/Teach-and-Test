@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,32 +18,30 @@ namespace TeachAndTest.Api.Controllers
         private readonly IAccountService accountService;
         private readonly IEmailService emailService;
         private readonly UserManager<User> userManager;
+        private readonly IMapper mapper;
 
         public AccountController(
             IAccountService accountService,
             IEmailService emailService,
-            UserManager<User> userManager
+            UserManager<User> userManager,
+            IMapper mapper
             )
         {
             this.accountService = accountService;
             this.emailService = emailService;
             this.userManager = userManager;
+            this.mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Register(
+        public async Task<ActionResult<UserVM>> Register(
             [FromBody] RegistrateUserRequestVM userVM
             )
         {
             //todo authomapper here
-            var user = new User()
-            {
-                UserName = userVM.Email,
-                Email = userVM.Email
-            };
-
-            User RegistratedUser = await accountService.CreateAsync(user, userVM.Password);
-            var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            User user = this.mapper.Map<User>(userVM);
+            User RegistratedUser = await this.accountService.CreateAsync(user, userVM.Password);
+            var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.Action(
                         "ConfirmEmail",
                         "Account",
@@ -50,10 +49,12 @@ namespace TeachAndTest.Api.Controllers
                         protocol: HttpContext.Request.Scheme);
      
             //Todo the link doesn't look like lick it is just plain text
-            await emailService.SendMailAsync(RegistratedUser.Email, 
+            await this.emailService.SendMailAsync(RegistratedUser.Email, 
                 "Confirm your account", 
                 $"<a href='{callbackUrl}'>confirm your registration</a>");
-            return RegistratedUser;
+
+            UserVM result = this.mapper.Map<UserVM>(RegistratedUser);
+            return result;
         }
 
         [HttpPost]
@@ -67,8 +68,8 @@ namespace TeachAndTest.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            var user = await userManager.FindByIdAsync(userId);
-            var result = await userManager.ConfirmEmailAsync(user, code);
+            var user = await this.userManager.FindByIdAsync(userId);
+            var result = await this.userManager.ConfirmEmailAsync(user, code);
             if(result.Succeeded)
             {
                 //Todo add redirect 
@@ -78,10 +79,10 @@ namespace TeachAndTest.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int id)
+        public async Task<ActionResult<UserVM>> Get(int id)
         {
             var user = await this.accountService.GetUserAsync(id);
-            return user;
+            return this.mapper.Map<UserVM>(user);
         }
 
         [HttpPost]
@@ -106,14 +107,14 @@ namespace TeachAndTest.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<User>> UploadAvatar(Guid avatarId)
+        public async Task<ActionResult<UserVM>> UploadAvatar(Guid avatarId)
         {
             User user = await this.accountService
                 .UploadAvatarAsync(
                     avatarId,
                     this.GetCommitterId()
                 );
-            return user;
+            return this.mapper.Map<UserVM>(user);
         }
 
         #region test

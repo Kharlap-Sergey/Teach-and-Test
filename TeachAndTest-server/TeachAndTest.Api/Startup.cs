@@ -16,6 +16,7 @@ using TeachAndTest.BusinessLogic.Auth;
 using TeachAndTest.Worker;
 using TeachAndTest.Api.Common.Middleware;
 using TeachAndTest.BusinessLogic.Files;
+using TeachAndTest.Api.Common.Mapper;
 
 namespace TeachAndTest.Api
 {
@@ -36,7 +37,8 @@ namespace TeachAndTest.Api
             services.AddDbContext<CustomDbContext>(options =>
               options.UseSqlServer(connection));
 
-
+            //add autoMapper
+            services.AddConfiguredAutoMapper();
             //Configuration for Identity
             services.Configure<IdentityOptions>(options =>
             {
