@@ -78,6 +78,8 @@ namespace TeachAndTest.BusinessLogic.Account
                 {
                     Email = email,
                     UserName = email,
+                    Firstname = firstName,
+                    Lastname = lastName
                 };
 
                 await userManager.CreateAsync(user);
@@ -91,7 +93,7 @@ namespace TeachAndTest.BusinessLogic.Account
             if(result.Succeeded)
                 return user;
 
-            return null;
+            throw new Exception(result.Errors.ToString());
 
         }
 
@@ -105,6 +107,26 @@ namespace TeachAndTest.BusinessLogic.Account
             }
 
             return user;
+        }
+
+        public async Task<User> UpdateUserAsync(
+            User userModelToUpdate,
+            int commiterId
+            )
+        {
+
+            var user = await this.userManager.FindByIdAsync(commiterId.ToString());
+
+            user.Firstname = userModelToUpdate.Firstname;
+            user.Lastname = userModelToUpdate.Lastname;
+
+            var result = await this.userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return user;
+            }
+            throw new Exception();
         }
 
         public async Task<User> UploadAvatarAsync(

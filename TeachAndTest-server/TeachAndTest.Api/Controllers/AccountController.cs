@@ -42,15 +42,16 @@ namespace TeachAndTest.Api.Controllers
             User user = this.mapper.Map<User>(userVM);
             User RegistratedUser = await this.accountService.CreateAsync(user, userVM.Password);
             var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+
             var callbackUrl = Url.Action(
                         "ConfirmEmail",
                         "Account",
                         new { userId = user.Id, code = code },
                         protocol: HttpContext.Request.Scheme);
-     
+
             //Todo the link doesn't look like lick it is just plain text
-            await this.emailService.SendMailAsync(RegistratedUser.Email, 
-                "Confirm your account", 
+            await this.emailService.SendMailAsync(RegistratedUser.Email,
+                "Confirm your account",
                 $"<a href='{callbackUrl}'>confirm your registration</a>");
 
             UserVM result = this.mapper.Map<UserVM>(RegistratedUser);
@@ -59,18 +60,25 @@ namespace TeachAndTest.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<User>> UpdateUser(UpdateUserVM request)
+        public async Task<ActionResult<UserVM>> UpdateUser(UpdateUserVM request)
         {
-            throw new NotImplementedException();
+
+            User user = await this.accountService
+                .UpdateUserAsync(
+                    this.mapper.Map<User>(request),
+                    this.GetCommitterId()
+                );
+
+            return this.mapper.Map<UserVM>(user);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             var user = await this.userManager.FindByIdAsync(userId);
             var result = await this.userManager.ConfirmEmailAsync(user, code);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 //Todo add redirect 
                 return Ok();

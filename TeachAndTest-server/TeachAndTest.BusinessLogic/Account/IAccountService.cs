@@ -18,9 +18,12 @@ namespace TeachAndTest.BusinessLogic.Account
             string email,
             string firstName,
             string lastName);
-
         public Task<User> GetUserAsync(
             int id
+            );
+        public Task<User> UpdateUserAsync(
+            User user,
+            int commiterId
             );
         public Task<User> UploadAvatarAsync(
             Guid avatarId,
