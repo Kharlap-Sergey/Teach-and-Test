@@ -11,5 +11,10 @@ namespace TeachAndTest.Models.Exceptions
         {
 
         }
+
+        public NotFoundException(string message)
+           : base("The requested resource cannot be found." + message)
+        {
+        }
     }
 }

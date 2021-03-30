@@ -24,7 +24,7 @@ namespace TeachAndTest.BusinessLogic.Account
 
         public async Task<bool> ChangePasswordAsync(
             int userId,
-            string oldPassword, 
+            string oldPassword,
             string newPassword
             )
         {
@@ -32,7 +32,7 @@ namespace TeachAndTest.BusinessLogic.Account
             User user = await this.userManager
                 .FindByIdAsync(userId.ToString());
 
-            if(user == null)
+            if (user == null)
             {
                 throw new Exception("internal problem with user");
             }
@@ -48,13 +48,9 @@ namespace TeachAndTest.BusinessLogic.Account
 
         public async Task<User> CreateAsync(User user, string password)
         {
-            var result = await userManager.CreateAsync(user, password);
-            if(!result.Succeeded)
-            {
-                //todo implement logic for exception here
-                throw new System.Exception();
-            }
-            return await userManager.FindByNameAsync(user.UserName);
+            await this.CreateUserAsync(user, password);
+
+            return await this.userManager.FindByNameAsync(user.UserName);
         }
 
         public async Task<User> GetOrCreateExternalLoginUserAsync(
@@ -62,15 +58,16 @@ namespace TeachAndTest.BusinessLogic.Account
           string key,
           string email,
           string firstName,
-          string lastName)
+          string lastName
+            )
         {
             // Login already linked to a user
-            var user = await userManager.FindByLoginAsync(provider, key);
-            if(user != null)
+            var user = await this.userManager.FindByLoginAsync(provider, key);
+            if (user != null)
                 return user;
 
-            user = await userManager.FindByEmailAsync(email);
-            if(user == null)
+            user = await this.userManager.FindByEmailAsync(email);
+            if (user == null)
             {
                 // No user exists with this email address, we create a new one
                 //Todo add users maper
@@ -82,29 +79,19 @@ namespace TeachAndTest.BusinessLogic.Account
                     Lastname = lastName
                 };
 
-                await userManager.CreateAsync(user);
+                await this.CreateUserAsync(user);
+                user = await this.userManager.FindByNameAsync(user.UserName);
+
                 var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
                 await userManager.ConfirmEmailAsync(user, code);
             }
 
-            // Link the user to this login
-            var info = new UserLoginInfo(provider, key, provider.ToUpperInvariant());
-            var result = await userManager.AddLoginAsync(user, info);
-            if(result.Succeeded)
-                return user;
-
-            throw new Exception(result.Errors.ToString());
-
+            return user;
         }
 
         public async Task<User> GetUserAsync(int id)
         {
-            var stringId = id.ToString();
-            User user = await userManager.FindByIdAsync(stringId);
-            if(user == null)
-            {
-                throw new NotFoundException();
-            }
+            User user = await this.FindUserByIdAsync(id);
 
             return user;
         }
@@ -115,7 +102,7 @@ namespace TeachAndTest.BusinessLogic.Account
             )
         {
 
-            var user = await this.userManager.FindByIdAsync(commiterId.ToString());
+            var user = await this.FindUserByIdAsync(commiterId);
 
             user.Firstname = userModelToUpdate.Firstname;
             user.Lastname = userModelToUpdate.Lastname;
@@ -134,14 +121,7 @@ namespace TeachAndTest.BusinessLogic.Account
             int committerId
             )
         {
-            var user = await this.userManager.FindByIdAsync(
-               committerId.ToString()
-               );
-
-            if (user == null)
-            {
-                throw new Exception("user not found");
-            }
+            var user = await this.FindUserByIdAsync(committerId);
 
             var fileDetails = await this.filesService.GetFileDetailsAsync(
                 avatarId,
@@ -152,6 +132,52 @@ namespace TeachAndTest.BusinessLogic.Account
             await this.userManager.UpdateAsync(user);
 
             return user;
+        }
+
+        protected async Task<User> FindUserByIdAsync(
+            int userId
+            )
+        {
+            var user = await this.userManager.FindByIdAsync(
+                userId.ToString()
+                );
+
+            if (user == null)
+            {
+                throw new NotFoundException("Unable to find user.");
+            }
+
+            return user;
+        }
+        private async Task<IdentityResult> CreateUserAsync(
+            User user
+            )
+        {
+            var result = await this.userManager.CreateAsync(user);
+
+            this.ChackeCreateUserResult(result);
+
+            return result;
+        }
+
+        private async Task<IdentityResult> CreateUserAsync(
+           User user,
+           string password
+           )
+        {
+            var result = await this.userManager.CreateAsync(user, password);
+
+            this.ChackeCreateUserResult(result);
+
+            return result;
+        }
+        private void ChackeCreateUserResult(IdentityResult result)
+        {
+            if (!result.Succeeded)
+            {
+                //todo implement logic for exception here
+                throw new System.Exception("unable to create user account");
+            }
         }
     }
 }

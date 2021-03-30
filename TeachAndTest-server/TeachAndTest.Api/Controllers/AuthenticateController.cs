@@ -20,22 +20,30 @@ namespace TeachAndTest.Api.Controllers
 
         #region post
         [HttpPost]
-        public async Task<ActionResult<object>> Login([FromBody] LoginRequestVM loginRequest)
+        public async Task<ActionResult<object>> Login(
+            [FromBody] LoginRequestVM loginRequest
+            )
         {
-            var user = await authenticateService.LoginAsync(loginRequest.Email, loginRequest.Password);
-            var authJwtToken = CustomJwtCreator.CreateJwt(user.Id);
+            var user = await authenticateService.LoginAsync(
+                loginRequest.Email, 
+                loginRequest.Password)
+                ;
+            var token = CustomJwtCreator.CreateJwt(user.Id);
 
             return new
             {
                 user,
-                token = authJwtToken
+                token
             };
         }
 
         [HttpPost]
-        public async Task<ActionResult<object>> GoogleLogin([FromBody] LoginGoogleRequestVM request)
+        public async Task<ActionResult<object>> GoogleLogin(
+            [FromBody] LoginGoogleRequestVM request
+            )
         {
-            var user = await this.authenticateService.AuthenticateThrowGoogleAsync(request.GoogleJwtToken);
+            var user = await this.authenticateService
+                .AuthenticateThrowGoogleAsync(request.GoogleJwtToken);
 
             var token = CustomJwtCreator.CreateJwt(user.Id);
             return new
