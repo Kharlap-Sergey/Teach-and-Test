@@ -18,7 +18,7 @@ namespace TeachAndTest.Api.Controllers
             this.authenticateService = authenticateService;
         }
 
-
+        #region post
         [HttpPost]
         public async Task<ActionResult<object>> Login([FromBody] LoginRequestVM loginRequest)
         {
@@ -42,9 +42,8 @@ namespace TeachAndTest.Api.Controllers
             {
                 user,
                 token
-            }; 
+            };
         }
-
-       
+        #endregion
     }
 }

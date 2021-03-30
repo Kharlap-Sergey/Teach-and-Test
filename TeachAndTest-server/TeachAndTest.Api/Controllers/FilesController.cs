@@ -20,18 +20,7 @@ namespace TeachAndTest.Api.Controllers
             this.filesService = filesService;
         }
 
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult<List<FileDetails>>> Upload(IFormCollection formFiles)
-        {
-            var details = await this.filesService
-                .UploadAsync(
-                formFiles.Files.ToList(),
-                this.GetCommitterId()
-                );
-            return details;
-        }
-
+        #region get
         [HttpGet("{guidId}")]
         public async Task<IActionResult> Download(Guid guidId)
         {
@@ -61,7 +50,22 @@ namespace TeachAndTest.Api.Controllers
 
             return file;
         }
-
+        #endregion
+        #region post
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<List<FileDetails>>> Upload(
+            IFormCollection formFiles
+            )
+        {
+            var details = await this.filesService
+                .UploadAsync(
+                formFiles.Files.ToList(),
+                this.GetCommitterId()
+                );
+            return details;
+        }
+        #endregion
         private string GetImageType(string fileFormat = "")
         {
             var contentType = "image/png";

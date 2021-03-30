@@ -33,14 +33,14 @@ namespace TeachAndTest.Api.Controllers
             this.mapper = mapper;
         }
 
+        #region post
         [HttpPost]
         public async Task<ActionResult<UserVM>> Register(
-            [FromBody] RegistrateUserRequestVM userVM
-            )
+           [FromBody] RegistrateUserRequestVM userVM
+           )
         {
-            //todo authomapper here
             User user = this.mapper.Map<User>(userVM);
-            User RegistratedUser = await this.accountService.CreateAsync(user, userVM.Password);
+            user = await this.accountService.CreateAsync(user, userVM.Password);
             var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
 
             var callbackUrl = Url.Action(
@@ -49,12 +49,11 @@ namespace TeachAndTest.Api.Controllers
                         new { userId = user.Id, code = code },
                         protocol: HttpContext.Request.Scheme);
 
-            //Todo the link doesn't look like lick it is just plain text
-            await this.emailService.SendMailAsync(RegistratedUser.Email,
+            await this.emailService.SendMailAsync(user.Email,
                 "Confirm your account",
                 $"<a href='{callbackUrl}'>confirm your registration</a>");
 
-            UserVM result = this.mapper.Map<UserVM>(RegistratedUser);
+            UserVM result = this.mapper.Map<UserVM>(user);
             return result;
         }
 
@@ -71,28 +70,6 @@ namespace TeachAndTest.Api.Controllers
 
             return this.mapper.Map<UserVM>(user);
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
-        {
-            var user = await this.userManager.FindByIdAsync(userId);
-            var result = await this.userManager.ConfirmEmailAsync(user, code);
-            if (result.Succeeded)
-            {
-                //Todo add redirect 
-                return Ok();
-            }
-            return BadRequest();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserVM>> Get(int id)
-        {
-            var user = await this.accountService.GetUserAsync(id);
-            return this.mapper.Map<UserVM>(user);
-        }
-
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> ChangePassword(
@@ -124,6 +101,30 @@ namespace TeachAndTest.Api.Controllers
                 );
             return this.mapper.Map<UserVM>(user);
         }
+        #endregion
+
+        #region get
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            var user = await this.userManager.FindByIdAsync(userId);
+            var result = await this.userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                //Todo add redirect 
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserVM>> Get(int id)
+        {
+            var user = await this.accountService.GetUserAsync(id);
+            return this.mapper.Map<UserVM>(user);
+        }
+        #endregion
 
         #region test
         [HttpGet]
