@@ -4,7 +4,7 @@ using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.Domain.Configurations
 {
-    public class UsersConfiguration
+    public class UsersConfig
         : IEntityTypeConfiguration<User>
     {
         public void Configure(

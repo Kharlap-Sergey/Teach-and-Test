@@ -7,7 +7,9 @@ namespace TeachAndTest.Domain
 {
     public class CustomDbContext : IdentityDbContext<User, Role, int>
     {
-        public DbSet<FileDetails> Files { set; get; }
+        public DbSet<FileDetails> Files { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseRatingMark> CourseRatingMarks{get; set;}
         public CustomDbContext(
             DbContextOptions<CustomDbContext> options
             )
@@ -19,7 +21,7 @@ namespace TeachAndTest.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UsersConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersConfig());
             base.OnModelCreating(modelBuilder);
         }
 

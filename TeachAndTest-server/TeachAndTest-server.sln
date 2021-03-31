@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachAndTest.BusinessLogic"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachAndTest.Api.Common", "TeachAndTest.Api.Common\TeachAndTest.Api.Common.csproj", "{A8F1065F-EFC9-453E-BBA4-5925D6A713F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.Worker", "TeachAndTest.MailWorker\TeachAndTest.Worker.csproj", "{AA61127C-B8D6-49B7-9FA5-CCA0820BC43C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachAndTest.Worker", "TeachAndTest.MailWorker\TeachAndTest.Worker.csproj", "{AA61127C-B8D6-49B7-9FA5-CCA0820BC43C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachAndTest.Common", "TeachAndTest.Common\TeachAndTest.Common.csproj", "{56D4E725-BE84-4F5D-88ED-3687EC6C8CB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{AA61127C-B8D6-49B7-9FA5-CCA0820BC43C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA61127C-B8D6-49B7-9FA5-CCA0820BC43C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA61127C-B8D6-49B7-9FA5-CCA0820BC43C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56D4E725-BE84-4F5D-88ED-3687EC6C8CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D4E725-BE84-4F5D-88ED-3687EC6C8CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D4E725-BE84-4F5D-88ED-3687EC6C8CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D4E725-BE84-4F5D-88ED-3687EC6C8CB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
