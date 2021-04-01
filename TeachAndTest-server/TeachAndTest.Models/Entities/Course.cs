@@ -6,7 +6,7 @@ namespace TeachAndTest.Models.Entities
 {
     public class Course : Entity<string>
     {
-        public string Ttile { get; set; }
+        public string Title { get; set; }
         public string NormalizedTitle { get; set; }
         public string Description { get; set; }
         public int AuthorId { get; set; }

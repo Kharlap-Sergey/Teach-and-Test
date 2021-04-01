@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Controllers;
 using TeachAndTest.Api.Common.ViewModel.Course;
+using TeachAndTest.Common;
+using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.Api.Controllers
 {
@@ -29,7 +31,7 @@ namespace TeachAndTest.Api.Controllers
             CreatingCourseVM createCourseVM
             )
         {
-            this.
+            var course = this.mapper.Map<Course>(createCourseVM);
             throw new NotImplementedException();
         }
         #endregion

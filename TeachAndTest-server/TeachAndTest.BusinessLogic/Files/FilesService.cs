@@ -70,7 +70,7 @@ namespace TeachAndTest.BusinessLogic.Files
 
             if (fileDetails == null)
             {
-                throw new NotFoundException();
+                throw new NotFoundException("Unable to find File with specific Id");
             }
 
             this.CheckToPrivate(fileDetails, commiterId);
