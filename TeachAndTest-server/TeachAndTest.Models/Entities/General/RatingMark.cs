@@ -3,6 +3,8 @@
     public class RatingMark<TDestination, TDestinationKey>
         : ForignEntity<string, TDestination, TDestinationKey>
     {
-        public int Mark { get; set; }
+        public double Mark { get; set; }
+        public int AuthorId { get; set; }
+        public User Author { get; set; }
     }
 }
