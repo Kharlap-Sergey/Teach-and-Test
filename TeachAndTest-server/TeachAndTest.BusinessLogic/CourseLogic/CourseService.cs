@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic.Files;
+using TeachAndTest.BusinessLogic.TagLogic;
 using TeachAndTest.Domain;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Models.Entities.CourseEntities;
@@ -15,14 +16,17 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
     {
         private readonly IGenericRepository<Course> courseRepository;
         private readonly IFilesService filesService;
+        private readonly ITagService<CourseTag, Course, string> tagService;
 
         public CourseService(
             IGenericRepository<Course> courseRepository,
-            IFilesService filesService
+            IFilesService filesService,
+            ITagService<CourseTag, Course, string> tagService
             )
         {
             this.courseRepository = courseRepository;
             this.filesService = filesService;
+            this.tagService = tagService;
         }
         public async Task<Course> CreateAsync(
             Course course,

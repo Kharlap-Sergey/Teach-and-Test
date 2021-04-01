@@ -15,5 +15,16 @@ namespace TeachAndTest.BusinessLogic.TagLogic
         public Task<IEnumerable<TTagTargetKey>> GetTargetKeysByTagsAsync(
             IEnumerable<string> tagWorks
             );
+
+        public Task<IEnumerable<TTag>> GetTagForTargetAsync(
+            TTagTarget tagTarget
+            );
+
+        public Task<TTag> DeleteAsync(
+            TTag tag
+            );
+        public Task<TTag> DeleteAllTagsForTargetAsync(
+            TTagTarget tagTarget
+            );
     }
 }
