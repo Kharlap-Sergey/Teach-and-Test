@@ -21,7 +21,7 @@ namespace TeachAndTest.Api.Controllers
 
         #region post
         [HttpPost]
-        //disavle until teseting
+        //disavle while teseting
         //[Authorize]
         public async Task<ActionResult> CreateCourse(
             CreatingCourseVM createCourseVM
