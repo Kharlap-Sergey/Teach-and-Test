@@ -8,6 +8,7 @@ using TeachAndTest.Models.Entities.General;
 
 namespace TeachAndTest.BusinessLogic.TagLogic
 {
+    //todo have to be recoded with many to many db relationship
     [ServiceImplementation(typeof(ITagService<,,>))]
     public class TagService<TTag, TTagTarget, TTagTargetKey>
         : ITagService<TTag, TTagTarget, TTagTargetKey>
