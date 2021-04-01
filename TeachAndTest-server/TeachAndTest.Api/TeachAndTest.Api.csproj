@@ -31,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TeachAndTest.Api.Common\TeachAndTest.Api.Common.csproj" />
     <ProjectReference Include="..\TeachAndTest.BusinessLogic\TeachAndTest.BusinessLogic.csproj" />
+    <ProjectReference Include="..\TeachAndTest.Common\TeachAndTest.Common.csproj" />
     <ProjectReference Include="..\TeachAndTest.Domain\TeachAndTest.Domain.csproj" />
     <ProjectReference Include="..\TeachAndTest.MailWorker\TeachAndTest.Worker.csproj" />
     <ProjectReference Include="..\TeachAndTest.Models\TeachAndTest.Models.csproj" />

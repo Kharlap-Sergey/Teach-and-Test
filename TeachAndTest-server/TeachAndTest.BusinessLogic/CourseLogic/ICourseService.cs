@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Entities.CourseEntities;
 
 namespace TeachAndTest.BusinessLogic.CourseLogic
 {

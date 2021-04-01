@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TeachAndTest.Domain.Configurations;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Entities.CourseEntities;
 
 namespace TeachAndTest.Domain
 {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic.Files;
 using TeachAndTest.Domain;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Entities.CourseEntities;
 using TeachAndTest.Models.Exceptions;
 
 namespace TeachAndTest.BusinessLogic.CourseLogic

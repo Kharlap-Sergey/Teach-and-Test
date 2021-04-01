@@ -2,6 +2,7 @@
 using TeachAndTest.Api.Common.ViewModel;
 using TeachAndTest.Api.Common.ViewModel.Course;
 using TeachAndTest.Models.Entities;
+using TeachAndTest.Models.Entities.CourseEntities;
 
 namespace TeachAndTest.Api.Common.Mapper
 {
