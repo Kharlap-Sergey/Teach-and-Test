@@ -12,8 +12,8 @@ namespace TeachAndTest.Api.Controllers
     public class RatingController : ApiControllerBase
     {
         private readonly IRatingService<
-            CourseRatingMark, 
-            Course, 
+            CourseRatingMark,
+            Course,
             string> courseRatingService;
 
         public RatingController(
@@ -28,11 +28,11 @@ namespace TeachAndTest.Api.Controllers
         }
 
         [HttpPost]
-        public async Task SetCourseRating()
+        public async Task SetCourseRating(string targetId)
         {
             await this.courseRatingService.SetRatingAsync(
-                "81bdd779-4973-46f5-a985-35443be6b1d6",
-                        5,
+                        targetId,
+                        4,
                         1
                 );
         }

@@ -14,7 +14,7 @@ namespace TeachAndTest.BusinessLogic.RatingLogic
         : IRatingService<TRating, TRatingTarget, TRatingTargetKey>
         where TRating : RatingMark<TRatingTarget, TRatingTargetKey>, new()
         where TRatingTarget : class
-        where TRatingTargetKey : IEquatable<TRatingTargetKey>
+        where TRatingTargetKey: class, IEquatable<TRatingTargetKey>
     {
         private readonly IGenericRepository<TRating> ratingRepository;
         private readonly IGenericRepository<TRatingTarget> targetRepository;
@@ -61,6 +61,7 @@ namespace TeachAndTest.BusinessLogic.RatingLogic
             )
         {
             var target = await this.targetRepository.GetByIdAsync(targetKey);
+            var targets = this.targetRepository.Get((a) => true).ToList();
             if(target == null)
             {
                 throw new NotFoundException();
@@ -68,9 +69,7 @@ namespace TeachAndTest.BusinessLogic.RatingLogic
 
             TRating rating = this.ratingRepository.Get(
                 rating => rating.AuthorId == committerId
-                    && EqualityComparer<TRatingTargetKey>.Default.Equals(
-                        rating.DestinationEntityId, targetKey
-                        )
+                    && rating.DestinationEntityId == targetKey
                 ).FirstOrDefault();
 
             if(rating == null)
