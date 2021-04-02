@@ -17,6 +17,7 @@ using TeachAndTest.Worker;
 using TeachAndTest.Api.Common.Middleware;
 using TeachAndTest.BusinessLogic.Files;
 using TeachAndTest.Api.Common.Mapper;
+using TeachAndTest.BusinessLogic.RatingLogic;
 
 namespace TeachAndTest.Api
 {
@@ -72,6 +73,7 @@ namespace TeachAndTest.Api
             services.AddScoped<IAuthenticateService, AuthenticateService>();
             services.AddScoped<IEmailService, GmailService>();
             services.AddScoped<IFilesService, FilesService>();
+            services.AddScoped(typeof(IRatingService<,,>), typeof(RatingService<,,>));
 
             //Todo extract into new section
             IConfigurationSection section = Configuration.GetSection(JwtAuthOptions.SectionName);
