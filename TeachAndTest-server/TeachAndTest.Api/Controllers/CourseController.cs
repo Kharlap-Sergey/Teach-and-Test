@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Controllers;
-using TeachAndTest.Api.Common.ViewModel.Course;
+using TeachAndTest.Api.Common.ViewModel.CourseModels;
 using TeachAndTest.BusinessLogic.CourseLogic;
 using TeachAndTest.Models.Entities.CourseEntities;
 
@@ -27,7 +27,7 @@ namespace TeachAndTest.Api.Controllers
         [HttpPost]
         //disavle while teseting
         //[Authorize]
-        public async Task<ActionResult<Course>> Create(
+        public async Task<ActionResult<CourseVM>> Create(
             CreatingCourseVM createCourseVM
             )
         {
@@ -37,7 +37,7 @@ namespace TeachAndTest.Api.Controllers
                 1
                 );
 
-            return course;
+            return this.mapper.Map<CourseVM>(course);
         }
         #endregion
     }
