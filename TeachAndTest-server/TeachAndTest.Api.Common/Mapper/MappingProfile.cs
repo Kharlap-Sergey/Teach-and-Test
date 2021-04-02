@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TeachAndTest.Api.Common.ViewModel;
 using TeachAndTest.Api.Common.ViewModel.Course;
+using TeachAndTest.Api.Common.ViewModel.RatingModels;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Models.Entities.CourseEntities;
 
@@ -21,6 +22,9 @@ namespace TeachAndTest.Api.Common.Mapper
                 .ReverseMap();
 
             CreateMap<CreatingCourseVM, Course>()
+                .ReverseMap();
+
+            CreateMap<CourseRatingVM, CourseRatingMark>()
                 .ReverseMap();
         }
     }
