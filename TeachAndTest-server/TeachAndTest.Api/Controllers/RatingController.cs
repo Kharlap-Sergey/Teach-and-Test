@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +28,20 @@ namespace TeachAndTest.Api.Controllers
             this.courseRatingService = courseRatingService;
         }
 
+        #region post
+        [Authorize]
         [HttpPost]
-        public async Task SetCourseRating(string targetId)
+        public async Task<CourseRatingMark> SetCourseRating(string targetId)
         {
-            await this.courseRatingService.SetRatingAsync(
+            CourseRatingMark rating = 
+                await this.courseRatingService.SetRatingAsync(
                         targetId,
                         4,
                         1
-                );
+                        );
+
+            return rating;
         }
+        #endregion
     }
 }
