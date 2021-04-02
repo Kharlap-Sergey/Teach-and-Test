@@ -30,8 +30,8 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             int committerId
             )
         {
-            course = await this.courseRepository.CreateAsync(course);
             course.AuthorId = committerId;
+            course = await this.courseRepository.CreateAsync(course);
 
             if (course == null)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using TeachAndTest.Models.Entities.General;
 
 namespace TeachAndTest.Models.Entities.CourseEntities
@@ -8,9 +9,10 @@ namespace TeachAndTest.Models.Entities.CourseEntities
         public string Title { get; set; }
         public string NormalizedTitle { get; set; }
         public string Description { get; set; }
-        public int AuthorId { get; set; }
+        [Required]
+        public int? AuthorId { get; set; }
         public User Author { get; set; }
-        public Guid LogoId { get; set; }
+        public Guid? LogoId { get; set; }
         public FileDetails Logo { get; set; }
     }
 }

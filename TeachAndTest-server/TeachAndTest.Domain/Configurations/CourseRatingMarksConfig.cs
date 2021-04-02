@@ -12,6 +12,8 @@ namespace TeachAndTest.Domain.Configurations
     {
         public void Configure(EntityTypeBuilder<CourseRatingMark> builder)
         {
+            builder.Property(e => e.Id)
+                   .ValueGeneratedOnAdd();
         }
     }
 }

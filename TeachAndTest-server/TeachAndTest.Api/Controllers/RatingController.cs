@@ -31,7 +31,7 @@ namespace TeachAndTest.Api.Controllers
         public async Task SetCourseRating()
         {
             await this.courseRatingService.SetRatingAsync(
-                "1",
+                "81bdd779-4973-46f5-a985-35443be6b1d6",
                         5,
                         1
                 );
