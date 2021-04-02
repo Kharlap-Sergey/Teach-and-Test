@@ -7,7 +7,7 @@ using TeachAndTest.Models.Entities;
 
 namespace TeachAndTest.Domain.Configurations
 {
-    public class FileDetailsConfig
+    public class FilesConfig
         : IEntityTypeConfiguration<FileDetails>
     {
         public void Configure(EntityTypeBuilder<FileDetails> builder)

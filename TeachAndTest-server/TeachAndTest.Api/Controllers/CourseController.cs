@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using TeachAndTest.Api.Common.Controllers;
 using TeachAndTest.Api.Common.ViewModel.Course;
+using TeachAndTest.BusinessLogic.CourseLogic;
 using TeachAndTest.Models.Entities.CourseEntities;
 
 namespace TeachAndTest.Api.Controllers
@@ -11,24 +12,32 @@ namespace TeachAndTest.Api.Controllers
     public class CourseController : ApiControllerBase
     {
         private readonly IMapper mapper;
+        private readonly ICourseService courseService;
 
         public CourseController(
-            IMapper mapper
+            IMapper mapper,
+            ICourseService courseService
             )
         {
             this.mapper = mapper;
+            this.courseService = courseService;
         }
 
         #region post
         [HttpPost]
         //disavle while teseting
         //[Authorize]
-        public async Task<ActionResult> CreateCourse(
+        public async Task<ActionResult<Course>> Create(
             CreatingCourseVM createCourseVM
             )
         {
             var course = this.mapper.Map<Course>(createCourseVM);
-            throw new NotImplementedException();
+            course = await this.courseService.CreateAsync(
+                course,
+                1
+                );
+
+            return course;
         }
         #endregion
     }

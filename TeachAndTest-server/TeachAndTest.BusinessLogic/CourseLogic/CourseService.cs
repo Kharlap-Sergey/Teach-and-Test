@@ -16,17 +16,14 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
     {
         private readonly IGenericRepository<Course> courseRepository;
         private readonly IFilesService filesService;
-        private readonly ITagService<CourseTag, Course, string> tagService;
 
         public CourseService(
             IGenericRepository<Course> courseRepository,
-            IFilesService filesService,
-            ITagService<CourseTag, Course, string> tagService
+            IFilesService filesService
             )
         {
             this.courseRepository = courseRepository;
             this.filesService = filesService;
-            this.tagService = tagService;
         }
         public async Task<Course> CreateAsync(
             Course course,
