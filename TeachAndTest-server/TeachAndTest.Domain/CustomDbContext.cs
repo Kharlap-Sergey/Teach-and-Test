@@ -23,6 +23,11 @@ namespace TeachAndTest.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UsersConfig());
+            modelBuilder.ApplyConfiguration(new FilesConfig());
+            modelBuilder.ApplyConfiguration(
+                    new CourseRatingMarksConfig()
+                );
+
             base.OnModelCreating(modelBuilder);
         }
 
