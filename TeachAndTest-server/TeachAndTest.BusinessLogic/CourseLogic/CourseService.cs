@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic.Files;
-using TeachAndTest.BusinessLogic.TagLogic;
 using TeachAndTest.Domain;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Models.Entities.CourseEntities;

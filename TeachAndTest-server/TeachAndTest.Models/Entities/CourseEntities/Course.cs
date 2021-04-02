@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TeachAndTest.Models.Entities.General;
 
@@ -17,5 +18,6 @@ namespace TeachAndTest.Models.Entities.CourseEntities
         public User Author { get; set; }
         public Guid? LogoId { get; set; }
         public FileDetails Logo { get; set; }
+        public ICollection<CourseToCourseTag> Tags { get; set; }
     }
 }

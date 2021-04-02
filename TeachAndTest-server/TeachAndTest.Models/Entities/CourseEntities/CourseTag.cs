@@ -2,7 +2,7 @@
 
 namespace TeachAndTest.Models.Entities.CourseEntities
 {
-    public class CourseTag : Tag<Course, string>
+    public class CourseTag : Tag<CourseToCourseTag>
     {
     }
 }

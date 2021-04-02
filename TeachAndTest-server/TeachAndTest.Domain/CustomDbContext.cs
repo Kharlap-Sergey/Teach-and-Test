@@ -13,6 +13,8 @@ namespace TeachAndTest.Domain
         public DbSet<FileDetails> Files { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseRatingMark> CourseRatingMarks{get; set;}
+        public DbSet<CourseTag> CourseTags { get; set; }
+        public DbSet<CourseToCourseTag> CourseToCourseTags { get; set; }
         public CustomDbContext(
             DbContextOptions<CustomDbContext> options
             )
