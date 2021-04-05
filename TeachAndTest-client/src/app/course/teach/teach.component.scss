@@ -1,0 +1,28 @@
+@import "colors.scss";
+
+.teach {
+  &__title {
+    width: fit-content;
+    margin: 0 auto;
+  }
+  &__about {
+  }
+  &__form {
+    margin-top: 10px;
+  }
+}
+.teach-form {
+  display: flex;
+  &__course-title {
+    border: 0.5px solid rgba(black, 0.5);
+    outline: none;
+    font-size: 2rem;
+
+    &:focus {
+      border-color: $blue;
+    }
+  }
+  &__submit {
+    margin-left: 4px;
+  }
+}

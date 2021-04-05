@@ -32,8 +32,8 @@ export class NavBarComponent
     },
 
     {
-      to: this.routes.Course.Base,
-      content: 'course',
+      to: this.routes.Course.Teach,
+      content: 'teach',
     },
 
     {

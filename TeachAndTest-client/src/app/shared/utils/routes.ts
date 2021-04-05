@@ -5,9 +5,8 @@ type Account = {
 }
 
 type Course = {
-  Base: string;
-  ForStudents: string;
-  ForTeachers: string;
+  Catalog: string;
+  Teach: string;
 }
 
 export class Routes {
@@ -20,8 +19,7 @@ export class Routes {
 
   private static CoursePath = "/course"
   static Course: Course = {
-    Base: Routes.CoursePath + "",
-    ForStudents: Routes.CoursePath + "/for/students",
-    ForTeachers: Routes.CoursePath + "/for/teachers"
+    Catalog: Routes.CoursePath + "/catalog",
+    Teach: Routes.CoursePath + "/teach"
   }
 }

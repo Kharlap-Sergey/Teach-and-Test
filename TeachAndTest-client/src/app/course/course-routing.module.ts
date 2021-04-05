@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CourseComponent } from './course.component';
+import { AuthGuard } from '@app/shared/helpers/auth.guard';
+import { TeachComponent } from './teach/teach.component';
 
-
-const routes: Routes = [{ path: '', component: CourseComponent}];
+const routes: Routes = [
+  {
+    path: 'teach',
+    component: TeachComponent,
+    //is disabled while in development
+    //canActivate: [AuthGuard],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CourseRoutingModule { }
+export class CourseRoutingModule {}
