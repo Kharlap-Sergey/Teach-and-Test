@@ -20,6 +20,13 @@ const routes: Routes = [
     component: TestComponent,
     //canActivate: [AuthGuard],
   },
+  {
+    path: 'course',
+    loadChildren: () =>
+      import('./course/course.module').then(
+        (m) => m.CourseModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -32,6 +32,11 @@ export class NavBarComponent
     },
 
     {
+      to: this.routes.Course.Base,
+      content: 'course',
+    },
+
+    {
       to: this.routes.Account.ProfilePage(1),
       content: 'test_profile',
     },
