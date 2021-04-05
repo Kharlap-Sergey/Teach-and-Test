@@ -18,6 +18,6 @@ namespace TeachAndTest.Models.Entities.CourseEntities
         public User Author { get; set; }
         public Guid? LogoId { get; set; }
         public FileDetails Logo { get; set; }
-        public ICollection<CourseToCourseTag> Tags { get; set; }
+        //public ICollection<CourseToCourseTag> Tags { get; set; }
     }
 }
