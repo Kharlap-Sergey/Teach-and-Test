@@ -1,16 +1,23 @@
 <div class="teach">
   <h1 class="teach__title">Teach with us!</h1>
-  <div class="teach__about">
-    <div class="teach__about-image-wrapper">
+  <div class="teach__about teach-about">
+    <div class="teach-about__image-wrapper">
       <img src="assets/teach.png" alt="">
+    </div>
+    <div class="teach-about__main">
+      <h2 class="teach-about__title">Achieve your goals</h2>
+      <p>We can help you!</p>
+      <p>Just create you course with us.</p>
     </div>
   </div>
   <div class="teach__form">
     <form class="teach-form">
       <input
+        placeholder="Course title"
         type="text"
         required="true"
         class="teach-form__course-title"
+        [(ngModel)]="this.title"
       />
       <app-submit-button class="teach-form__submit"
         >Create course</app-submit-button
