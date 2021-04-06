@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@app/shared/helpers/auth.guard';
-import { TeachComponent } from './teach/teach.component';
+import { TeachComponent } from './_components/teach/teach.component';
 
 const routes: Routes = [
   {
