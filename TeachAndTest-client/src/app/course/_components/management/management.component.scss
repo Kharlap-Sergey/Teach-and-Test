@@ -1,8 +1,8 @@
-:host{
+:host {
   height: 1px;
   min-height: 100%;
   min-width: 100%;
-  background-color: rgba(black, .01);
+  background-color: rgba(black, 0.01);
 }
 .management {
   min-height: 100%;
@@ -10,6 +10,8 @@
   display: flex;
   justify-content: center;
   &__aside {
+    padding-top: 60px;
+
     display: flex;
     align-items: center;
     width: 30%;
@@ -17,11 +19,25 @@
     max-width: 300px;
   }
   &__main {
+    padding-top: 60px;
+
     display: flex;
     align-items: center;
     width: 70%;
     min-width: 420px;
     max-width: 900px;
     background-color: #fff;
+  }
+}
+
+.management-aside {
+  &__body {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
   }
 }
