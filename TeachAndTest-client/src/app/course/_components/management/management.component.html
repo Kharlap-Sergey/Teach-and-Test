@@ -2,12 +2,12 @@
   <aside class="management__aside management-aside">
     <div class="management-aside__body">
       <a routerLink="information">information</a>
-      <div class="" *ngFor="let row of this.navRows">
-        <hr>
-        {{row | json}}
-        <app-nav-tree
-          [navTreeRow]="row"
-        ></app-nav-tree>
+      <div class="management-aside__nav-tree">
+        <div class="" *ngFor="let row of this.navRows">
+          <app-nav-tree
+            [navTreeRow]="row"
+          ></app-nav-tree>
+        </div>
       </div>
     </div>
   </aside>

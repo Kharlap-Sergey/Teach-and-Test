@@ -8,7 +8,8 @@ import { NavTreeModel } from '@app/shared/models/nav-tree.model';
 })
 export class NavTreeComponent implements OnInit {
 
-  @Input() navTreeRow: NavTreeModel;
+  public isOpen: boolean = false;
+  @Input() public navTreeRow: NavTreeModel;
 
   constructor() { }
 

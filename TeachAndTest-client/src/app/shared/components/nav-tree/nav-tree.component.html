@@ -1,20 +1,30 @@
-<h3>
-  {{this.navTreeRow.title}}
-</h3>
-<div
-  *ngIf="
-    this.IsNavTreeRow(this.navTreeRow.content);
-    then thenBlock;
-    else elseBlock
-  "
-></div>
-<ng-template #thenBlock>
-  <div *ngFor="let row of this.navTreeRow.content">
-    <app-nav-tree
-      [navTreeRow]="row"
-    ></app-nav-tree>
-  </div>
-</ng-template>
-<ng-template #elseBlock>
-  {{ this.navTreeRow.content }}
-</ng-template>
+<div class="nav-tree">
+  <div
+    *ngIf="
+      this.IsNavTreeRow(this.navTreeRow.content);
+      then thenBlock;
+      else elseBlock
+    "
+  ></div>
+  <ng-template #thenBlock>
+    <h3>
+      {{ this.navTreeRow.title }}
+    </h3>
+    <button (click)="this.isOpen = !this.isOpen">
+      click
+    </button>
+    {{this.isOpen}}
+    <div *ngIf="this.isOpen">
+      <div *ngFor="let row of this.navTreeRow.content">
+        <app-nav-tree
+          [navTreeRow]="row"
+        ></app-nav-tree>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #elseBlock>
+    <h3>
+      {{ this.navTreeRow.content }}
+    </h3>
+  </ng-template>
+</div>
