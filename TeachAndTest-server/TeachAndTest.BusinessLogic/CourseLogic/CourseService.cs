@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TeachAndTest.BusinessLogic.Files;
+using TeachAndTest.Common;
 using TeachAndTest.Domain;
 using TeachAndTest.Models.Entities;
 using TeachAndTest.Models.Entities.CourseEntities;
@@ -30,6 +31,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             )
         {
             course.AuthorId = committerId;
+            course.NormalizedTitle = StringNormalizer.Normalize(course.Title);
             course = await this.courseRepository.CreateAsync(course);
 
             if (course == null)

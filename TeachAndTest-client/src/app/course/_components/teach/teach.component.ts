@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CourseService } from '@app/course/_services/course.service';
+import { Routes } from '@app/shared/utils/routes';
 
 @Component({
   selector: 'app-teach',
@@ -10,7 +12,10 @@ import { CourseService } from '@app/course/_services/course.service';
 export class TeachComponent implements OnInit {
   public title = new FormControl('');
   public isLoading: boolean = false;
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private rout: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -23,8 +28,11 @@ export class TeachComponent implements OnInit {
     this.courseService
       .createCourse(this.title.value)
       .subscribe(
-        (response) => {
+        (response: any) => {
           this.isLoading = false;
+          this.rout.navigate([
+            Routes.Course.Management(response.id),
+          ]);
         },
         (error) => {
           this.isLoading = false;

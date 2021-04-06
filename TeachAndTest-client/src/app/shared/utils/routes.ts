@@ -1,12 +1,13 @@
-type Account = {
+interface Account {
   RegisterPage: string;
   LoginPage: string;
   ProfilePage: Function;
 }
 
-type Course = {
+interface Course {
   Catalog: string;
   Teach: string;
+  Management: (id: string) => string
 }
 
 export class Routes {
@@ -20,6 +21,9 @@ export class Routes {
   private static CoursePath = "/course"
   static Course: Course = {
     Catalog: Routes.CoursePath + "/catalog",
-    Teach: Routes.CoursePath + "/teach"
+    Teach: Routes.CoursePath + "/teach",
+    Management: (id: string) => {
+      return `${Routes.CoursePath}/${id}/management`
+    }
   }
 }

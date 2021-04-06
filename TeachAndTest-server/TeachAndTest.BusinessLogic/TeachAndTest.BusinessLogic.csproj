@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TeachAndTest.Common\TeachAndTest.Common.csproj" />
     <ProjectReference Include="..\TeachAndTest.Domain\TeachAndTest.Domain.csproj" />
     <ProjectReference Include="..\TeachAndTest.Models\TeachAndTest.Models.csproj" />
   </ItemGroup>
