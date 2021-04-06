@@ -2,7 +2,7 @@
 
 namespace TeachAndTest.Models.Entities.CourseEntities
 {
-    public class CourseRatingMark : RatingMark<Course, string>
+    public class CourseRatingMark : RatingMark<Course, int>
     {
     }
 }

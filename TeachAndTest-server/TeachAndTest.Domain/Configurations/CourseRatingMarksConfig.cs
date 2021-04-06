@@ -12,8 +12,14 @@ namespace TeachAndTest.Domain.Configurations
     {
         public void Configure(EntityTypeBuilder<CourseRatingMark> builder)
         {
-            builder.Property(e => e.Id)
-                   .ValueGeneratedOnAdd();
+            builder.HasOne(r => r.DestinationEntity)
+                   .WithMany()
+                   .HasForeignKey(r => r.DestinationEntityId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(r => r.Author)
+                   .WithMany()
+                   .HasForeignKey(r => r.AuthorId);
         }
     }
 }

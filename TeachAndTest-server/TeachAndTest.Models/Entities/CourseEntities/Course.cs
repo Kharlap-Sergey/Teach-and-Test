@@ -5,7 +5,7 @@ using TeachAndTest.Models.Entities.General;
 
 namespace TeachAndTest.Models.Entities.CourseEntities
 {
-    public class Course : Entity<string>
+    public class Course : Entity<int>
     {
         [Required]
         public string Title { get; set; }
@@ -17,6 +17,7 @@ namespace TeachAndTest.Models.Entities.CourseEntities
         public User Author { get; set; }
         public Guid? LogoId { get; set; }
         public FileDetails Logo { get; set; }
+        public virtual ICollection<CourseRatingMark> Ratings { get; set; }
         //public ICollection<CourseToCourseTag> Tags { get; set; }
     }
 }

@@ -18,14 +18,14 @@ namespace TeachAndTest.Api.Controllers
         private readonly IRatingService<
             CourseRatingMark,
             Course,
-            string> courseRatingService;
+            int> courseRatingService;
 
         public RatingController(
             IMapper mapper,
             IRatingService<
                 CourseRatingMark,
                 Course,
-                string
+                int
                 > courseRatingService
             )
         {

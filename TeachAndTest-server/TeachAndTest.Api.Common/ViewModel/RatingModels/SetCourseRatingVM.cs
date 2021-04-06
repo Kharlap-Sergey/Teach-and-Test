@@ -6,7 +6,7 @@ namespace TeachAndTest.Api.Common.ViewModel.RatingModels
 {
     public class SetCourseRatingVM
     {
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public double Mark { get; set; }
     }
 }
