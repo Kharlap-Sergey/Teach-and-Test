@@ -1,0 +1,27 @@
+:host{
+  height: 1px;
+  min-height: 100%;
+  min-width: 100%;
+  background-color: rgba(black, .01);
+}
+.management {
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  &__aside {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    min-width: 200px;
+    max-width: 300px;
+  }
+  &__main {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    min-width: 420px;
+    max-width: 900px;
+    background-color: #fff;
+  }
+}
