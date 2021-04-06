@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 import { TeachComponent } from './_components/teach/teach.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [TeachComponent],
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   CommonModule,
     FormsModule,
     SharedModule,
+    ReactiveFormsModule,
     CourseRoutingModule
   ]
 })

@@ -43,13 +43,13 @@ export class AccountService {
     return this.http.get(url);
   }
   test() {
-    const url: string = ApiRoutes.AccountController + "/test"
+    const url: string =  "/test"
     console.log('send to test')
     return this.http.get(url);
   }
 
   testAuth(token: string) {
-    const url: string = ApiRoutes.AccountController + "/testAuth"
+    const url: string = "/testAuth"
     const options = {
       // headers: {
       //   Authorization: "Bearer " + token,

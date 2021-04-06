@@ -6,7 +6,7 @@ namespace TeachAndTest.Api.Common.ViewModel.CourseModels
 {
     public class CreatingCourseVM
     {
-        public string Ttile { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; }
+        //public string Description { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace TeachAndTest.Api.Controllers
         //disavle while teseting
         //[Authorize]
         public async Task<ActionResult<CourseVM>> Create(
-            CreatingCourseVM createCourseVM
+            [FromBody] CreatingCourseVM createCourseVM
             )
         {
             var course = this.mapper.Map<Course>(createCourseVM);

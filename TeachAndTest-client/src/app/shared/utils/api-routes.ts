@@ -14,21 +14,25 @@ interface File {
   DownloadImage: (id: string) => string;
 }
 
+interface Course {
+  Create: string;
+}
 export class ApiRoutes {
   static HostsApi: string =
     'https://localhost:44398/api';
-  static AccountController =
+  private static AccountController =
     ApiRoutes.HostsApi + '/account';
   static Account: Account = {
     RegisterNewAccount:
       ApiRoutes.AccountController + '/register',
-    Get:
-      (id: number): string => {
-        return  ApiRoutes.AccountController + "/get/" + id;
-      }
+    Get: (id: number): string => {
+      return (
+        ApiRoutes.AccountController + '/get/' + id
+      );
+    },
   };
 
-  static AuthenticateController =
+  private static AuthenticateController =
     ApiRoutes.HostsApi + '/authenticate';
   static Authenticate: Authenticate = {
     LoginUser:
@@ -38,7 +42,7 @@ export class ApiRoutes {
       '/googlelogin',
   };
 
-  static FileController =
+  private static FileController =
     ApiRoutes.HostsApi + '/files';
   static File: File = {
     Upload: ApiRoutes.FileController + '/upload',
@@ -54,5 +58,11 @@ export class ApiRoutes {
         id
       );
     },
+  };
+
+  private static CourseController =
+    ApiRoutes.HostsApi + '/course';
+  static Course: Course = {
+    Create: ApiRoutes.CourseController + '/create',
   };
 }
