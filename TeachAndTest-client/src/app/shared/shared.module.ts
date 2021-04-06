@@ -22,6 +22,7 @@ import { SafeHtmlUrlPipe } from './_pipes/safe-html-url.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { AvatarImageComponent } from './components/avatar-image/avatar-image.component';
+import { NavTreeComponent } from './components/nav-tree/nav-tree.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AvatarImageComponent } from './components/avatar-image/avatar-image.com
     InputErrorsComponent,
     LinkComponent,
     GoogleAuthBtnComponent,
+    NavTreeComponent,
     NavBarComponent,
     NavLinkComponent,
     ShowLoaderDirective,
@@ -56,6 +58,7 @@ import { AvatarImageComponent } from './components/avatar-image/avatar-image.com
     LinkComponent,
     GoogleAuthBtnComponent,
     NavBarComponent,
+    NavTreeComponent,
     ShowLoaderDirective,
     LoaderComponent,
     SafeHtmlUrlPipe,

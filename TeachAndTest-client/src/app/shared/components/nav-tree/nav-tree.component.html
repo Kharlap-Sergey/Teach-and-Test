@@ -1,0 +1,20 @@
+<h3>
+  {{this.navTreeRow.title}}
+</h3>
+<div
+  *ngIf="
+    this.IsNavTreeRow(this.navTreeRow.content);
+    then thenBlock;
+    else elseBlock
+  "
+></div>
+<ng-template #thenBlock>
+  <div *ngFor="let row of this.navTreeRow.content">
+    <app-nav-tree
+      [navTreeRow]="row"
+    ></app-nav-tree>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  {{ this.navTreeRow.content }}
+</ng-template>
