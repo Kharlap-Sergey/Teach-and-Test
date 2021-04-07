@@ -3,7 +3,9 @@
     <div class="management-aside__body">
       <a routerLink="information">information</a>
       <div class="management-aside__nav-tree">
-        <div class="" *ngFor="let row of this.navRows">
+        <div
+          *ngFor="let row of this.navRows"
+        >
           <app-nav-tree
             [navTreeRow]="row"
           ></app-nav-tree>

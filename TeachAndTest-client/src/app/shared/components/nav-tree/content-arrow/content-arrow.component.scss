@@ -1,0 +1,11 @@
+.content-arrow {
+  display: inline-block;
+  font-weight: 700;
+  &__image {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  &--opened {
+    transform: rotate(90deg)
+  }
+}

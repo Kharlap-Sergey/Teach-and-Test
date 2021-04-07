@@ -11,11 +11,11 @@ export class ManagementComponent implements OnInit {
   public id: string;
   public navRows: NavTreeModel[] = [
     {
-      title: 'some',
+      title: 'Content',
       content: [
         {
-          title: 'sub1',
-          content: 'sub1',
+          title: 'Information',
+          content: 'information',
         },
         {
           title: 'sub2',
@@ -29,23 +29,6 @@ export class ManagementComponent implements OnInit {
               content: 'sub2',
             },
           ],
-        },
-      ],
-    },
-    {
-      title: 'some1',
-      content: 'some',
-    },
-    {
-      title: 'some2',
-      content: [
-        {
-          title: 'sub234',
-          content: 'sub1',
-        },
-        {
-          title: 'sub',
-          content: 'sub2',
         },
       ],
     },

@@ -23,6 +23,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 import { AvatarImageComponent } from './components/avatar-image/avatar-image.component';
 import { NavTreeComponent } from './components/nav-tree/nav-tree.component';
+import { ContentArrowComponent } from './components/nav-tree/content-arrow/content-arrow.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NavTreeComponent } from './components/nav-tree/nav-tree.component';
     SafeHtmlUrlPipe,
     ModalComponent,
     ImageUploaderComponent,
-    AvatarImageComponent
+    AvatarImageComponent,
+    ContentArrowComponent
   ],
   imports: [
   NgxSpinnerModule,

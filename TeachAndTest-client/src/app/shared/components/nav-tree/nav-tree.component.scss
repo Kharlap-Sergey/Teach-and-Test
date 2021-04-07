@@ -1,3 +1,21 @@
+@import "colors.scss";
+
 .nav-tree {
+  width: 100%;
   padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  &__row {
+    padding: 4px;
+    font-size: 2rem;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba($light-blue, .4);
+    }
+  }
+  &__link {
+    color: black;
+    text-decoration: none;
+  }
 }

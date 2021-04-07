@@ -7,13 +7,16 @@
     "
   ></div>
   <ng-template #thenBlock>
-    <h3>
+    <div
+      class="nav-tree__row"
+      (click)="this.isOpen = !this.isOpen"
+    >
       {{ this.navTreeRow.title }}
-    </h3>
-    <button (click)="this.isOpen = !this.isOpen">
-      click
-    </button>
-    {{this.isOpen}}
+      <app-content-arrow
+        [isOpen]="this.isOpen"
+      ></app-content-arrow>
+    </div>
+
     <div *ngIf="this.isOpen">
       <div *ngFor="let row of this.navTreeRow.content">
         <app-nav-tree
@@ -23,8 +26,11 @@
     </div>
   </ng-template>
   <ng-template #elseBlock>
-    <h3>
-      {{ this.navTreeRow.content }}
-    </h3>
+    <a
+      class="nav-tree__row nav-tree__link"
+      [routerLink]="this.navTreeRow.content"
+    >
+      {{ this.navTreeRow.title }}
+    </a>
   </ng-template>
 </div>
