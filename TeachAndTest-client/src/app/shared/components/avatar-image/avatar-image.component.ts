@@ -12,6 +12,8 @@ import { FileService } from './../../services/file.service';
 })
 export class AvatarImageComponent implements OnInit {
   private _imageId: string;
+
+  @Input()
   public imageSrc: any = 'assets/image.png';
 
   @Input() public set imageId(value: string) {

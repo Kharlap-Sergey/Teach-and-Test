@@ -3,11 +3,9 @@
     <div class="management-aside__body">
       <div class="management-aside__course-short-info">
         <div class="management-aside__course-logo">
-          <img
-            class="management-aside__course-image"
-            src="assets/imageSquare.png"
-            alt="course logo"
-          />
+          <app-avatar-image
+            [imageId]="this.course?.logoId"
+          ></app-avatar-image>
         </div>
         <div class="managment-aside__course-title">
 
