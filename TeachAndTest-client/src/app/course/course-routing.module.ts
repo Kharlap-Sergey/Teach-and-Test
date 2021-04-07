@@ -22,6 +22,14 @@ const routes: Routes = [
         path: 'information',
         component: InformationComponent,
       },
+      {
+        path: "about",
+        component: InformationComponent,
+      },
+      {
+        path: "",
+        component: InformationComponent,
+      }
     ],
   },
 ];

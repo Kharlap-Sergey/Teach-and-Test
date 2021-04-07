@@ -9,6 +9,8 @@ import { NavTreeModel } from '@app/shared/models/nav-tree.model';
 })
 export class ManagementComponent implements OnInit {
   public id: string;
+  public course: any;
+
   public navRows: NavTreeModel[] = [
     {
       title: 'Content',
@@ -31,6 +33,10 @@ export class ManagementComponent implements OnInit {
           ],
         },
       ],
+    },
+    {
+      title: 'About',
+      content: "about"
     },
   ];
   constructor(private activateRoute: ActivatedRoute) {

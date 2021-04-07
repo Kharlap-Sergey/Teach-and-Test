@@ -11,10 +11,11 @@
   justify-content: center;
   &__aside {
     padding-top: 60px;
-
     display: flex;
     align-items: center;
     width: 30%;
+    min-height: 100%;
+    max-height: 100%;
     min-width: 200px;
     max-width: 300px;
   }
@@ -32,17 +33,33 @@
 
 .management-aside {
   &__body {
+    box-sizing: border-box;
     padding: 20px;
-    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     align-content: center;
   }
   &__nav-tree{
     border-left: 1px solid black;
     width: 150px;
+  }
+  &__course-short-info{
+    margin-bottom: 20px;
+    padding: 10px;
+    padding-left: 50px;
+    align-self: stretch;
+  }
+  &__course-logo{
+    width: fit-content;
+    background-color: gray;
+    opacity: .5;
+  }
+  &__course-image{
+    height: 50px;
+    width: 50px;
   }
 }
