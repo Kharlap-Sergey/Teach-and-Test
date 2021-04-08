@@ -2,7 +2,10 @@
   <aside class="management__aside management-aside">
     <div class="management-aside__body">
       <div class="management-aside__course-short-info">
-        <div class="management-aside__course-logo">
+        <div
+          class="management-aside__course-logo"
+          (click)="this.isModalOpened=true"
+        >
           <app-avatar-image
             [imageId]="this.course.logoId"
           ></app-avatar-image>
@@ -24,3 +27,13 @@
     <router-outlet></router-outlet>
   </main>
 </div>
+
+<app-modal
+  [show]="this.isModalOpened"
+  (close)="this.isModalOpened = false"
+  *PortalImplementer
+>
+  <app-image-uploader
+    (onComplete)="this.handleImageComplete($event)"
+  ></app-image-uploader>
+</app-modal>

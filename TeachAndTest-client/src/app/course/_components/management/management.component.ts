@@ -11,7 +11,8 @@ import { CourseModel } from '@app/course/_models/course.model';
 })
 export class ManagementComponent implements OnInit {
   public id: number;
-  public course: CourseModel = new CourseModel();
+  public course = new CourseModel();
+  public isModalOpened = false;
 
   public navRows: NavTreeModel[] = [
     {
@@ -56,5 +57,10 @@ export class ManagementComponent implements OnInit {
             this.course = course
           }
         )
+  }
+
+  handleImageComplete(res: any){
+    this.isModalOpened = false;
+    console.log(res);
   }
 }

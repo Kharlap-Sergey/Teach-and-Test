@@ -6,6 +6,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagementComponent } from './_components/management/management.component';
 import { InformationComponent } from './_components/information/information.component';
+import { PortalModule } from '@app/portal/portal.module';
 
 @NgModule({
   declarations: [TeachComponent, ManagementComponent, InformationComponent],
@@ -14,7 +15,8 @@ import { InformationComponent } from './_components/information/information.comp
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    CourseRoutingModule
+    CourseRoutingModule,
+    PortalModule
   ]
 })
 export class CourseModule { }
