@@ -4,11 +4,11 @@
       <div class="management-aside__course-short-info">
         <div class="management-aside__course-logo">
           <app-avatar-image
-            [imageId]="this.course?.logoId"
+            [imageId]="this.course.logoId"
           ></app-avatar-image>
         </div>
-        <div class="managment-aside__course-title">
-
+        <div class="management-aside__course-title">
+          {{ this.course.title }}
         </div>
       </div>
       <div class="management-aside__nav-tree">

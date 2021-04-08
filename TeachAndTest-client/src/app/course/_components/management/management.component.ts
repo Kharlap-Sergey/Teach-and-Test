@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavTreeModel } from '@app/shared/models/nav-tree.model';
+import { CourseService } from '@app/course/_services/course.service';
+import { CourseModel } from '@app/course/_models/course.model';
 
 @Component({
   selector: 'app-management',
@@ -8,8 +10,8 @@ import { NavTreeModel } from '@app/shared/models/nav-tree.model';
   styleUrls: ['./management.component.scss'],
 })
 export class ManagementComponent implements OnInit {
-  public id: string;
-  public course: any;
+  public id: number;
+  public course: CourseModel = new CourseModel();
 
   public navRows: NavTreeModel[] = [
     {
@@ -39,11 +41,20 @@ export class ManagementComponent implements OnInit {
       content: "about"
     },
   ];
-  constructor(private activateRoute: ActivatedRoute) {
+
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private courseService: CourseService
+    ) {
     this.id = this.activateRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    console.log(`id`, this.id);
+    this.courseService.getCourseDetails(this.id)
+        .subscribe(
+          (course: CourseModel) => {
+            this.course = course
+          }
+        )
   }
 }
