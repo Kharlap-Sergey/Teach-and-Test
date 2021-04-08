@@ -13,15 +13,11 @@
     >
       {{ this.navTreeRow.title }}
       <app-content-arrow
-        [isOpen]="this.isOpened||this.isSelected"
+        [isOpen]="this.isOpened"
       ></app-content-arrow>
-      <hr>
-      opened - {{this.isOpened}}
-      <hr>
-      selected - {{this.isSelected}}
     </div>
 
-    <div [class.nav-tree__row--hidden]="!(isOpened||this.isSelected)">
+    <div [class.nav-tree__row--hidden]="!isOpened">
       <div *ngFor="let row of this.navTreeRow.content">
         <app-nav-tree
           (select)="this.isSelected=$event"

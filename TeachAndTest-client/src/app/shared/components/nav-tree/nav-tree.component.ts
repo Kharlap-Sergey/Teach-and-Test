@@ -38,6 +38,10 @@ export class NavTreeComponent
   public set isSelected(value: boolean) {
     if (value == this._isSelected) return;
 
+    if(value){
+      this.isOpened = true;
+    }
+
     this._isSelected = value;
 
     this.select.emit(value);
@@ -50,48 +54,27 @@ export class NavTreeComponent
 
   ngOnInit(): void {
     this.setSelection(this.router.url);
-    if (!this.isNavTreeRow(this.navTreeRow.content)) {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          const url = event.urlAfterRedirects;
-          this.isSelected =
-            url.search(
-              this.navTreeRow.content.toString()
-            ) >= 0;
-        }
-      });
-    }
   }
   ngAfterViewChecked(): void {
     this.cdRef.detectChanges();
   }
-
   setSelection(url: string) {
     if (this.isNavTreeRow(this.navTreeRow.content))
       return;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const url = event.urlAfterRedirects;
+        this.isSelected =
+          url.search(
+            this.navTreeRow.content.toString()
+          ) >= 0;
+      }
+    });
     this.isSelected =
       url.search(this.navTreeRow.content.toString()) >=
       0;
   }
   isNavTreeRow(obj: any): boolean {
     return obj instanceof Array;
-  }
-
-  shouldBeOpened(model: NavTreeModel): boolean {
-    if (!this.isNavTreeRow(model.content)) {
-      return (
-        this.router.url.search(
-          model.content.toString()
-        ) >= 0
-      );
-    }
-
-    var res = false;
-
-    for (let row of model.content) {
-      res ||= this.shouldBeOpened(row as NavTreeModel);
-    }
-
-    return res;
   }
 }
