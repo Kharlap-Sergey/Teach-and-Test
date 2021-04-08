@@ -40,5 +40,15 @@ namespace TeachAndTest.Api.Controllers
             return this.mapper.Map<CourseVM>(course);
         }
         #endregion
+
+        #region get
+        [HttpGet("{id}")] 
+        public async Task<ActionResult<CourseVM>> Get(int id)
+        {
+            Course course = await this.courseService.GetByIdAsync(id);
+
+            return this.mapper.Map<CourseVM>(course);
+        }
+        #endregion
     }
 }

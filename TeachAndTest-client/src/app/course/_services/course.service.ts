@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiRoutes } from '@app/shared/utils/api-routes';
+import { CourseModel } from '../_models/course.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class CourseService {
     const body = {
       title
     }
-    return this.http.post(url, body, options);
+    return this.http.post<CourseModel>(url, body, options);
+  }
+
+  public getCourseDetails(id: number){
+    const url: string  = ApiRoutes.Course.GetDetails(id);
+
+    return this.http.get<CourseModel>(url);
   }
 }

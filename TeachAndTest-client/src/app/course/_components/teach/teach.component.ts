@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CourseModel } from '@app/course/_models/course.model';
 import { CourseService } from '@app/course/_services/course.service';
 import { Routes } from '@app/shared/utils/routes';
 
@@ -28,7 +29,7 @@ export class TeachComponent implements OnInit {
     this.courseService
       .createCourse(this.title.value)
       .subscribe(
-        (response: any) => {
+        (response: CourseModel) => {
           this.isLoading = false;
           this.rout.navigate([
             Routes.Course.Management(response.id),

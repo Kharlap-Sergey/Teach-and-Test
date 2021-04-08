@@ -43,7 +43,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
         }
 
         public async Task<Course> DeleteAsync(
-            string courseId, 
+            int courseId, 
             int committerId
             )
         {
@@ -52,7 +52,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
 
             return await this.courseRepository.RemoveAsync(course);
         }
-        public async Task<Course> GetByIdAsync(string id)
+        public async Task<Course> GetByIdAsync(int id)
         {
             Course course = await this.courseRepository.GetByIdAsync(id);
 
@@ -73,7 +73,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
         }
 
         public async Task<Course> UpdateDetailsAsync(
-            string courseId,
+            int courseId,
             Course coursedetails, 
             int committerId
             )
@@ -87,7 +87,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             return await this.UpdateAsync(course, committerId);
         }
         public async Task<Course> UpdateLogoAsync(
-            string courseId, 
+            int courseId, 
             Guid fileId,
             int committerId
             )
@@ -103,7 +103,7 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
         }
 
         public async Task<Course> UpdateLogoAsync(
-            string courseId, 
+            int courseId, 
             FileDetails fileDetails,
             int committerId
             )

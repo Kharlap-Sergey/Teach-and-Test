@@ -16,6 +16,7 @@ interface File {
 
 interface Course {
   Create: string;
+  GetDetails: (id: number) => string
 }
 export class ApiRoutes {
   static HostsApi: string =
@@ -64,5 +65,6 @@ export class ApiRoutes {
     ApiRoutes.HostsApi + '/course';
   static Course: Course = {
     Create: ApiRoutes.CourseController + '/create',
+    GetDetails: (id: number) => (ApiRoutes.CourseController + "/get/" + id)
   };
 }

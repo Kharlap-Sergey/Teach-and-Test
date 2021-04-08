@@ -15,11 +15,11 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             );
 
         public Task<Course> DeleteAsync(
-            string ocurseId,
+            int ocurseId,
             int committerId
             );
         public Task<Course> GetByIdAsync(
-            string id
+            int id
             );
 
         public Task<IEnumerable<Course>> GetByAutherIdAsync(
@@ -27,17 +27,17 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             );
 
         public Task<Course> UpdateDetailsAsync(
-            string courseId,
+            int courseId,
             Course coursedetails,
             int committerId
             );
         public Task<Course> UpdateLogoAsync(
-            string courseId,
+            int courseId,
             Guid fileId,
             int committerId
             );
         public Task<Course> UpdateLogoAsync(
-           string courseId,
+           int courseId,
            FileDetails fileDetails,
            int committerId
            );
