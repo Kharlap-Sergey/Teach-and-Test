@@ -10,11 +10,16 @@
     font-size: 2rem;
     width: 100%;
     cursor: pointer;
-    &--selected{
+    &--selected {
       background-color: rgb(233, 249, 233);
     }
+    &--hidden {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
     &:hover {
-      background-color: rgba($light-blue, .4);
+      background-color: rgba($light-blue, 0.4);
     }
   }
   &__link {

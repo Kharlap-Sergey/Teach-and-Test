@@ -6,6 +6,11 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
+  AfterContentInit,
+  AfterViewInit,
+  AfterViewChecked,
+  DoCheck,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   NavigationEnd,
@@ -18,7 +23,8 @@ import { NavTreeModel } from '@app/shared/models/nav-tree.model';
   templateUrl: './nav-tree.component.html',
   styleUrls: ['./nav-tree.component.scss'],
 })
-export class NavTreeComponent implements OnInit {
+export class NavTreeComponent
+  implements OnInit, AfterViewChecked {
   private _isSelected: boolean = false;
 
   public isOpened: boolean = false;
@@ -37,33 +43,41 @@ export class NavTreeComponent implements OnInit {
     this.select.emit(value);
   }
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-          const url = event.urlAfterRedirects;
-          this.setSelection(url);
-      }
-    });
-    this.isOpened = this.shouldBeOpened(this.navTreeRow)
-  }
+  constructor(
+    private router: Router,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.setSelection(this.router.url);
+    if (!this.isNavTreeRow(this.navTreeRow.content)) {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          const url = event.urlAfterRedirects;
+          this.isSelected =
+            url.search(
+              this.navTreeRow.content.toString()
+            ) >= 0;
+        }
+      });
+    }
+  }
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
   }
 
-  setSelection(url: string){
+  setSelection(url: string) {
     if (this.isNavTreeRow(this.navTreeRow.content))
       return;
-    this.isSelected = url.search(
-      this.navTreeRow.content.toString()
-    ) >= 0
+    this.isSelected =
+      url.search(this.navTreeRow.content.toString()) >=
+      0;
   }
   isNavTreeRow(obj: any): boolean {
     return obj instanceof Array;
   }
 
   shouldBeOpened(model: NavTreeModel): boolean {
-    return true;
     if (!this.isNavTreeRow(model.content)) {
       return (
         this.router.url.search(
