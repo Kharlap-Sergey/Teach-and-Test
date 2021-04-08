@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -39,6 +40,22 @@ namespace TeachAndTest.Api.Controllers
 
             return this.mapper.Map<CourseVM>(course);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<CourseVM>> UploadAvatar(
+            [FromBody] Guid avatarId,
+            [FromBody] int courseId
+            )
+        {
+            Course course = await this.courseService
+                .UpdateLogoAsync(
+                    courseId,
+                    avatarId,
+                    this.GetCommitterId()
+                );
+            return this.mapper.Map<CourseVM>(course);
+        }
         #endregion
 
         #region get
@@ -49,6 +66,7 @@ namespace TeachAndTest.Api.Controllers
 
             return this.mapper.Map<CourseVM>(course);
         }
+
         #endregion
     }
 }

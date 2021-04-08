@@ -50,6 +50,18 @@ namespace TeachAndTest.Api.Controllers
 
             return this.mapper.Map<CourseRatingVM>(rating);
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<CourseVM>> UploadAvatar([FromBody]Guid avatarId)
+        {
+            Course user = await this.accountService
+                .UploadAvatarAsync(
+                    avatarId,
+                    this.GetCommitterId()
+                );
+            return this.mapper.Map<UserVM>(user);
+        }
         #endregion
     }
 }
