@@ -1,7 +1,7 @@
 <div class="nav-tree">
   <div
     *ngIf="
-      this.IsNavTreeRow(this.navTreeRow.content);
+      this.isNavTreeRow(this.navTreeRow.content);
       then thenBlock;
       else elseBlock
     "
@@ -9,17 +9,18 @@
   <ng-template #thenBlock>
     <div
       class="nav-tree__row"
-      (click)="this.isOpen = !this.isOpen"
+      (click)="this.isOpened = !this.isOpened"
     >
       {{ this.navTreeRow.title }}
       <app-content-arrow
-        [isOpen]="this.isOpen"
+        [isOpen]="this.isOpened||this.isSelected"
       ></app-content-arrow>
     </div>
 
-    <div *ngIf="this.isOpen">
+    <div *ngIf="isOpened||this.isSelected">
       <div *ngFor="let row of this.navTreeRow.content">
         <app-nav-tree
+          (select)="this.isSelected=$event"
           [navTreeRow]="row"
         ></app-nav-tree>
       </div>
@@ -28,6 +29,7 @@
   <ng-template #elseBlock>
     <a
       class="nav-tree__row nav-tree__link"
+      [class.nav-tree__row--selected]="this.isSelected"
       [routerLink]="this.navTreeRow.content"
     >
       {{ this.navTreeRow.title }}

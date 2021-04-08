@@ -10,6 +10,9 @@
     font-size: 2rem;
     width: 100%;
     cursor: pointer;
+    &--selected{
+      background-color: rgb(233, 249, 233);
+    }
     &:hover {
       background-color: rgba($light-blue, .4);
     }

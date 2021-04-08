@@ -25,8 +25,8 @@ export class ManagementComponent implements OnInit {
           title: 'sub2',
           content: [
             {
-              title: 'sub1',
-              content: 'sub1',
+              title: 'About',
+              content: "about"
             },
             {
               title: 'sub2',
