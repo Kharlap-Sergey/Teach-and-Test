@@ -12,6 +12,9 @@ namespace TeachAndTest.Domain.Configurations
     {
         public void Configure(EntityTypeBuilder<FileDetails> builder)
         {
+            builder.HasOne(f => f.Author)
+                    .WithMany()
+                    .HasForeignKey(f => f.AuthorId);
         }
     }
 }

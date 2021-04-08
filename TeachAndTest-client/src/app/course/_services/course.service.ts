@@ -26,5 +26,16 @@ export class CourseService {
     return this.http.get<CourseModel>(url);
   }
 
-  public 
+  public uploadCourseLogo(
+    logoId: string,
+    courseId: number
+  ){
+    const url = ApiRoutes.Course.UploadLogo;
+
+    const body = {
+      logoId,
+      courseId
+    }
+    return this.http.post<CourseModel>(url, body)
+  }
 }

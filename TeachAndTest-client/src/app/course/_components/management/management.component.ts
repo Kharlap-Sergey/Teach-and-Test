@@ -27,7 +27,7 @@ export class ManagementComponent implements OnInit {
           content: [
             {
               title: 'About',
-              content: "about"
+              content: 'about',
             },
             {
               title: 'sub2',
@@ -39,28 +39,31 @@ export class ManagementComponent implements OnInit {
     },
     {
       title: 'About',
-      content: "about"
+      content: 'about',
     },
   ];
 
   constructor(
     private activateRoute: ActivatedRoute,
     private courseService: CourseService
-    ) {
+  ) {
     this.id = this.activateRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.courseService.getCourseDetails(this.id)
-        .subscribe(
-          (course: CourseModel) => {
-            this.course = course
-          }
-        )
+    this.courseService
+      .getCourseDetails(this.id)
+      .subscribe((course: CourseModel) => {
+        this.course = course;
+      });
   }
 
-  handleImageComplete(res: any){
+  handleImageComplete(res: any) {
     this.isModalOpened = false;
-    console.log(res);
+    this.courseService
+      .uploadCourseLogo(res[0].id, this.course.id)
+      .subscribe((course: CourseModel) => {
+        this.course.logoId = course.logoId;
+      });
   }
 }

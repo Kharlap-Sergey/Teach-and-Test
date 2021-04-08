@@ -43,15 +43,14 @@ namespace TeachAndTest.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<CourseVM>> UploadAvatar(
-            [FromBody] Guid avatarId,
-            [FromBody] int courseId
+        public async Task<ActionResult<CourseVM>> UploadLogo(
+            [FromBody] UploadCourseLogoVM request
             )
         {
             Course course = await this.courseService
                 .UpdateLogoAsync(
-                    courseId,
-                    avatarId,
+                    request.CourseId,
+                    request.LogoId,
                     this.GetCommitterId()
                 );
             return this.mapper.Map<CourseVM>(course);

@@ -12,10 +12,6 @@ namespace TeachAndTest.Domain.Configurations
             )
         {
             //builder.HasIndex(u => u.Email).IsUnique();
-            builder.HasOne(u => u.Avatar)
-                .WithOne(a => a.Author)
-                .HasForeignKey<FileDetails>(
-                a => a.AuthorId);
         }
     }
 }
