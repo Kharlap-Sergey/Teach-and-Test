@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: "",
-        component: InformationComponent,
+        redirectTo: "about"
       }
     ],
   },
