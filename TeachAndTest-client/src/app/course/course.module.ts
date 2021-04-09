@@ -7,9 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ManagementComponent } from './_components/management/management.component';
 import { InformationComponent } from './_components/information/information.component';
 import { PortalModule } from '@app/portal/portal.module';
+import { EditInformationComponent } from './_components/edit-information/edit-information.component';
 
 @NgModule({
-  declarations: [TeachComponent, ManagementComponent, InformationComponent],
+  declarations: [TeachComponent, ManagementComponent, InformationComponent, EditInformationComponent],
   imports: [
   CommonModule,
     FormsModule,

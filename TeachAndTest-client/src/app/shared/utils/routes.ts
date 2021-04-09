@@ -7,7 +7,8 @@ interface Account {
 interface Course {
   Catalog: string;
   Teach: string;
-  Management: (id: number) => string
+  Management: (id: number) => string,
+  EditInformation: (id: number) => string
 }
 
 export class Routes {
@@ -24,6 +25,9 @@ export class Routes {
     Teach: Routes.CoursePath + "/teach",
     Management: (id: number) => {
       return `${Routes.CoursePath}/${id}/management`
+    },
+    EditInformation: (id: number) => {
+      return `${Routes.CoursePath}/${id}/management/edit/information`
     }
   }
 }

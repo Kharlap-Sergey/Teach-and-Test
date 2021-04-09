@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@app/shared/helpers/auth.guard';
+import { EditInformationComponent } from './_components/edit-information/edit-information.component';
 import { InformationComponent } from './_components/information/information.component';
 import { ManagementComponent } from './_components/management/management.component';
 import { TeachComponent } from './_components/teach/teach.component';
@@ -19,17 +20,21 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
     children: [
       {
+        path: 'edit/information',
+        component: EditInformationComponent,
+      },
+      {
         path: 'information',
         component: InformationComponent,
       },
       {
-        path: "about",
+        path: 'about',
         component: InformationComponent,
       },
       {
-        path: "",
-        redirectTo: "about"
-      }
+        path: '',
+        redirectTo: 'about',
+      },
     ],
   },
 ];

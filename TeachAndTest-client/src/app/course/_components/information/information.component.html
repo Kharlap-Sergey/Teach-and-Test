@@ -5,15 +5,32 @@
     </h1>
   </header>
 
-  <div class="course-information__header-row course-information-header-row">
-    <div class="course-information-header-row__preview-section">
-      <p class="course-information-header-row__preview-text">
+  <div
+    class="course-information__header-row course-information-header-row"
+  >
+    <div
+      class="course-information-header-row__preview-section"
+    >
+      <p
+        class="course-information-header-row__preview-text"
+      >
         There is a course landing page
       </p>
-      <button class="course-information-header-row__preview-button">Preview</button>
+      <button
+        class="course-information-header-row__preview-button"
+      >
+        Preview
+      </button>
     </div>
-    <div class="course-information-header-row__edit-section">
-      <button class="ccourse-information-header-row__edit-button">Edit course information</button>
+    <div
+      class="course-information-header-row__edit-section"
+    >
+      <button
+        class="ccourse-information-header-row__edit-button"
+        (click)="this.navigateToEdit()"
+      >
+        Edit course information
+      </button>
     </div>
   </div>
   <div class="course-information__content">
@@ -32,19 +49,21 @@
           "
         >
         </ng-template>
-        <div
-          class="course-information-description__then"
-          #descriptionThen
-        >
-          {{ this.course.description }}
-        </div>
-        <div
-          class="course-information-description__else"
-          #descriptionElse
-        >
-          This field is empty. Please use the course
-          editor to fill it in.
-        </div>
+        <ng-template #descriptionThen>
+          <div
+            class="course-information-description__then"
+          >
+            {{ this.course.description }}
+          </div>
+        </ng-template>
+        <ng-template #descriptionElse>
+          <div
+            class="course-information-description__else"
+          >
+            This field is empty. Please use the course
+            editor to fill it in.
+          </div>
+        </ng-template>
       </div>
     </main>
     <aside class="course-information__aside">
