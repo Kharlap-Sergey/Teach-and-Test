@@ -1,1 +1,54 @@
-<p>information works!</p>
+<div class="course-information">
+  <header class="course-information__header">
+    <h1 class="course-information__title">
+      Information
+    </h1>
+  </header>
+
+  <div class="course-information__header-row course-information-header-row">
+    <div class="course-information-header-row__preview-section">
+      <p class="course-information-header-row__preview-text">
+        There is a course landing page
+      </p>
+      <button class="course-information-header-row__preview-button">Preview</button>
+    </div>
+    <div class="course-information-header-row__edit-section">
+      <button class="ccourse-information-header-row__edit-button">Edit course information</button>
+    </div>
+  </div>
+  <div class="course-information__content">
+    <main class="course-information__main">
+      <div class="course-information__description">
+        <h2
+          class="course-information-description__title"
+        >
+          About the course
+        </h2>
+        <ng-template
+          *ngIf="
+            this.course.description;
+            then descriptionThen;
+            else descriptionElse
+          "
+        >
+        </ng-template>
+        <div
+          class="course-information-description__then"
+          #descriptionThen
+        >
+          {{ this.course.description }}
+        </div>
+        <div
+          class="course-information-description__else"
+          #descriptionElse
+        >
+          This field is empty. Please use the course
+          editor to fill it in.
+        </div>
+      </div>
+    </main>
+    <aside class="course-information__aside">
+      other Information
+    </aside>
+  </div>
+</div>
