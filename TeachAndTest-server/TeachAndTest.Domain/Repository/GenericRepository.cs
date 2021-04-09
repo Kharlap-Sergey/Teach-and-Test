@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TeachAndTest.Models.DomainExceptions;
 
 namespace TeachAndTest.Domain
 {
@@ -24,11 +25,23 @@ namespace TeachAndTest.Domain
         {
             item = entities.Add(item).Entity;
             await context.SaveChangesAsync();
+
+            if (item == null)
+            {
+                throw new EntityNotCreatedException();
+            }
+
             return item;
         }
         public async Task<TEntity> GetByIdAsync(object id)
         {
             var entity = await entities.FindAsync(id);
+
+            if(entity == null)
+            {
+                throw new EntityNotFoundException();
+            }
+
             return entity;
         }
 
@@ -101,8 +114,9 @@ namespace TeachAndTest.Domain
         }
         public async Task<TEntity> RemoveAsync(object id)
         {
-            TEntity entityToRemove = entities.Find(id);
-            return await RemoveAsync(entityToRemove);
+            TEntity entityToRemove = await this.GetByIdAsync(id);
+
+            return await this.RemoveAsync(entityToRemove);
         }
         public async Task<TEntity> RemoveAsync(TEntity item)
         {
