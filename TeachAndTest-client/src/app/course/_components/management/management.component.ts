@@ -57,13 +57,4 @@ export class ManagementComponent implements OnInit {
         this.course = course;
       });
   }
-
-  handleImageComplete(res: any) {
-    this.isModalOpened = false;
-    this.courseService
-      .uploadCourseLogo(res[0].id, this.course.id)
-      .subscribe((course: CourseModel) => {
-        this.course.logoId = course.logoId;
-      });
-  }
 }

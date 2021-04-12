@@ -1,3 +1,51 @@
-<p>edit-information works!</p>
+<div class="edit-information">
+  <app-information-header>
+    Information
+  </app-information-header>
 
-<button (click)="this.goBack()">go back</button>
+  <div class="edit-information__course-header">
+    <div
+      class="edit-information__course-logo"
+      (click)="this.isModalOpened = true"
+    >
+      <app-avatar-image
+        [imageId]="this.course.logoId"
+      ></app-avatar-image>
+    </div>
+    <div class="edit-information__course-title">
+      <input
+        type="text"
+        class="edit-information__course-title-input"
+        placeholder="Enter title here"
+        [(ngModel)]="this.title"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="save-content-row">
+  <div class="save-content-row__body">
+    <button
+      class="save-content-row__save"
+      (click)="this.save()"
+    >
+      save
+    </button>
+    <button
+      class="save-content-row__cancel"
+      (click)="this.cancel()"
+    >
+      cancel
+    </button>
+  </div>
+</div>
+
+<app-modal
+  [show]="this.isModalOpened"
+  (close)="this.isModalOpened = false"
+  *PortalImplementer
+>
+  <app-image-uploader
+    (onComplete)="this.handleImageComplete($event)"
+  ></app-image-uploader>
+</app-modal>

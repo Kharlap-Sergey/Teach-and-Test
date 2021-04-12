@@ -8,9 +8,10 @@ import { ManagementComponent } from './_components/management/management.compone
 import { InformationComponent } from './_components/information/information.component';
 import { PortalModule } from '@app/portal/portal.module';
 import { EditInformationComponent } from './_components/edit-information/edit-information.component';
+import { InformationHeaderComponent } from './_components/information-header/information-header.component';
 
 @NgModule({
-  declarations: [TeachComponent, ManagementComponent, InformationComponent, EditInformationComponent],
+  declarations: [TeachComponent, ManagementComponent, InformationComponent, EditInformationComponent, InformationHeaderComponent],
   imports: [
   CommonModule,
     FormsModule,

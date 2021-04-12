@@ -4,7 +4,6 @@
       <div class="management-aside__course-short-info">
         <div
           class="management-aside__course-logo"
-          (click)="this.isModalOpened=true"
         >
           <app-avatar-image
             [imageId]="this.course.logoId"
@@ -24,16 +23,6 @@
     </div>
   </aside>
   <main class="management__main">
-    <router-outlet></router-outlet>
+    <router-outlet class="management-router-outlet"></router-outlet>
   </main>
 </div>
-
-<app-modal
-  [show]="this.isModalOpened"
-  (close)="this.isModalOpened = false"
-  *PortalImplementer
->
-  <app-image-uploader
-    (onComplete)="this.handleImageComplete($event)"
-  ></app-image-uploader>
-</app-modal>

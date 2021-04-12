@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
+.edit-information {
+  width: 100%;
+
+  &__course-header {
+    display: flex;
+    align-items: center;
+  }
+  &__course-logo {
+    height: 40px;
+    width: 40px;
+  }
+  &__course-title {
+  }
+  &__course-title-input {
+  }
+}
+
+.save-content-row {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-color: rgba(gray, 0.5);
+  backdrop-filter: blur(2px);
+  &__body {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  &__save {
+    margin-right: 10px;
+  }
+  &__cancel {
+  }
+}

@@ -48,6 +48,7 @@ export class PortalComponent
   }
 
   show(component: TemplateRef<any>) {
+    console.log(component);
     this.portal.viewContainerRef.clear();
     const ref = this.portal.viewContainerRef.createEmbeddedView(
       component
