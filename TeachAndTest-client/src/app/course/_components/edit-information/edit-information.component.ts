@@ -31,13 +31,23 @@ import {
 })
 export class EditInformationComponent
   implements OnInit {
+
   private returnUrl: string;
   private id: number;
 
   public isModalOpened = false;
   public title: string = 'Angular';
   public course = new CourseModel();
-
+  public tools: object = {
+    items: ['Undo', 'Redo', '|',
+        'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
+        'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+        'SubScript', 'SuperScript', '|',
+        'LowerCase', 'UpperCase', '|',
+        'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
+        'Indent', 'Outdent', '|', 'CreateLink',
+        'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
+    };
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
