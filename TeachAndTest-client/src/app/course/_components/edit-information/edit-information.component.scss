@@ -8,15 +8,27 @@
 
   &__course-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: start;
+
+    hr {
+      margin-left: 0;
+      width: 60%;
+    }
   }
   &__course-logo {
-    height: 40px;
-    width: 40px;
+    background-color: rgba(gray, .5);
+    height: 50px;
+    width: 50px;
   }
   &__course-title {
+    margin-left: 20px;
   }
   &__course-title-input {
+    width: 300px;
+    min-width: 100px;
+    font-size: 3rem;
   }
 }
 
