@@ -26,9 +26,13 @@
     margin-left: 20px;
   }
   &__course-title-input {
-    width: 300px;
+    width: 70%;
     min-width: 100px;
     font-size: 3rem;
+  }
+
+  &__course {
+    background-color: gray;
   }
 }
 
@@ -50,4 +54,9 @@
   }
   &__cancel {
   }
+}
+
+.edit-information-course {
+	&__main { }
+	&__aside { }
 }
