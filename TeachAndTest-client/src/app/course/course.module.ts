@@ -9,6 +9,7 @@ import { InformationComponent } from './_components/information/information.comp
 import { PortalModule } from '@app/portal/portal.module';
 import { EditInformationComponent } from './_components/edit-information/edit-information.component';
 import { InformationHeaderComponent } from './_components/information-header/information-header.component';
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   declarations: [TeachComponent, ManagementComponent, InformationComponent, EditInformationComponent, InformationHeaderComponent],
@@ -18,7 +19,8 @@ import { InformationHeaderComponent } from './_components/information-header/inf
     SharedModule,
     ReactiveFormsModule,
     CourseRoutingModule,
-    PortalModule
+    PortalModule,
+    RichTextEditorModule
   ]
 })
 export class CourseModule { }

@@ -11,11 +11,23 @@ import {
 import { CourseModel } from '@app/course/_models/course.model';
 import { Observer } from 'rxjs';
 import { CourseService } from '@app/course/_services/course.service';
+import {
+  HtmlEditorService,
+  ImageService,
+  LinkService,
+  ToolbarService,
+} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-edit-information',
   templateUrl: './edit-information.component.html',
   styleUrls: ['./edit-information.component.scss'],
+  providers: [
+    ToolbarService,
+    LinkService,
+    ImageService,
+    HtmlEditorService,
+  ],
 })
 export class EditInformationComponent
   implements OnInit {

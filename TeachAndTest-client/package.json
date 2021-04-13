@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
+    "@syncfusion/ej2-angular-richtexteditor": "^19.1.56",
     "angularx-social-login": "^3.5.4",
     "crypto-js": "^4.0.0",
     "guid-typescript": "^1.0.9",
