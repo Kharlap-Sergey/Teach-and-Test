@@ -17,6 +17,7 @@ import {
   LinkService,
   ToolbarService,
 } from '@syncfusion/ej2-angular-richtexteditor';
+import { getHashCode } from '@app/shared/utils/calculateHashCode';
 
 @Component({
   selector: 'app-edit-information',
@@ -34,6 +35,7 @@ export class EditInformationComponent
 
   private returnUrl: string;
   private id: number;
+  private courseHash: number;
 
   public isModalOpened = false;
   public title: string = 'Angular';
@@ -48,47 +50,58 @@ export class EditInformationComponent
         'Indent', 'Outdent', '|', 'CreateLink',
         'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
     };
+  public get canLeave():boolean{
+    const courseHash = getHashCode(this.course);
+    return this.courseHash == courseHash;
+  }
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
     private courseService: CourseService
   ) {
+    this.courseHash = getHashCode(this.course);
     this.activateRoute.queryParamMap.subscribe(
       (res: any) => {
         this.returnUrl = res.params.returnUrl;
       }
     );
-    this.id = this.activateRoute.snapshot.params['id'];
+    this.id = this.activateRoute.parent.snapshot.params['id'];
   }
 
   ngOnInit(): void {
+    console.log(`this.id`, this.id)
     this.courseService
       .getCourseDetails(this.id)
       .subscribe((course: CourseModel) => {
+        this.courseHash = getHashCode(course);
         this.course = course;
       });
   }
 
-  cancel() {
+  public cancel() {
+    if(this.canLeave) {
+      this.goBack();
+      return;
+    }
+    alert("can't leave");
+  }
+  public save() {
     this.goBack();
   }
-  save() {
-    this.goBack();
+
+  public handleImageComplete(res: any) {
+    this.isModalOpened = false;
+    this.courseService
+    .uploadCourseLogo(res[0].id, this.course.id)
+    .subscribe((course: CourseModel) => {
+      this.course.logoId = course.logoId;
+    });
   }
-  goBack() {
+  private goBack() {
     if (!this.returnUrl) {
       return;
     }
 
     this.router.navigateByUrl(this.returnUrl);
-  }
-
-  handleImageComplete(res: any) {
-    this.isModalOpened = false;
-    this.courseService
-      .uploadCourseLogo(res[0].id, this.course.id)
-      .subscribe((course: CourseModel) => {
-        this.course.logoId = course.logoId;
-      });
   }
 }
