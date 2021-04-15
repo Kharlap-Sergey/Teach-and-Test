@@ -43,7 +43,7 @@
           *ngIf="
             this.course.description;
             then descriptionThen;
-            else descriptionElse
+            else contentEmpty
           "
         >
         </ng-template>
@@ -54,14 +54,7 @@
             {{ this.course.description }}
           </div>
         </ng-template>
-        <ng-template #descriptionElse>
-          <div
-            class="course-information-description__else"
-          >
-            This field is empty. Please use the course
-            editor to fill it in.
-          </div>
-        </ng-template>
+
       </div>
     </main>
     <aside class="course-information__aside">
@@ -69,3 +62,14 @@
     </aside>
   </div>
 </div>
+
+<ng-template #contentEmpty>
+  <div
+    class="course-information-description__else"
+  >
+    <span (click)="this.navigateToEdit()">
+      This field is empty. Please use the
+      course editor to fill it in.
+    </span>
+  </div>
+</ng-template>

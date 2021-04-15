@@ -28,7 +28,6 @@
   }
 }
 .course-information-description {
-
   &__title {
     font-size: 2rem;
     font-weight: 400;
@@ -38,15 +37,26 @@
   &__else {
     color: #777;
     font-size: 1.3rem;
+
+    span {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }
 
 .course-information-header-row {
   display: flex;
-	&__preview-section {
+  &__preview-section {
     display: flex;
-   }
-	&__preview-text { }
-	&__preview-button { }
-	&__edit-section { }
+  }
+  &__preview-text {
+  }
+  &__preview-button {
+  }
+  &__edit-section {
+  }
 }
