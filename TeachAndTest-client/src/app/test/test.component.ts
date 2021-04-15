@@ -26,14 +26,14 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
   //use it to override the children style' class (.angular-editor-toolbar)
-  encapsulation: ViewEncapsulation.ShadowDom,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TestComponent
   implements OnInit, AfterViewInit {
   /**
    *
    */
-  public htmlContent: any;
+  public htmlContent: any = '';
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -87,8 +87,8 @@ export class TestComponent
         'customClasses',
         'unlink',
         'insertVideo',
-        'toggleEditorMode'
-      ]
+        'toggleEditorMode',
+      ],
     ],
   };
   @ViewChild('img') img: any;
