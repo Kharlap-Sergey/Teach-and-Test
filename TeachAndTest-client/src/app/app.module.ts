@@ -19,11 +19,12 @@ import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from '@shared/helpers/error-handler.interceptor';
 import { PortalModule } from './portal/portal.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
-  BrowserModule,
+    BrowserModule,
     BrowserAnimationsModule,
     //https://www.npmjs.com/package/ngx-toastr
     ToastrModule.forRoot({
@@ -37,6 +38,8 @@ import { PortalModule } from './portal/portal.module';
     //https://www.npmjs.com/package/ngx-spinner
     NgxSpinnerModule,
     PortalModule,
+    //https://openbase.com/js/@kolkov/angular-editor
+    AngularEditorModule,
   ],
   providers: [
     {

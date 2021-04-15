@@ -1,4 +1,12 @@
-<input
+<div class="">
+  <angular-editor
+    [placeholder]="'Enter text here...'"
+    [(ngModel)]="htmlContent"
+    [config]="this.config"
+    [style.fontSize]="'1.5rem'"
+  ></angular-editor>
+</div>
+<!-- <input
   type="file"
   id="input"
   multiple
@@ -23,4 +31,4 @@
   *PortalImplementer
 >
   <app-image-uploader></app-image-uploader>
-</app-modal>
+</app-modal> -->

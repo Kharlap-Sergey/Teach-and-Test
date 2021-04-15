@@ -3,6 +3,7 @@ import {
   Component,
   OnInit,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -18,20 +19,75 @@ import { LocalStorageWrapper } from './../shared/utils/local-storage-wrapper';
 import { PortalService } from './../portal/portal.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { SubmitButtonComponent } from '@app/shared/components/controls/submit-button/submit-button.component';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
+  //use it to override the children style' class (.angular-editor-toolbar)
+  encapsulation: ViewEncapsulation.None,
 })
 export class TestComponent
   implements OnInit, AfterViewInit {
   /**
    *
    */
+  public htmlContent: any;
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '0',
+    maxHeight: 'auto',
+    width: '500px',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      {
+        class: 'times-new-roman',
+        name: 'Times New Roman',
+      },
+      { class: 'calibri', name: 'Calibri' },
+      {
+        class: 'comic-sans-ms',
+        name: 'Comic Sans MS',
+      },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    //upload: (file: File) => { ... }
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+
+    ],
+  };
   @ViewChild('img') img: any;
   isModalOpened = true;
-  onClose(event: any){
+  onClose(event: any) {
     this.isModalOpened = false;
   }
   constructor(
@@ -45,12 +101,11 @@ export class TestComponent
       LocalStorageWrapper.getItem('abc')
     );
   }
-  show(){
+  show() {
     this.portal.show(SubmitButtonComponent);
   }
   ngAfterViewInit(): void {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   public file: any;
   image: any;
   imageBlobUrl: any = '';
