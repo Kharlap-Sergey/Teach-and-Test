@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from '@shared/helpers/error-handler.interceptor';
 import { PortalModule } from './portal/portal.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { RichTextEditorModule } from './rich-text-editor/rich-text-editor.module';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
@@ -40,6 +41,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     PortalModule,
     //https://openbase.com/js/@kolkov/angular-editor
     AngularEditorModule,
+    RichTextEditorModule,
   ],
   providers: [
     {
