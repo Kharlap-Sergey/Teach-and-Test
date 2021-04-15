@@ -1,9 +1,21 @@
-<div class="tool-checkbox">
+<div
+  class="tool-checkbox"
+  [ngClass]="{
+    'tool-checkbox--disabled': this.disabled
+  }"
+>
   <button
     class="tool-checkbox__button"
     [disabled]="this.disabled"
     (click)="this.isActive = !this.isActive"
+    [ngClass]="{
+      'tool-checkbox__button--selected': this.isActive
+    }"
   >
-    some text here
+    <img
+      class="tool-checkbox__image"
+      [src]="this.imageSrc"
+      alt=""
+    />
   </button>
 </div>

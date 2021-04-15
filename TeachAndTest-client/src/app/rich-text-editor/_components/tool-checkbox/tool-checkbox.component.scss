@@ -1,0 +1,17 @@
+.tool-checkbox {
+  &--disabled{
+    opacity: .5;
+    background-color: gray;
+  }
+	&__button {
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      outline: none;
+      &--selected {
+        background-color: #fff;
+        border: 1px solid black
+      }
+   }
+	&__image { }
+}
