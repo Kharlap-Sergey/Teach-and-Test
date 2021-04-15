@@ -26,7 +26,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
   //use it to override the children style' class (.angular-editor-toolbar)
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class TestComponent
   implements OnInit, AfterViewInit {
