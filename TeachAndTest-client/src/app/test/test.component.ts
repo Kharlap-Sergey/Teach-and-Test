@@ -34,7 +34,7 @@ export class TestComponent
    *
    */
   public htmlContent: any = '';
-  config: AngularEditorConfig = {
+  config: any = {
     editable: true,
     spellcheck: true,
     height: 'auto',
@@ -77,7 +77,9 @@ export class TestComponent
       },
     ],
     uploadUrl: 'v1/image',
-    //upload: (file: File) => { ... }
+    upload: (file: File) => {
+      console.log(file);
+    },
     uploadWithCredentials: false,
     sanitize: true,
     toolbarPosition: 'top',
@@ -87,7 +89,9 @@ export class TestComponent
         'customClasses',
         'unlink',
         'insertVideo',
+        'insertImage',
         'toggleEditorMode',
+        'toggleEditorMode'
       ],
     ],
   };
