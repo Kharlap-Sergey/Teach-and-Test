@@ -82,7 +82,13 @@ export class TestComponent
     sanitize: true,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
-
+      [],
+      [
+        'customClasses',
+        'unlink',
+        'insertVideo',
+        'toggleEditorMode'
+      ]
     ],
   };
   @ViewChild('img') img: any;
