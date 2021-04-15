@@ -14,6 +14,7 @@ export function getHashCode(target: any): number {
 }
 
 function getHashCodeForPlain(target: any): number {
+  target = target ?? 0;
   target = target.toString();
   var hash = 0;
   for (var i = 0; i < target.length; i++) {

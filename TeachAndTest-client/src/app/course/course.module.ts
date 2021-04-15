@@ -10,6 +10,7 @@ import { PortalModule } from '@app/portal/portal.module';
 import { EditInformationComponent } from './_components/edit-information/edit-information.component';
 import { InformationHeaderComponent } from './_components/information-header/information-header.component';
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [TeachComponent, ManagementComponent, InformationComponent, EditInformationComponent, InformationHeaderComponent],
@@ -20,7 +21,9 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
     ReactiveFormsModule,
     CourseRoutingModule,
     PortalModule,
-    RichTextEditorModule
+    RichTextEditorModule,
+    //https://openbase.com/js/@kolkov/angular-editor
+    AngularEditorModule,
   ]
 })
 export class CourseModule { }

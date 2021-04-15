@@ -1,13 +1,4 @@
-@import '~@syncfusion/ej2-base/styles/material.css';
-@import '~@syncfusion/ej2-icons/styles/material.css';
-@import '~@syncfusion/ej2-buttons/styles/material.css';
-@import '~@syncfusion/ej2-splitbuttons/styles/material.css';
-@import '~@syncfusion/ej2-inputs/styles/material.css';
-@import '~@syncfusion/ej2-lists/styles/material.css';
-@import '~@syncfusion/ej2-navigations/styles/material.css';
-@import '~@syncfusion/ej2-popups/styles/material.css';
-@import '~@syncfusion/ej2-richtexteditor/styles/material.css';
-
+//broken by 'encapsulation: ViewEncapsulation.None'
 :host {
   display: flex;
   flex-grow: 1;
@@ -16,7 +7,7 @@
 .edit-information {
   padding-right: 30px;
   width: 100%;
-
+  box-sizing: border-box;
   &__course-header {
     display: flex;
     flex-wrap: wrap;
@@ -88,5 +79,20 @@
   }
 	&__editor {
     max-width: 400px;
+  }
+}
+
+.angular-editor-toolbar {
+  font-size: 1.5rem !important;
+}
+.editor {
+  ol {
+    list-style-type: decimal;
+    li {
+      list-style: inherit;
+    }
+  }
+  li {
+    list-style: initial;
   }
 }

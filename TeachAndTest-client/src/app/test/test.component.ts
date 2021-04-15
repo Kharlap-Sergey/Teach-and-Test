@@ -20,6 +20,7 @@ import { PortalService } from './../portal/portal.service';
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { SubmitButtonComponent } from '@app/shared/components/controls/submit-button/submit-button.component';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { inputs } from '@syncfusion/ej2-angular-richtexteditor/src/rich-text-editor/richtexteditor.component';
 
 @Component({
   selector: 'app-test',
@@ -33,68 +34,7 @@ export class TestComponent
   /**
    *
    */
-  public htmlContent: any = '';
-  config: any = {
-    editable: true,
-    spellcheck: true,
-    height: 'auto',
-    minHeight: '0',
-    maxHeight: 'auto',
-    width: '500px',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: '',
-    defaultFontName: '',
-    defaultFontSize: '',
-    fonts: [
-      { class: 'arial', name: 'Arial' },
-      {
-        class: 'times-new-roman',
-        name: 'Times New Roman',
-      },
-      { class: 'calibri', name: 'Calibri' },
-      {
-        class: 'comic-sans-ms',
-        name: 'Comic Sans MS',
-      },
-    ],
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText',
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ],
-    uploadUrl: 'v1/image',
-    upload: (file: File) => {
-      console.log(file);
-    },
-    uploadWithCredentials: false,
-    sanitize: true,
-    toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      [],
-      [
-        'customClasses',
-        'unlink',
-        'insertVideo',
-        'insertImage',
-        'toggleEditorMode',
-        'toggleEditorMode'
-      ],
-    ],
-  };
+ 
   @ViewChild('img') img: any;
   isModalOpened = true;
   onClose(event: any) {

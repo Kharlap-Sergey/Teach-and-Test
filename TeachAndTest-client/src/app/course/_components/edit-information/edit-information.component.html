@@ -31,14 +31,14 @@
           <div class="edit-information-course-description__title">
             About the course
           </div>
-          <ejs-richtexteditor
-            class="edit-information-course-description__editor"
-            [toolbarSettings]="this.tools"
-          >
-            <ng-template #valueTemplate>
-              <h2>About the course</h2>
-            </ng-template>
-            </ejs-richtexteditor>
+          <div class="edit-information-course-description__editor">
+            <angular-editor
+              [placeholder]="'Enter text here...'"
+              [(ngModel)]="this.course.description"
+              [config]="this.config"
+              [style.fontSize]="'1.5rem'"
+            ></angular-editor>
+          </div>
         </div>
       </div>
     </div>
