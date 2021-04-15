@@ -44,46 +44,6 @@ export class EditInformationComponent
   public isModalOpened = false;
   public title: string = 'Angular';
   public course = new CourseModel();
-  public tools: object = {
-    items: [
-      'Undo',
-      'Redo',
-      '|',
-      'Bold',
-      'Italic',
-      'Underline',
-      'StrikeThrough',
-      '|',
-      'FontName',
-      'FontSize',
-      'FontColor',
-      'BackgroundColor',
-      '|',
-      'SubScript',
-      'SuperScript',
-      '|',
-      'LowerCase',
-      'UpperCase',
-      '|',
-      'Formats',
-      'Alignments',
-      '|',
-      'OrderedList',
-      'UnorderedList',
-      '|',
-      'Indent',
-      'Outdent',
-      '|',
-      'CreateLink',
-      'Image',
-      '|',
-      'ClearFormat',
-      'Print',
-      'SourceCode',
-      '|',
-      'FullScreen',
-    ],
-  };
   public get canLeave(): boolean {
     const courseHash = getHashCode(this.course);
     return this.courseHash == courseHash;
@@ -122,7 +82,14 @@ export class EditInformationComponent
     alert("can't leave");
   }
   public save() {
-    this.goBack();
+
+    this.courseService.updateCourse(this.course)
+      .subscribe(
+        (course) =>{
+          this.course = course;
+        }
+      )
+    //this.goBack();
   }
 
   public handleImageComplete(res: any) {

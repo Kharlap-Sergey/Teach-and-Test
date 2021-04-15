@@ -38,4 +38,12 @@ export class CourseService {
     }
     return this.http.post<CourseModel>(url, body)
   }
+
+  public updateCourse(
+    course: CourseModel
+  ){
+    const url = ApiRoutes.Course.Update;
+
+    return this.http.patch<CourseModel>(url, course);
+  }
 }

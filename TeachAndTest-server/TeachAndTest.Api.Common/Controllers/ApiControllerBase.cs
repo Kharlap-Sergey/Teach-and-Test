@@ -9,7 +9,7 @@ namespace TeachAndTest.Api.Common.Controllers
     {
         protected int GetCommitterId()
         {
-            if (User.Identity == null)
+            if (User.Identity?.Name == null)
             {
                 throw new UnauthorizedUserException();
             }

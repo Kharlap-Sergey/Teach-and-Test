@@ -22,7 +22,8 @@ namespace TeachAndTest.Api.Common.Mapper
                 .ReverseMap();
 
             CreateMap<CreatingCourseVM, Course>();
-            CreateMap<Course, CourseVM>();
+            CreateMap<Course, CourseVM>()
+                .ReverseMap();
 
 
             CreateMap<CourseRatingVM, CourseRatingMark>()

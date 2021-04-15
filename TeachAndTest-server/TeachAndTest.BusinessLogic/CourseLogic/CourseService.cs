@@ -59,17 +59,17 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             if (course == null)
             {
                 throw new NotFoundException(
-                    "Unable to fonund course with specific id."
+                    "Unable to found course with specific id."
                     );
             }
             return course;
         }
 
-        public async Task<IEnumerable<Course>> GetByAutherIdAsync(
-            int autherId
+        public async Task<IEnumerable<Course>> GetByAuthorIdAsync(
+            int authorId
             )
         {
-            return await this.courseRepository.GetAsync((c) => c.AuthorId == autherId);
+            return await this.courseRepository.GetAsync((c) => c.AuthorId == authorId);
         }
 
         public async Task<Course> UpdateDetailsAsync(
@@ -81,7 +81,8 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             Course course = await this.GetByIdAsync(courseId);
 
             course.Title = coursedetails.Title;
-            course.NormalizedTitle = coursedetails.NormalizedTitle;
+            course.NormalizedTitle = coursedetails.NormalizedTitle 
+                ?? course.NormalizedTitle;
             course.Description = coursedetails.Description;
 
             return await this.UpdateAsync(course, committerId);

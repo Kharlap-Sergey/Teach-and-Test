@@ -55,6 +55,22 @@ namespace TeachAndTest.Api.Controllers
                 );
             return this.mapper.Map<CourseVM>(course);
         }
+
+        [HttpPatch]
+        public async Task<ActionResult<CourseVM>> Update(
+            [FromBody] CourseVM request
+            )
+        {
+            Course course = this.mapper.Map<Course>(request);
+
+            course = await this.courseService
+                .UpdateDetailsAsync(
+                course.Id, 
+                course, 
+                GetCommitterId());
+
+            return this.mapper.Map<CourseVM>(course);
+        }
         #endregion
 
         #region get

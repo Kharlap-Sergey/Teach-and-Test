@@ -22,8 +22,8 @@ namespace TeachAndTest.BusinessLogic.CourseLogic
             int id
             );
 
-        public Task<IEnumerable<Course>> GetByAutherIdAsync(
-            int autherId
+        public Task<IEnumerable<Course>> GetByAuthorIdAsync(
+            int authorId
             );
 
         public Task<Course> UpdateDetailsAsync(
