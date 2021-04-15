@@ -7,7 +7,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RichTextEditorComponent implements OnInit {
-
+  public value = false;
+  
   constructor() { }
 
   ngOnInit(): void {

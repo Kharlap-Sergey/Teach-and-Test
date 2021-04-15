@@ -36,6 +36,7 @@ import { RichTextEditorModule } from './rich-text-editor/rich-text-editor.module
     FormsModule,
     HttpClientModule,
     SharedModule,
+    RichTextEditorModule,
     //https://www.npmjs.com/package/ngx-spinner
     NgxSpinnerModule,
     PortalModule,
