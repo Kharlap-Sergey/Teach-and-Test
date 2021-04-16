@@ -1,8 +1,12 @@
 <app-tool-checkbox
   [disabled]="false"
   [(isActive)]="this.value"
-  [imageSrc]="'assets/teach.png'"
 >
+  <img
+    class="tool-checkbox__image"
+    [src]="'assets/teach.png'"
+    alt=""
+  />
 </app-tool-checkbox>
 
-{{this.value}}
+{{ this.value }}

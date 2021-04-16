@@ -13,9 +13,7 @@ import {
 })
 export class ToolCheckboxComponent {
   private _isActive: boolean = false;
-
-  @Input()
-  public imageSrc: string = "";
+  
   @Input()
   public disabled: boolean = false;
   @Input()
