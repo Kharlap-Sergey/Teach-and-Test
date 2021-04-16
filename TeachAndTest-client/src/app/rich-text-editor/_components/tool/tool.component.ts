@@ -13,6 +13,8 @@ import {
 })
 export class ToolComponent implements OnInit {
   @Input()
+  public disabled: boolean = false
+  @Input()
   public capture: string = '';
   @Output()
   public click = new EventEmitter();

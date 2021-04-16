@@ -1,12 +1,21 @@
 .tool {
   position: relative;
   padding: 3px 4px 1px;
-	&__btn {
+  &--disabled {
+
+    background-color: transparent !important;
+    .tool__btn {
+      opacity: 0.2;
+    }
+  }
+  &__btn {
+    padding: 0;
     border: none;
     outline: none;
     cursor: pointer;
+    background-color: transparent;
   }
-	&__capture {
+  &__capture {
     padding: 3px;
     display: none;
     position: absolute;
@@ -15,13 +24,13 @@
     left: 0;
     font-size: 1.2rem;
     border: 1px solid black;
-    white-space: nowrap
+    white-space: nowrap;
   }
 
   &:hover {
     .tool__capture {
       display: block;
     }
-    background-color: rgba(gray, .5);
+    background-color: rgba(gray, 0.5);
   }
 }

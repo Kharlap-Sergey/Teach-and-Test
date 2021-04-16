@@ -6,12 +6,14 @@
 .rich-text-editor {
 	&__toolbar {
     display: flex;
+    background-color: rgb(245, 245, 245);
+    padding: 3px;
    }
 	&__history-control {
     display: flex;
    }
   &__history-tool{
-    padding: 2px;
+    padding: 1px;
   }
 	&__styles-control {
     display: flex;

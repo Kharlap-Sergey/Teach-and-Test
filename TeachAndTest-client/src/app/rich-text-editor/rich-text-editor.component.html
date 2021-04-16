@@ -1,8 +1,15 @@
 <div class="rich-text-editor">
   <div class="rich-text-editor__toolbar">
     <div class="rich-text-editor__history-control">
-      <div class="rich-text-editor__history-tool" *ngFor="let tool of this.controls.history">
-        <app-tool [capture]="tool.capture" (click)="tool.click()">
+      <div
+        class="rich-text-editor__history-tool"
+        *ngFor="let tool of this.controls.history"
+      >
+        <app-tool
+          [capture]="tool.capture"
+          [disabled]="tool.disabled"
+          (click)="tool.click()"
+        >
           <img
             class="tool__image"
             [src]="tool.imageSrc"
@@ -13,42 +20,26 @@
     </div>
 
     <div class="rich-text-editor__styles-control">
-      <app-tool-checkbox
-        [disabled]="false"
-        [(isActive)]="this.value"
+      <div
+        class="rich-text-editor__styles-tool"
+        *ngFor="let tool of this.controls.styles"
       >
-        <app-tool [capture]="'some text here'">
-          <img
-            class="tool__image"
-            [src]="'rich-text-editor/bold.png'"
-            alt=""
-          />
-        </app-tool>
-      </app-tool-checkbox>
-      <app-tool-checkbox
-        [disabled]="false"
-        [(isActive)]="this.value"
-      >
-        <app-tool [capture]="'some text here'">
-          <img
-            class="tool__image"
-            [src]="'rich-text-editor/italic.png'"
-            alt=""
-          />
-        </app-tool>
-      </app-tool-checkbox>
-      <app-tool-checkbox
-        [disabled]="false"
-        [(isActive)]="this.value"
-      >
-        <app-tool [capture]="'some text here'">
-          <img
-            class="tool__image"
-            [src]="'rich-text-editor/underline.png'"
-            alt=""
-          />
-        </app-tool>
-      </app-tool-checkbox>
+        <app-tool-checkbox
+          [disabled]="tool.disabled"
+          [(isActive)]="tool.value"
+        >
+          <app-tool
+            [capture]="tool.capture"
+            [disabled]="tool.disabled"
+          >
+            <img
+              class="tool__image"
+              [src]="tool.imageSrc"
+              alt=""
+            />
+          </app-tool>
+        </app-tool-checkbox>
+      </div>
     </div>
   </div>
   <div class="rich-text-editor__content"></div>

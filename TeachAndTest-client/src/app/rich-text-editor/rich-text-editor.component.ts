@@ -16,34 +16,37 @@ export class RichTextEditorComponent
     history: [
       {
         imageSrc: 'rich-text-editor/back.png',
-        active: false,
+        disabled: false,
         click: () => {},
         capture: 'go back',
       },
       {
         imageSrc: 'rich-text-editor/forward.png',
-        active: false,
+        disabled: true,
         click: () => {},
         capture: 'go forward',
       },
     ],
-    styles: {
-      bold: {
+    styles: [
+      {
+        imageSrc: 'rich-text-editor/bold.png',
         value: false,
-        active: true,
-        capture: '',
+        disabled: false,
+        capture: 'Bold',
       },
-      italic: {
+      {
+        imageSrc: 'rich-text-editor/italic.png',
         value: false,
-        active: true,
-        capture: '',
+        disabled: false,
+        capture: 'Italic',
       },
-      underline: {
+      {
+        imageSrc: 'rich-text-editor/underline.png',
         value: false,
-        active: true,
-        capture: '',
+        disabled: false,
+        capture: 'Underline',
       },
-    },
+    ],
   };
   public value = false;
 

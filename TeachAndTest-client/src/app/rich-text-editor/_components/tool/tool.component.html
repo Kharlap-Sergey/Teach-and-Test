@@ -1,9 +1,17 @@
-<div class="tool">
-  <div class="tool__btn" (click)="this.click.emit()">
-    <ng-content>
-    </ng-content>
-  </div>
+<div
+  class="tool"
+  [ngClass]="{
+    'tool--disabled': this.disabled
+  }"
+>
+  <button
+    class="tool__btn"
+    (click)="this.click.emit()"
+    [disabled]="this.disabled"
+  >
+    <ng-content> </ng-content>
+  </button>
   <div class="tool__capture">
-    {{this.capture}}
+    {{ this.capture }}
   </div>
 </div>
