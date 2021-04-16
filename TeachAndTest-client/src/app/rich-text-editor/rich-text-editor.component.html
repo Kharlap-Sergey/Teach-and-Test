@@ -2,18 +2,11 @@
   [disabled]="false"
   [(isActive)]="this.value"
 >
-  <img
-    class="tool-checkbox__image"
-    [src]="'assets/teach.png'"
-    alt=""
-  />
+  <app-tool [capture]="'some text here'">
+    <img
+      class="tool__image"
+      [src]="'assets/teach.png'"
+      alt=""
+    />
+  </app-tool>
 </app-tool-checkbox>
-
-<app-tool [capture]="'some text here'">
-  <img
-    class="tool-checkbox__image"
-    [src]="'assets/teach.png'"
-    alt=""
-  />
-</app-tool>
-

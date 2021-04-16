@@ -6,12 +6,12 @@
 	&__button {
       border: none;
       cursor: pointer;
+      border: 1px solid transparent;
       background-color: transparent;
       outline: none;
       &--selected {
         background-color: #fff;
-        border: 1px solid black
+        border: 1px solid black;
       }
    }
-	&__image { }
 }
