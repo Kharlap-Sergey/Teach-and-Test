@@ -2,3 +2,19 @@
   width: 16px;
   height: 16px;
 }
+
+.rich-text-editor {
+	&__toolbar {
+    display: flex;
+   }
+	&__history-control {
+    display: flex;
+   }
+  &__history-tool{
+    padding: 2px;
+  }
+	&__styles-control {
+    display: flex;
+  }
+	&__content { }
+}

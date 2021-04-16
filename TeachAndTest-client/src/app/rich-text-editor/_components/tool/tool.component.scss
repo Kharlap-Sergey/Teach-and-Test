@@ -1,5 +1,6 @@
 .tool {
   position: relative;
+  padding: 3px 4px 1px;
 	&__btn {
     border: none;
     outline: none;
@@ -21,5 +22,6 @@
     .tool__capture {
       display: block;
     }
+    background-color: rgba(gray, .5);
   }
 }
