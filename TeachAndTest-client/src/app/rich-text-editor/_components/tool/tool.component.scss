@@ -1,0 +1,16 @@
+.tool {
+  position: relative;
+	&__btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+	&__capture {
+    position: absolute;
+    bottom: -20px;
+    padding: 3px;
+    font-size: 1.2rem;
+    border: 1px solid black;
+    background-color: rgba(gray, .2);
+  }
+}
