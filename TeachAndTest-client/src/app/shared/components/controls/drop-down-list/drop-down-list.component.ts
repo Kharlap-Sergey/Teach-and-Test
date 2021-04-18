@@ -8,6 +8,7 @@ import {
   ControlValueAccessor,
   NgControl,
 } from '@angular/forms';
+import { DropDownListModel } from './drop-down-list.model';
 
 @Component({
   selector: 'app-drop-down-list',
@@ -16,16 +17,16 @@ import {
 })
 export class DropDownListComponent
   implements OnInit, ControlValueAccessor {
-  private _value: any;
+  private _value: DropDownListModel;
 
   public disabled: boolean = false;
   @Input()
-  public content: any[];
-  public get value(): any {
+  public options: DropDownListModel[];
+  public get value(): DropDownListModel {
     return this._value;
   }
   @Input()
-  public set value(value: any) {
+  public set value(value: DropDownListModel) {
     this._value = value;
     this.onChange(value);
   }
@@ -50,7 +51,7 @@ export class DropDownListComponent
   }
   ngOnInit(): void {}
 
-  public changeValue(){
-    this.value = Math.random();
+  public handleSelection(model: DropDownListModel){
+    this.value = model;
   }
 }

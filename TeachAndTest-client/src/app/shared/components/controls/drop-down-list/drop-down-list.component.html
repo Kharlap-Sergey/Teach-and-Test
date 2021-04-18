@@ -1,5 +1,8 @@
-<button (click)="this.changeValue()">
-  change value
-</button>
-
-{{this.value}}
+<div class="drop-down-list">
+  <div class="drop-down-list__element"
+    *ngFor="let option of this.options"
+    (click)="this.handleSelection(option)"
+  >
+    {{option.title}}
+  </div>
+</div>

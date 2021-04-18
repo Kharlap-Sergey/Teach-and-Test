@@ -2,8 +2,9 @@
 
 </app-rich-text-editor>
 
-{{testvalue}}
-<app-drop-down-list [(ngModel)]="this.testvalue"></app-drop-down-list>
+{{testvalue.title}}
+<app-drop-down-list [(ngModel)]="this.testvalue" [options]="
+[{title: 'some', value: 1},{title: 'some1', value: 2}]"></app-drop-down-list>
 <!-- <input
   type="file"
   id="input"

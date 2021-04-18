@@ -34,7 +34,7 @@ export class TestComponent
   /**
    *
    */
-   testvalue = 0;
+  testvalue: any = {};
   @ViewChild('img') img: any;
   isModalOpened = true;
   onClose(event: any) {
