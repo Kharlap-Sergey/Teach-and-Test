@@ -18,6 +18,9 @@
   &__preview {
     padding-left: 10px;
     border: 1px solid black;
+    &:hover {
+      background-color: rgb(128, 128, 128);
+    }
   }
   &__content {
     position: absolute;

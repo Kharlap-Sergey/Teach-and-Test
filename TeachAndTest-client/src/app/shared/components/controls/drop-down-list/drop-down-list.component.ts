@@ -43,7 +43,7 @@ export class DropDownListComponent
   @Input()
   public minWidth: string = '50px';
   @Input()
-  public minHeight: string = 'auto';
+  public minHeight: string = '40px';
   @Input()
   public maxHeight: string = '100px';
   @Input()

@@ -40,6 +40,12 @@
           </app-tool>
         </app-tool-checkbox>
       </div>
+
+      <app-drop-down-list
+        class="rich-text-editor__styles-selector"
+        [(ngModel)]="this.model"
+        [options]="this.testValues"
+      ></app-drop-down-list>
     </div>
   </div>
   <div class="rich-text-editor__content"></div>

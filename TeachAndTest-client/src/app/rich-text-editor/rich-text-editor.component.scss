@@ -4,19 +4,23 @@
 }
 
 .rich-text-editor {
-	&__toolbar {
+  &__toolbar {
     display: flex;
     background-color: rgb(245, 245, 245);
     padding: 3px;
-   }
-	&__history-control {
+  }
+  &__history-control {
     display: flex;
-   }
-  &__history-tool{
+  }
+  &__history-tool {
     padding: 1px;
   }
-	&__styles-control {
+  &__styles-control {
     display: flex;
   }
-	&__content { }
+  &__styles-selector {
+    width: 100px;
+  }
+  &__content {
+  }
 }
