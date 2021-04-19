@@ -20,6 +20,8 @@ export class DropDownListComponent
   implements AfterViewInit, ControlValueAccessor {
   private _value: DropDownListModel;
 
+  public isOpen: boolean = false
+  @Input()
   public disabled: boolean = false;
   @Input()
   public options: DropDownListModel[];

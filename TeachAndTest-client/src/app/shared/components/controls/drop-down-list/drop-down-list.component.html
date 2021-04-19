@@ -1,26 +1,32 @@
-<div class="drop-down-list">
+<div class="drop-down-list" *ngIf="!this.disabled">
   <div
     class="drop-down-list__preview drop-down-list-preview"
   >
     <div
       class="drop-down-list-preview__element"
-      (click)="this.handleSelection(null)"
+      (click)="this.isOpen = !this.isOpen"
     >
       <p class="drop-down-list-preview__title">
         {{ this.value?.title }}
       </p>
     </div>
   </div>
-  <div class="drop-down-list__content">
+  <div
+    class="drop-down-list__content"
+    *ngIf="this.isOpen"
+  >
     <div
       class="drop-down-list__element drop-down-list-element"
-      [ngCLass]="{
-        'drop-down-list-element--selected': false
-      }"
       *ngFor="let option of this.options"
       (click)="this.handleSelection(option)"
     >
-      <p class="drop-down-list-element__title">
+      <p
+        class="drop-down-list-element__title"
+        [ngClass]="{
+          'drop-down-list-element__title--selected':
+            option == this.value
+        }"
+      >
         {{ option.title }}
       </p>
     </div>

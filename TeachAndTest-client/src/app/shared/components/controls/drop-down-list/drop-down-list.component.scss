@@ -1,7 +1,6 @@
 @import "colors.scss";
 
-@mixin element{
-
+@mixin element {
 }
 
 :host {
@@ -27,8 +26,9 @@
   }
 }
 .drop-down-list-element {
-  &--selected {
-  }
   &__title {
+    &--selected {
+      background-color: $light-light-green;
+    }
   }
 }
