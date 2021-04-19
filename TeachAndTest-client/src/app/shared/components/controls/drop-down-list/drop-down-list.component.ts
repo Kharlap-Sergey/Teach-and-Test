@@ -41,7 +41,7 @@ export class DropDownListComponent
   @ViewChild('content')
   public contentContainer: ElementRef;
   @Input()
-  public width: string = 'auto';
+  public minWidth: string = '50px';
   @Input()
   public minHeight: string = 'auto';
   @Input()

@@ -3,6 +3,9 @@
 <app-drop-down-list
   [(ngModel)]="this.model"
   [options]="this.testValues"
+  [ngStyle]="{
+    width: '200px'
+  }"
 ></app-drop-down-list>
 <!-- <input
   type="file"

@@ -9,17 +9,20 @@
 }
 :host {
   cursor: pointer;
-  font-size: 160%;
+  display: block;
+  font-size: 1.5rem;
+  background-color: transparent;
 }
 .drop-down-list {
   position: relative;
   &__preview {
     padding-left: 10px;
-    border: 1px solid black
+    border: 1px solid black;
   }
   &__content {
     position: absolute;
-    border: .5px solid lightgray;
+    width: 100%;
+    border: 0.5px solid lightgray;
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 2px;
@@ -41,7 +44,6 @@
     }
   }
   &__element {
-
     &:hover {
       background-color: $light-gray;
     }

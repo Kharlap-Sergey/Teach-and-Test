@@ -1,11 +1,9 @@
 <div class="drop-down-list" *ngIf="!this.disabled">
   <div
     class="drop-down-list__preview drop-down-list-preview"
+    (click)="this.isOpen = !this.isOpen"
   >
-    <div
-      class="drop-down-list-preview__element"
-      (click)="this.isOpen = !this.isOpen"
-    >
+    <div class="drop-down-list-preview__element">
       <p class="drop-down-list-preview__title">
         {{ this.value?.title }}
       </p>
@@ -25,7 +23,7 @@
     #content
     [class.stash]="!this.isOpen"
     [ngStyle]="{
-      width: this.width,
+      minWidth: this.minWidth,
       minHeight: this.minHeight,
       maxHeight: this.maxHeight
     }"
