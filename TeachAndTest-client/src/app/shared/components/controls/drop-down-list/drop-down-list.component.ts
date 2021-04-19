@@ -1,9 +1,9 @@
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
   Component,
+  ElementRef,
   Input,
   Self,
+  ViewChild,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -17,39 +17,68 @@ import { DropDownListModel } from './drop-down-list.model';
   styleUrls: ['./drop-down-list.component.scss'],
 })
 export class DropDownListComponent
-  implements AfterViewInit, ControlValueAccessor {
+  implements ControlValueAccessor {
   private _value: DropDownListModel;
+  private _isOpen: boolean = false;
+  private _scrollTop: number = 0;
+  @ViewChild('content')
+  public contentContainer: ElementRef;
 
-  public isOpen: boolean = true
+  public get scrollTop(): number {
+    return this._scrollTop;
+  }
+  public set scrollTop(scrollValue: number) {
+    if (
+      this.contentContainer?.nativeElement
+    ) {
+      this.contentContainer.nativeElement.scrollTop = scrollValue;
+    }
+
+    this._scrollTop = scrollValue;
+  }
+
+
+
   @Input()
-  public width: string = "auto"
+  public width: string = 'auto';
   @Input()
-  public minHeight: string = "auto"
+  public minHeight: string = 'auto';
   @Input()
-  public maxHeight: string = "100px"
+  public maxHeight: string = '100px';
   @Input()
   public disabled: boolean = false;
   @Input()
   public options: DropDownListModel[];
+  @Input()
+  public set value(value: DropDownListModel) {
+    if (this._value === value) return;
+    this._value = value;
+
+    this.onChange(value);
+  }
   public get value(): DropDownListModel {
     return this._value;
   }
   @Input()
-  public set value(value: DropDownListModel) {
-    this._value = value;
-    this.onChange(value);
+  public set isOpen(isOpen: boolean) {
+    if (this._isOpen == isOpen) return;
+
+    if (isOpen) {
+      this.scrollTop = this.scrollTop;
+    }
+
+    this._isOpen = isOpen;
+  }
+  public get isOpen(): boolean {
+    return this._isOpen;
   }
 
-  constructor(
-    @Self() public controlDir: NgControl,
-    private cdRef: ChangeDetectorRef
-  ) {
+  constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
 
-  private onChange: any = () => {};
-  private onTouched: any = () => {};
   writeValue(value: any): void {
+    if (!value) return;
     this.value = value;
   }
   registerOnChange(fn: any): void {
@@ -61,16 +90,21 @@ export class DropDownListComponent
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-  ngAfterViewInit() {
-    if (!this.value) {
-      setTimeout(() => {
-        this.value = this.options[0];
-      }, 0);
-
-      this.cdRef.detectChanges();
-    }
-  }
-  public handleSelection(model: DropDownListModel) {
+  public handleSelection(
+    event: any,
+    model: DropDownListModel
+  ) {
     this.value = model;
   }
+
+  public isSelect(element: any, condition: boolean) {
+    if (!condition) return false;
+
+    this.scrollTop = element.offsetTop;
+
+    return condition;
+  }
+
+  private onChange: any = () => {};
+  private onTouched: any = () => {};
 }

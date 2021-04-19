@@ -13,7 +13,8 @@
   </div>
   <div
     class="drop-down-list__content"
-    *ngIf="this.isOpen"
+    #content
+    [class.stash]="!this.isOpen"
     [ngStyle]="{
       width: this.width,
       minHeight: this.minHeight,
@@ -21,12 +22,13 @@
     }"
   >
     <div
+      #elem
       class="drop-down-list__element drop-down-list-element"
       *ngFor="let option of this.options"
-      (click)="this.handleSelection(option)"
+      (click)="this.handleSelection($event, option)"
       [ngClass]="{
         'drop-down-list-element--selected':
-          option == this.value
+          this.isSelect(elem, option == this.value)
       }"
     >
       <p class="drop-down-list-element__title">

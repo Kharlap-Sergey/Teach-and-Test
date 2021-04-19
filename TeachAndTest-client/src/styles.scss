@@ -21,10 +21,10 @@ li {
 }
 
 .stash {
-  display: inline;
-  height: 0;
-  width: 0;
-  overflow: hidden;
+  display: inline !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
 }
 //override toastr styles
 .toastr{
