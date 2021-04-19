@@ -14,19 +14,22 @@
   <div
     class="drop-down-list__content"
     *ngIf="this.isOpen"
+    [ngStyle]="{
+      width: this.width,
+      minHeight: this.minHeight,
+      maxHeight: this.maxHeight
+    }"
   >
     <div
       class="drop-down-list__element drop-down-list-element"
       *ngFor="let option of this.options"
       (click)="this.handleSelection(option)"
+      [ngClass]="{
+        'drop-down-list-element--selected':
+          option == this.value
+      }"
     >
-      <p
-        class="drop-down-list-element__title"
-        [ngClass]="{
-          'drop-down-list-element__title--selected':
-            option == this.value
-        }"
-      >
+      <p class="drop-down-list-element__title">
         {{ option.title }}
       </p>
     </div>

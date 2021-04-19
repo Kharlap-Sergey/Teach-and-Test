@@ -20,7 +20,13 @@ export class DropDownListComponent
   implements AfterViewInit, ControlValueAccessor {
   private _value: DropDownListModel;
 
-  public isOpen: boolean = false
+  public isOpen: boolean = true
+  @Input()
+  public width: string = "auto"
+  @Input()
+  public minHeight: string = "auto"
+  @Input()
+  public maxHeight: string = "100px"
   @Input()
   public disabled: boolean = false;
   @Input()
