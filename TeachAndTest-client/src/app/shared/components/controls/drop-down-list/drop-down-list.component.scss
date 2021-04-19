@@ -1,0 +1,34 @@
+@import "colors.scss";
+
+@mixin element{
+
+}
+
+:host {
+  cursor: pointer;
+}
+.drop-down-list {
+  &__preview {
+  }
+  &__content {
+  }
+  &__element {
+    @include element;
+    &:hover {
+      background-color: $light-gray;
+    }
+  }
+}
+.drop-down-list-preview {
+  &__element {
+    @include element;
+  }
+  &__title {
+  }
+}
+.drop-down-list-element {
+  &--selected {
+  }
+  &__title {
+  }
+}

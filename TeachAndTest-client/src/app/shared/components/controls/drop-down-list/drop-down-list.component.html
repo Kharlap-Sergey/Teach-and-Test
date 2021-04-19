@@ -1,8 +1,28 @@
 <div class="drop-down-list">
-  <div class="drop-down-list__element"
-    *ngFor="let option of this.options"
-    (click)="this.handleSelection(option)"
+  <div
+    class="drop-down-list__preview drop-down-list-preview"
   >
-    {{option.title}}
+    <div
+      class="drop-down-list-preview__element"
+      (click)="this.handleSelection(null)"
+    >
+      <p class="drop-down-list-preview__title">
+        {{ this.value?.title }}
+      </p>
+    </div>
+  </div>
+  <div class="drop-down-list__content">
+    <div
+      class="drop-down-list__element drop-down-list-element"
+      [ngCLass]="{
+        'drop-down-list-element--selected': false
+      }"
+      *ngFor="let option of this.options"
+      (click)="this.handleSelection(option)"
+    >
+      <p class="drop-down-list-element__title">
+        {{ option.title }}
+      </p>
+    </div>
   </div>
 </div>

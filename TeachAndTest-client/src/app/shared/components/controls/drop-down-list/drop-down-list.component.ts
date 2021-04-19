@@ -1,7 +1,8 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   Input,
-  OnInit,
   Self,
 } from '@angular/core';
 import {
@@ -16,7 +17,7 @@ import { DropDownListModel } from './drop-down-list.model';
   styleUrls: ['./drop-down-list.component.scss'],
 })
 export class DropDownListComponent
-  implements OnInit, ControlValueAccessor {
+  implements AfterViewInit, ControlValueAccessor {
   private _value: DropDownListModel;
 
   public disabled: boolean = false;
@@ -31,7 +32,10 @@ export class DropDownListComponent
     this.onChange(value);
   }
 
-  constructor(@Self() public controlDir: NgControl) {
+  constructor(
+    @Self() public controlDir: NgControl,
+    private cdRef: ChangeDetectorRef
+  ) {
     this.controlDir.valueAccessor = this;
   }
 
@@ -49,9 +53,16 @@ export class DropDownListComponent
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-  ngOnInit(): void {}
+  ngAfterViewInit() {
+    if (!this.value) {
+      setTimeout(() => {
+        this.value = this.options[0];
+      }, 0);
 
-  public handleSelection(model: DropDownListModel){
+      this.cdRef.detectChanges();
+    }
+  }
+  public handleSelection(model: DropDownListModel) {
     this.value = model;
   }
 }
