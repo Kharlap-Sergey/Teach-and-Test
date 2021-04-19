@@ -26,6 +26,7 @@ li {
   width: 0 !important;
   overflow: hidden !important;
 }
+
 //override toastr styles
 .toastr{
   @extend .ngx-toastr;
@@ -42,4 +43,20 @@ li {
 }
 .toast-warning {
   background-color: #F89406;
+}
+
+.combo-arrow {
+  cursor: default;
+  margin: 11px 0 0;
+  float: left;
+  height: 0;
+  width: 0;
+  font-size: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid #484848;
+
+  &--closed{
+    transform: rotate(-90deg);
+  }
 }

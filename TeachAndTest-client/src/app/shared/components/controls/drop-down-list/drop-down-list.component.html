@@ -10,6 +10,15 @@
         {{ this.value?.title }}
       </p>
     </div>
+    <div class="drop-down-list-preview__arrow">
+      <span
+        class="combo-arrow"
+        [ngClass]="{
+          'combo-arrow--closed': !this.isOpen
+        }"
+      >
+      </span>
+    </div>
   </div>
   <div
     class="drop-down-list__content"
@@ -27,8 +36,10 @@
       *ngFor="let option of this.options"
       (click)="this.handleSelection($event, option)"
       [ngClass]="{
-        'drop-down-list-element--selected':
-          this.isSelect(elem, option == this.value)
+        'drop-down-list-element--selected': this.isSelect(
+          elem,
+          option == this.value
+        )
       }"
     >
       <p class="drop-down-list-element__title">

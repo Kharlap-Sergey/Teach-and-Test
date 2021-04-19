@@ -1,14 +1,21 @@
 @import "colors.scss";
 
 @mixin element {
+  margin: 0;
 }
-
+@mixin title {
+  margin: 0;
+  padding: 2px;
+}
 :host {
   cursor: pointer;
+  font-size: 160%;
 }
 .drop-down-list {
   position: relative;
   &__preview {
+    padding-left: 10px;
+    border: 1px solid black
   }
   &__content {
     position: absolute;
@@ -34,26 +41,34 @@
     }
   }
   &__element {
-    @include element;
+
     &:hover {
       background-color: $light-gray;
     }
   }
 }
 .drop-down-list-preview {
+  position: relative;
   &__element {
     @include element;
   }
   &__title {
+    @include title;
+  }
+  &__arrow {
+    position: absolute;
+    top: -7px;
+    right: 9px;
+    transform: scale(2);
   }
 }
 .drop-down-list-element {
-  margin: 0;
+  @include element;
   padding: 10px;
   &--selected {
     background-color: $light-light-green;
   }
   &__title {
-    margin: 0;
+    @include title;
   }
 }
