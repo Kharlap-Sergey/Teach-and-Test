@@ -21,24 +21,25 @@ export class DropDownListComponent
   private _value: DropDownListModel;
   private _isOpen: boolean = false;
   private _scrollTop: number = 0;
-  @ViewChild('content')
-  public contentContainer: ElementRef;
+  private _shouldBeScrolled: boolean = true;
 
   public get scrollTop(): number {
     return this._scrollTop;
   }
   public set scrollTop(scrollValue: number) {
     if (
+      this._shouldBeScrolled &&
       this.contentContainer?.nativeElement
     ) {
       this.contentContainer.nativeElement.scrollTop = scrollValue;
+      this._shouldBeScrolled = false;
     }
 
     this._scrollTop = scrollValue;
   }
 
-
-
+  @ViewChild('content')
+  public contentContainer: ElementRef;
   @Input()
   public width: string = 'auto';
   @Input()
@@ -61,9 +62,10 @@ export class DropDownListComponent
   }
   @Input()
   public set isOpen(isOpen: boolean) {
-    if (this._isOpen == isOpen) return;
+    if (this._isOpen === isOpen) return;
 
     if (isOpen) {
+      this._shouldBeScrolled = true;
       this.scrollTop = this.scrollTop;
     }
 
