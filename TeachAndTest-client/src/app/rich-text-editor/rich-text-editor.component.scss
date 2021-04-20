@@ -5,9 +5,10 @@
 
 .rich-text-editor {
   &__toolbar {
+    padding: 7px 15px 7px 10px;
     display: flex;
+    border: .1px solid gray;
     background-color: rgb(245, 245, 245);
-    padding: 3px;
   }
   &__history-control {
     display: flex;

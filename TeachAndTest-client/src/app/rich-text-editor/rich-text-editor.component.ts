@@ -3,6 +3,7 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { styleOptions } from './rich-text-editor.configurations';
 
 @Component({
   selector: 'app-rich-text-editor',
@@ -13,14 +14,7 @@ import {
 export class RichTextEditorComponent
   implements OnInit {
   public  model: any = {};
-  public testValues = [
-    { title: 'some', value: 1 },
-    { title: 'some1', value: 2 },
-    { title: 'some2', value: 3 },
-    { title: 'some3', value: 4 },
-    { title: 'some4', value: 5 },
-    { title: 'some5', value: 6 }
-  ];
+  public testValues = styleOptions
   public controls = {
     history: [
       {
@@ -64,4 +58,11 @@ export class RichTextEditorComponent
   }
 
   ngOnInit(): void {}
+
+  public handleBack(){
+
+  }
+  public handleForward(){
+
+  }
 }
