@@ -20,13 +20,17 @@ export class RichTextEditorComponent
       {
         imageSrc: 'rich-text-editor/back.png',
         disabled: false,
-        click: () => {},
+        click: () => {
+          this.handleBack();
+        },
         capture: 'go back',
       },
       {
         imageSrc: 'rich-text-editor/forward.png',
         disabled: true,
-        click: () => {},
+        click: () => {
+          this.handleForward();
+        },
         capture: 'go forward',
       },
     ],
