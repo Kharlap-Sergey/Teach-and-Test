@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  HostListener,
   Input,
   Self,
   ViewChild,
@@ -92,10 +93,12 @@ export class DropDownListComponent
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-  public handleSelection(
-    event: any,
-    model: DropDownListModel
-  ) {
+
+  handleOpenCloseClick(event: any) {
+    event.stopPropagation();
+    this.isOpen = !this.isOpen;
+  }
+  public handleSelection(model: DropDownListModel) {
     this.value = model;
   }
 
@@ -107,6 +110,10 @@ export class DropDownListComponent
     return condition;
   }
 
+  @HostListener('document:click', ['$event'])
+  private handleDocumentClick(event: MouseEvent) {
+    this.isOpen = false;
+  }
   private onChange: any = () => {};
   private onTouched: any = () => {};
 }

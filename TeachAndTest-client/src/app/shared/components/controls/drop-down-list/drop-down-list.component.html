@@ -1,7 +1,7 @@
 <div class="drop-down-list" *ngIf="!this.disabled">
   <div
     class="drop-down-list__preview drop-down-list-preview"
-    (click)="this.isOpen = !this.isOpen"
+    (click)="this.handleOpenCloseClick($event)"
   >
     <div class="drop-down-list-preview__element">
       <p class="drop-down-list-preview__title">
@@ -32,7 +32,7 @@
       #elem
       class="drop-down-list__element drop-down-list-element"
       *ngFor="let option of this.options"
-      (click)="this.handleSelection($event, option)"
+      (click)="this.handleSelection(option)"
       [ngClass]="{
         'drop-down-list-element--selected': this.isSelect(
           elem,
