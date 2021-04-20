@@ -25,6 +25,7 @@ import { AvatarImageComponent } from './components/avatar-image/avatar-image.com
 import { NavTreeComponent } from './components/nav-tree/nav-tree.component';
 import { ContentArrowComponent } from './components/nav-tree/content-arrow/content-arrow.component';
 import { DropDownListComponent } from './components/controls/drop-down-list/drop-down-list.component';
+import { ResizableComponent } from './components/resizable/resizable.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DropDownListComponent } from './components/controls/drop-down-list/drop
     ImageUploaderComponent,
     AvatarImageComponent,
     ContentArrowComponent,
-    DropDownListComponent
+    DropDownListComponent,
+    ResizableComponent
   ],
   imports: [
   NgxSpinnerModule,
@@ -70,6 +72,7 @@ import { DropDownListComponent } from './components/controls/drop-down-list/drop
     ImageUploaderComponent,
     AvatarImageComponent,
     DropDownListComponent,
+    ResizableComponent,
   ],
 })
 export class SharedModule {}
