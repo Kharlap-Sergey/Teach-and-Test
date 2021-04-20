@@ -15,6 +15,8 @@ export class HtmlVertex {
       this._contentLength += child._contentLength;
     }
 
+    if(parent === null) return;
+
     this.parent.recalculateLength();
   }
 
