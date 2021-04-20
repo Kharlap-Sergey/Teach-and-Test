@@ -8,12 +8,14 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { HtmlEditorComponent } from './_components/html-editor/html-editor.component';
 
 @NgModule({
   declarations: [
     RichTextEditorComponent,
     ToolCheckboxComponent,
     ToolComponent,
+    HtmlEditorComponent,
   ],
   imports: [
     CommonModule,
