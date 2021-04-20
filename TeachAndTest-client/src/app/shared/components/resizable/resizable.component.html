@@ -1,13 +1,31 @@
-<div #box class="resizable-draggable"
-    [style.width.px]="width"
-    [style.height.px]="height"
-    [style.transform]="'translate3d('+ left + 'px,' + top + 'px,' + '0px)'"
-    [class.active]="status === 1 || status === 2"
-    (mousedown)="setStatus($event, 2)"
-    (window:mouseup)="setStatus($event, 0)"
+<div
+  class="resizable"
+  #container
+  [style.width.px]="this.containerWidth"
+  [style.height.px]="this.containerHeight"
 >
-    <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>
-    <span>{{width | number:'1.0-0'}}px</span>
-    <span>{{height | number:'1.0-0'}}px</span>
-    <span>({{left}}, {{top}})</span>
+  <div
+    #area
+    class="resizable__area resizable-area"
+    [style.width.px]="this.areaWidth"
+    [style.height.px]="this.areaHeight"
+    [class.resizable--active]="this.status === 1"
+    (window:mouseup)="setStatus($event, 0)"
+  >
+    <ng-content></ng-content>
+    <div
+      class="resizable-area__resize-action"
+      (mousedown)="setStatus($event, 1)"
+    ></div>
+    <span
+      class="resizable-area__width"
+      *ngIf="this.shouldShowSize"
+      >{{ this.areaHeight | number: "1.0-0" }}px</span
+    >
+    <span
+      class="resizable-area__height"
+      *ngIf="this.shouldShowSize"
+      >{{ this.areaHeight | number: "1.0-0" }}px</span
+    >
+  </div>
 </div>
