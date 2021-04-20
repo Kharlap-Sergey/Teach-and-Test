@@ -48,5 +48,17 @@
       ></app-drop-down-list>
     </div>
   </div>
-  <div class="rich-text-editor__content"></div>
+  <div class="rich-text-editor__content">
+    <app-resizable
+      [width]="300"
+      [height]="150"
+      [isHeightLocked]="true"
+      [isWidthLocked]="true"
+      [shouldShowSize]="false"
+    >
+      <div class="box-container">
+        <h2>asdfasdfasd</h2>
+      </div>
+    </app-resizable>
+  </div>
 </div>
