@@ -67,7 +67,12 @@ export class HtmlVertex {
 
   public extract(): HtmlVertex{
     this.previous.next = this.next.previous;
-    
+    this.next.previous = this.previous.next;
+
+    this.next = null;
+    this.previous = null;
+    this.parent = null;
+
     return this
   }
 }
