@@ -53,11 +53,14 @@
       </app-tool>
     </div>
   </div>
-  <div class="rich-text-editor__content">
+  <div
+    #contentEditor
+    class="rich-text-editor__content"
+  >
     <app-resizable
-      [width]="300"
+      [width]="contentEditor.offsetWidth"
       [height]="150"
-      [isHeightLocked]="true"
+      [isHeightLocked]="false"
       [isWidthLocked]="true"
       [shouldShowSize]="false"
     >
