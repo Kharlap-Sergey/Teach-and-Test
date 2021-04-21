@@ -17,9 +17,6 @@
   position: relative;
   &__preview {
     padding-left: 10px;
-    &:hover {
-      background-color: rgb(128, 128, 128);
-    }
   }
   &__content {
     position: absolute;
