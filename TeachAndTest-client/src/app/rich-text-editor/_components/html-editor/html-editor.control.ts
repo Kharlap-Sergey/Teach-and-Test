@@ -1,29 +1,22 @@
 import { IHtmlContent } from "./html-content.interface";
 
 export class HtmlVertex {
-  private _contentLength: number = 0;
-
   public tag: IHtmlContent = null;
+
   public parent: HtmlVertex = null;
-  public children: HtmlVertex[] = [];
+  //control children
+  public leftChild: HtmlVertex = null;
+  public rightChild: HtmlVertex = null;
+  //control lien hierarchic
   public previous: HtmlVertex = null;
   public next: HtmlVertex = null;
 
-  public recalculateLength() {
-    this._contentLength = 0;
-
-    for (let child of this.children) {
-      this._contentLength += child._contentLength;
-    }
-
-    if(parent === null) return;
-
-    this.parent.recalculateLength();
-  }
-
-  public addChild(node: HtmlVertex) {
+  public setChild(node: HtmlVertex): HtmlVertex {
     node.parent = this;
-    this.children.push(node);
+    this.leftChild = node;
+    this.rightChild = node;
+
+    return node;
   }
 
   public insertAfter(node: HtmlVertex) {
@@ -59,7 +52,7 @@ export class HtmlEditorControl {
     nodeToBeAdded: HtmlVertex,
     parentNode: HtmlVertex = this.root
   ): HtmlVertex {
-    parentNode.addChild(nodeToBeAdded);
+    parentNode.setChild(nodeToBeAdded);
     return nodeToBeAdded;
   }
 
@@ -67,7 +60,7 @@ export class HtmlEditorControl {
     node: HtmlVertex,
     nodeToBeAdded: HtmlVertex
   ): HtmlVertex {
-    node.parent.addChild(nodeToBeAdded);
+    node.parent.setChild(nodeToBeAdded);
     node.insertAfter(nodeToBeAdded);
 
     return nodeToBeAdded;
