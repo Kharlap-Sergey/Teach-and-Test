@@ -1,8 +1,9 @@
+import { IHtmlContent } from "./html-content.interface";
+
 export class HtmlVertex {
   private _contentLength: number = 0;
 
-  public tag: any = null;
-  public content: string = null;
+  public tag: IHtmlContent = null;
   public parent: HtmlVertex = null;
   public children: HtmlVertex[] = [];
   public previous: HtmlVertex = null;
@@ -43,11 +44,11 @@ export class HtmlEditorControl {
   static CreateBodyVertex(): HtmlVertex {
     const body = new HtmlVertex();
 
-    body.tag = {
-      open: '<body>',
-      style: {},
-      close: '</body>',
-    };
+    // body.tag = {
+    //   open: '<body>',
+    //   style: {},
+    //   close: '</body>',
+    // };
 
     return body;
   }
@@ -70,26 +71,26 @@ export class HtmlEditorControl {
     return nodeToBeAdded;
   }
 
-  public getContent(node: HtmlVertex = this.root): string {
-    let content = '';
-    if (node.tag !== null) {
-      content += node.tag.open;
-    }
+  // public getContent(node: HtmlVertex = this.root): string {
+  //   let content = '';
+  //   if (node.tag !== null) {
+  //     content += node.tag.open;
+  //   }
 
-    if (node.content !== null) {
-      content += node.content;
-    }
+  //   if (node.content !== null) {
+  //     content += node.content;
+  //   }
 
-    if (node.children.length) {
-      content += this.getContent(node.children[0]);
-    }
-    if (node.next != null) {
-      content += this.getContent(node.next);
-    }
-    if (node.tag !== null) {
-      content += node.tag.close;
-    }
+  //   if (node.children.length) {
+  //     content += this.getContent(node.children[0]);
+  //   }
+  //   if (node.next != null) {
+  //     content += this.getContent(node.next);
+  //   }
+  //   if (node.tag !== null) {
+  //     content += node.tag.close;
+  //   }
 
-    return content;
-  }
+  //   return content;
+  // }
 }

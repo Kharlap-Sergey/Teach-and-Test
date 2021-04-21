@@ -18,46 +18,46 @@ export class HtmlEditorComponent implements OnInit {
       HtmlEditorControl.CreateBodyVertex()
     );
 
-    let vertex = new HtmlVertex();
-    vertex.tag = {
-      open: '<p>',
-      style: {},
-      close: '</p>',
-    };
+    // let vertex = new HtmlVertex();
+    // vertex.tag = {
+    //   open: '<p>',
+    //   style: {},
+    //   close: '</p>',
+    // };
 
-    vertex = this.editorControl.addNodeToParent(
-      vertex
-    );
+    // vertex = this.editorControl.addNodeToParent(
+    //   vertex
+    // );
 
-    let subVertex = new HtmlVertex();
-    subVertex.content = 'hello world';
+    // let subVertex = new HtmlVertex();
+    // subVertex.content = 'hello world';
 
-    subVertex = this.editorControl.addNodeToParent(
-      subVertex,
-      vertex
-    );
+    // subVertex = this.editorControl.addNodeToParent(
+    //   subVertex,
+    //   vertex
+    // );
 
-    let subVertex1 = new HtmlVertex();
-    subVertex1.tag = {
-      open: "<strong>",
-      close: "</strong>"
-    }
+    // let subVertex1 = new HtmlVertex();
+    // subVertex1.tag = {
+    //   open: "<strong>",
+    //   close: "</strong>"
+    // }
 
-    subVertex1 = this.editorControl.addNodeAfterNode(
-      subVertex,
-      subVertex1
-    );
+    // subVertex1 = this.editorControl.addNodeAfterNode(
+    //   subVertex,
+    //   subVertex1
+    // );
 
-    let subVertex2 = new HtmlVertex();
-    subVertex2.content = "asdfasdfasdfasd "
+    // let subVertex2 = new HtmlVertex();
+    // subVertex2.content = "asdfasdfasdfasd "
 
-    subVertex2 = this.editorControl.addNodeToParent(
-      subVertex2,
-      subVertex1
-    );
+    // subVertex2 = this.editorControl.addNodeToParent(
+    //   subVertex2,
+    //   subVertex1
+    // );
   }
 
   ngOnInit(): void {
-    this.result = this.editorControl.getContent();
+    // this.result = this.editorControl.getContent();
   }
 }
