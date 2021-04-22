@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  HtmlEditorControl
-} from './html-editor.control';
 
 @Component({
   selector: 'app-html-editor',
@@ -9,13 +6,9 @@ import {
   styleUrls: ['./html-editor.component.scss'],
 })
 export class HtmlEditorComponent implements OnInit {
-  private editorControl: HtmlEditorControl;
 
   public result: string = '';
   constructor() {
-    this.editorControl = new HtmlEditorControl(
-      HtmlEditorControl.CreateBodyVertex()
-    );
 
     // let vertex = new HtmlVertex();
     // vertex.tag = {
