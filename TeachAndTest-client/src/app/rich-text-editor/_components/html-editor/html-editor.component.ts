@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   HtmlEditorControl
 } from './html-editor.control';
@@ -13,6 +13,7 @@ export class HtmlEditorComponent implements OnInit {
 
   public result: string = '';
   constructor() {
+
     this.editorControl = new HtmlEditorControl(
       HtmlEditorControl.CreateBodyVertex()
     );
@@ -58,5 +59,9 @@ export class HtmlEditorComponent implements OnInit {
 
   ngOnInit(): void {
     // this.result = this.editorControl.getContent();
+  }
+
+  handleSelection(){
+    console.log(window.getSelection());
   }
 }

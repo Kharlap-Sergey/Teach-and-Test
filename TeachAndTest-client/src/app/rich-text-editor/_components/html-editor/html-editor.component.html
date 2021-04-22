@@ -1,6 +1,16 @@
-<p>html-editor works!</p>
-{{this.result}}
-
-
-<div class="inner-html" [innerHtml]="this.result">
+<div class="" id='div'>
+  asdfasdf
+  <p id='p'>html-<strong>editor </strong> works!</p>
 </div>
+
+{{ this.result }}
+
+<div
+  class="inner-html"
+  [innerHtml]="this.result"
+  
+></div>
+
+<div class="html-editor" contenteditable="true"></div>
+
+<button (click)="this.handleSelection()">show</button>
