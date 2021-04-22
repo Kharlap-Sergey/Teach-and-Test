@@ -1,7 +1,4 @@
-import { IHtmlContent } from "./html-content.interface";
 import { HtmlVertex } from "./html-vertex";
-
-
 
 export class HtmlEditorControl {
   private _root: HtmlVertex;

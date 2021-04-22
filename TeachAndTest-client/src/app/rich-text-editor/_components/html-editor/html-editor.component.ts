@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  HtmlEditorControl,
-  HtmlVertex,
+  HtmlEditorControl
 } from './html-editor.control';
 
 @Component({
