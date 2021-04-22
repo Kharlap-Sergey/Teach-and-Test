@@ -12,6 +12,14 @@ export class BaseTag implements IHtmlContent {
   }
 
   public getHtmlContent = (innerContent: string) => {
-    return innerContent + this.innerContent;
+    return this.HtmlEncode(innerContent + this.innerContent);
   };
+
+  private HtmlEncode(str: string)
+  {
+    var el = document.createElement("div");
+    el.innerText = el.textContent = str;
+    str = el.innerHTML;
+    return str;
+  }
 }
