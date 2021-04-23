@@ -1,5 +1,6 @@
 import { Guid } from "guid-typescript";
 import { IHtmlContent } from "./html-content.interface";
+import { BaseTag } from "./Tags/base.tag";
 
 export class HtmlVertex {
   private _previous: HtmlVertex = null;
@@ -25,6 +26,9 @@ export class HtmlVertex {
     this._next = next
   }
 
+  constructor(tag: BaseTag = null){
+    this.tag = tag ?? this.tag;
+  }
   public getCopy(): HtmlVertex{
     var node = new HtmlVertex();
 
@@ -76,5 +80,23 @@ export class HtmlVertex {
     this.parent = null;
 
     return this
+  }
+
+  public remove(): HtmlVertex {
+    this.previous.next = this.next.previous;
+    this.next.previous = this.previous.next;
+
+    if(this.next ==  null){
+      this.parent.rightChild = this.previous;
+    }
+    if(this.previous == null){
+      this.parent.leftChild = this.next;
+    }
+
+    this.next = null;
+    this.previous = null;
+    this.parent = null;
+
+    return this;
   }
 }
