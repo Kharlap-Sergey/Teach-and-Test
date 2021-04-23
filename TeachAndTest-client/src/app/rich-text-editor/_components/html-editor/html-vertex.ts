@@ -1,9 +1,11 @@
+import { Guid } from "guid-typescript";
 import { IHtmlContent } from "./html-content.interface";
 
 export class HtmlVertex {
-  public _previous: HtmlVertex = null;
-  public _next: HtmlVertex = null;
+  private _previous: HtmlVertex = null;
+  private _next: HtmlVertex = null;
   public tag: IHtmlContent = null;
+  public id = Guid.create();
 
   public parent: HtmlVertex = null;
   //control children
