@@ -1,0 +1,6 @@
+.html-editor {
+  outline: none;
+  &--focused {
+    border: 1px solid black;
+  }
+}

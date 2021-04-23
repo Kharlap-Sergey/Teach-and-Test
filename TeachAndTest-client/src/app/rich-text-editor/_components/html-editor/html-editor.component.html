@@ -1,0 +1,17 @@
+<div
+  #htmlEditor
+  class="html-editor"
+  contenteditable="true"
+  [style.height.px]="300"
+  [class.html-editor--focused]="
+    this.isEditorUnderFocus
+  "
+  (focus)="this.handleEditorFocus($event)"
+></div>
+{{ this.isEditorUnderFocus }}
+<input
+  #fakeInput
+  class="fake-input"
+  id="fakeInput"
+  (blur)="this.handleEditorBlur($event)"
+/>
