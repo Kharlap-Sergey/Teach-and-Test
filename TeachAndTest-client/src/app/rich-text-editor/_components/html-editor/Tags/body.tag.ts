@@ -5,9 +5,10 @@ export class BodyTag extends BaseTag {
     super(innerContent);
   }
 
-  public getHtmlContent = (innerContent: string) => {
-    return `<body>${super.getHtmlContent(
-      innerContent
-    )}</body>`;
-  };
+  public getHtmlContent(innerContent: any): any {
+    const body = document.createElement("body");
+    body.id = this.id.toString();
+
+    return body
+  }
 }

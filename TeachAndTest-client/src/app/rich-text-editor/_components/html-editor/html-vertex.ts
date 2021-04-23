@@ -27,6 +27,7 @@ export class HtmlVertex {
   }
 
   constructor(tag: BaseTag = null){
+    if(tag) tag.id = this.id
     this.tag = tag ?? this.tag;
   }
   public getCopy(): HtmlVertex{

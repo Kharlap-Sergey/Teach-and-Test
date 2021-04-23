@@ -1,6 +1,6 @@
-<div class="" id='div'>
+<div class="" id="div">
   asdfasdf
-  <p id='p'>html-<strong>editor </strong> works!</p>
+  <p id="p">html-<strong>editor </strong> works!</p>
 </div>
 
 {{ this.result }}
@@ -8,9 +8,15 @@
 <div
   class="inner-html"
   [innerHtml]="this.result"
-  
 ></div>
 
-<div class="html-editor" contenteditable="true"></div>
+<div
+  #editor
+  class="html-editor"
+  id="24108a97-9d73-3769-d993-99fb01827755"
+  contenteditable="true"
+  (input)="this.handleInput($event)"
+></div>
 
+<h2 [style.width.px]="400">{{ this.testContent }}</h2>
 <button (click)="this.handleSelection()">show</button>

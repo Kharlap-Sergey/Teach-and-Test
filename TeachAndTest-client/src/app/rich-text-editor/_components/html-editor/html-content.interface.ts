@@ -1,4 +1,4 @@
 export interface IHtmlContent {
-  getHtmlContent: (innerContent: string) => string
+  getHtmlContent: (innerContent: any) => any
 }
 

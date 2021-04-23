@@ -4,14 +4,15 @@ import { BaseTag } from './base.tag';
 export class PTag extends BaseTag {
   constructor(
     innerContent: string = '',
-    private id: Guid
+    id: Guid = null
   ) {
     super(innerContent);
+    this.id = id;
   }
 
-  public getHtmlContent = (innerContent: string) => {
-    return `<p id=${this.id}>${super.getHtmlContent(
-      innerContent
-    )}</p>`;
-  };
+  public getHtmlContent(innerContent: any): any {
+    const p = document.createElement('p');
+    p.id = this.id.toString();
+    return p;
+  }
 }
