@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { HtmlEditorComponent } from './_components/html-editor/html-editor.component';
+import { CursorComponent } from './_components/html-editor/cursor/cursor.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HtmlEditorComponent } from './_components/html-editor/html-editor.compo
     ToolCheckboxComponent,
     ToolComponent,
     HtmlEditorComponent,
+    CursorComponent,
   ],
   imports: [
     CommonModule,

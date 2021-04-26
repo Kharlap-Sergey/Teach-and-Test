@@ -1,0 +1,21 @@
+:host {
+  position: absolute;
+  display: block;
+  border-top-color: #666666;
+  border-right-color: #666666;
+  border-bottom-color: #666666;
+  border-left-color: #666666;
+  width: 0px;
+  height: 20px;
+  border-left: 2px solid;
+  font-size: 0px;
+  cursor: text;
+  animation:  blink 1.5s step-start 0s infinite;
+
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.0;
+  }
+}
