@@ -17,25 +17,27 @@ export class HtmlEditorComponent implements OnInit {
   private htmlEditor: ElementRef;
 
   public isEditorUnderFocus: boolean = false;
+  public val: string = "1234";
 
   ngOnInit(): void {}
 
   public handleEditorFocus(event: any) {
-    if(this.isEditorUnderFocus){
-      event.preventDefault();
+    console.log(window.getSelection());
+    if (this.isEditorUnderFocus) {
+      //event.relatedTarget.focus();
       return;
     }
     this.isEditorUnderFocus = true;
 
     this.fakeInput.nativeElement.focus();
-    //console.log(event);
   }
   public handleEditorBlur(event: any) {
-    if(event.relatedTarget == this.htmlEditor.nativeElement) {
-      event.preventDefault();
+    if (
+      event.relatedTarget ==
+      this.htmlEditor.nativeElement
+    ) {
       return;
     }
     this.isEditorUnderFocus = false;
-    console.log(event);
   }
 }
