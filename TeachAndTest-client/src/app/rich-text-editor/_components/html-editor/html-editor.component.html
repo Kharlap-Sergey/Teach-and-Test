@@ -8,7 +8,10 @@
   "
   (focus)="this.handleEditorFocus($event)"
   [innerHtml]="this.val"
-></div>
+>
+
+</div>
+<app-cursor [style.height.px]="20"></app-cursor>
 {{ this.isEditorUnderFocus }}
 <input
   #fakeInput
@@ -17,5 +20,3 @@
   (blur)="this.handleEditorBlur($event)"
   [(ngModel)]="this.val"
 />
-
-<app-cursor></app-cursor>

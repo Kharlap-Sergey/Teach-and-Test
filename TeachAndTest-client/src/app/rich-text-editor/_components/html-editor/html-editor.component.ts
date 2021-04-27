@@ -24,12 +24,16 @@ export class HtmlEditorComponent implements OnInit {
   public handleEditorFocus(event: any) {
     console.log(window.getSelection());
     if (this.isEditorUnderFocus) {
-      //event.relatedTarget.focus();
+      setTimeout(()=>{
+        event.relatedTarget.focus();
+      }, 1000)
       return;
     }
     this.isEditorUnderFocus = true;
 
-    this.fakeInput.nativeElement.focus();
+    setTimeout(()=>{
+      this.fakeInput.nativeElement.focus();
+    }, 1000)
   }
   public handleEditorBlur(event: any) {
     if (
